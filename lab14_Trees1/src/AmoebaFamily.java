@@ -77,6 +77,20 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		return "";
 	}
 
+	public int size() {
+		if (myRoot != null) {
+			return myRoot.size();
+		}
+		return 0;
+	}
+
+	public String busiest() {
+		if (myRoot != null) {
+			return myRoot.busiest();
+		}
+		return "";
+	}
+
 	// Return an iterator of the amoeba family.
 	public Iterator<Amoeba> iterator() {
 		return new AmoebaIterator();
@@ -89,16 +103,16 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		family.addChild("mom/dad", "me");
 		family.addChild("mom/dad", "Fred");
 		family.addChild("mom/dad", "Wilma");
-		family.addChild("me", "ThisShouldBeTheLongestChildName");
+		family.addChild("me", "Mike");
 		family.addChild("me", "Homer");
 		family.addChild("me", "Marge");
-		family.addChild("ThisShouldBeTheLongestChildName", "Bart");
-		family.addChild("ThisShouldBeTheLongestChildName", "Lisa");
+		family.addChild("Mike", "Bart");
+		family.addChild("Mike", "Lisa");
 		family.addChild("Marge", "Bill");
 		family.addChild("Marge", "Hilary");
 		family.replaceName("Marge", "Sarah");
 		//family.prettyPrint();
-		System.out.println(family.longestName());
+		family.busiest();
 	}
 
 	public class AmoebaIterator implements Iterator<Amoeba> {
@@ -201,7 +215,7 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		}
 
 		public void prettyPrintHelper(int indentLevel) {
-			// Since it's a recursion, I think it stores a correct indent level for each child
+			// Since it's a recursion, I think it stores a corresponding indent level for each child
 			for (int i = 0; i < indentLevel; i++) {
 				System.out.print(" ");
 			}
@@ -241,6 +255,25 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 				}
 			}
 			return longestName;
+		}
+
+		public int size() {
+			int sizeOfTree = 1;
+			for (Amoeba a : myChildren) {
+				sizeOfTree += a.size();
+			}
+			return sizeOfTree;
+		}
+
+		// Here, we need (1) max number of children so far information, (2) the ancestor information
+		public String busiest() {
+			Amoeba busiestAmoebaRoot = this;
+			String busiestAmoebaName = busiestHelper(busiestAmoebaRoot, 0);
+			return busiestAmoebaName;
+		}
+
+		public String busiestHelper(Amoeba nodeToRemember, int numSoFar) {
+			return "";
 		}
     }
 } 
