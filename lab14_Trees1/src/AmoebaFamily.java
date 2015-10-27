@@ -42,6 +42,13 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		}
 	}
 
+	// Pretty print
+	public void prettyPrint() {
+		if (myRoot != null) {
+			myRoot.prettyPrint();
+		}
+	}
+
 	// Print the names of all amoebas in the family.
 	// Names should appear in preorder, with children's names
 	// printed oldest first.
@@ -90,7 +97,7 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		family.addChild("Marge", "Hilary");
 		System.out.println("Here's the family:");
 		family.replaceName("Marge", "Sarah");
-		family.printFlat();
+		family.prettyPrint();
 	}
 
 	public class AmoebaIterator implements Iterator<Amoeba> {
@@ -186,6 +193,23 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 			for (Amoeba a : myChildren) {
 				a.printFlat();
 			}
+		}
+
+		public void prettyPrint() {
+			this.prettyPrintHelper(0);
+		}
+
+		public void prettyPrintHelper(int indentLevel) {
+			// Since it's a recursion, I think it stores a correct indent level for each child
+			for (int i = 0; i < indentLevel; i++) {
+				System.out.print(" ");
+			}
+			System.out.print(this.myName);
+			System.out.println();
+			for (Amoeba a : this.myChildren) {
+				a.prettyPrintHelper(indentLevel+4);
+			}
+
 		}
 
         //Returns the length of the longest name of this Amoeba's children
