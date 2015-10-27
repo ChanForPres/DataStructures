@@ -71,8 +71,9 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 	// instead of returning the length of the longest name, this method should
 	// return the name that is longest.
 	public String longestName() {
-		// your goal is to make this look as similar as possible to
-		// longestNameLength
+		if (myRoot != null) {
+			return myRoot.longestName();
+		}
 		return "";
 	}
 
@@ -88,16 +89,16 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		family.addChild("mom/dad", "me");
 		family.addChild("mom/dad", "Fred");
 		family.addChild("mom/dad", "Wilma");
-		family.addChild("me", "Mike");
+		family.addChild("me", "ThisShouldBeTheLongestChildName");
 		family.addChild("me", "Homer");
 		family.addChild("me", "Marge");
-		family.addChild("Mike", "Bart");
-		family.addChild("Mike", "Lisa");
+		family.addChild("ThisShouldBeTheLongestChildName", "Bart");
+		family.addChild("ThisShouldBeTheLongestChildName", "Lisa");
 		family.addChild("Marge", "Bill");
 		family.addChild("Marge", "Hilary");
-		System.out.println("Here's the family:");
 		family.replaceName("Marge", "Sarah");
-		family.prettyPrint();
+		//family.prettyPrint();
+		System.out.println(family.longestName());
 	}
 
 	public class AmoebaIterator implements Iterator<Amoeba> {
@@ -220,5 +221,26 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
             }
             return maxLengthSeen;
         }
+
+		public String longestName() {
+			int maxLength = this.longestNameLength();
+			String longestNameSoFar = this.longestNameHelper(maxLength);
+			return longestNameSoFar;
+		}
+
+		public String longestNameHelper(int maxLength) {
+			String longestName = "";
+			if (this.myName.length() == maxLength) {
+				return this.myName;
+			}
+			for (Amoeba a : myChildren) {
+				if (a.myName.length() == maxLength) {
+					return a.myName;
+				} else {
+					return a.longestNameHelper(maxLength);
+				}
+			}
+			return longestName;
+		}
     }
 } 
