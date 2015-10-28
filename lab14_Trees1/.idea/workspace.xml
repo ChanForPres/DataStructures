@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3ab8a69-94ea-490b-a3f8-4891d057c49d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AmoebaFamilyTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab14_Trees1/AmoebaFamily$Amoeba.class" afterPath="$PROJECT_DIR$/out/production/lab14_Trees1/AmoebaFamily$Amoeba.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab14_Trees1/AmoebaFamily$AmoebaIterator.class" afterPath="$PROJECT_DIR$/out/production/lab14_Trees1/AmoebaFamily$AmoebaIterator.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab14_Trees1/AmoebaFamily.class" afterPath="$PROJECT_DIR$/out/production/lab14_Trees1/AmoebaFamily.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AmoebaFamily.java" afterPath="$PROJECT_DIR$/src/AmoebaFamily.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="lab14_Trees1.iws" />
@@ -29,8 +32,18 @@
       <file leaf-file-name="AmoebaFamily.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AmoebaFamily.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.845679">
-              <caret line="306" column="24" selection-start-line="306" selection-start-column="24" selection-end-line="306" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.41358024">
+              <caret line="318" column="39" selection-start-line="318" selection-start-column="39" selection-end-line="318" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AmoebaFamilyTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AmoebaFamilyTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -56,8 +69,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AmoebaFamilyTest.java" />
         <option value="$PROJECT_DIR$/src/AmoebaTest.java" />
+        <option value="$PROJECT_DIR$/src/AmoebaFamilyTest.java" />
         <option value="$PROJECT_DIR$/src/AmoebaFamily.java" />
       </list>
     </option>
@@ -73,6 +86,7 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="-2" />
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="836" />
@@ -157,7 +171,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AmoebaFamily">
+  <component name="RunManager" selected="JUnit.AmoebaFamilyTest">
     <configuration default="false" name="AmoebaFamily" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="AmoebaFamily" />
@@ -171,6 +185,27 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="lab14_Trees1" />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="AmoebaFamilyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="lab14_Trees1" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="AmoebaFamilyTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -320,12 +355,14 @@
       <listeners />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Application.AmoebaFamily" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.AmoebaFamilyTest" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.AmoebaFamily" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.AmoebaFamilyTest" />
+        <item index="1" class="java.lang.String" itemvalue="Application.AmoebaFamily" />
       </list>
     </recent_temporary>
   </component>
@@ -343,7 +380,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="836" extended-state="0" />
+    <frame x="-2" y="23" width="1440" height="836" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -354,7 +391,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32985657" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32985657" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24930556" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -423,10 +460,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AmoebaFamilyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AmoebaFamily.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.845679">
-          <caret line="306" column="24" selection-start-line="306" selection-start-column="24" selection-end-line="306" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.41358024">
+          <caret line="318" column="39" selection-start-line="318" selection-start-column="39" selection-end-line="318" selection-end-column="39" />
           <folding />
         </state>
       </provider>

@@ -91,6 +91,13 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		return "";
 	}
 
+	public int height() {
+		if (myRoot != null) {
+			return myRoot.height();
+		}
+		return 0;
+	}
+
 	// Return an iterator of the amoeba family.
 	public Iterator<Amoeba> iterator() {
 		return new AmoebaIterator();
@@ -112,7 +119,9 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		family.addChild("Marge", "Bill");
 		family.addChild("Marge", "Hilary");
 		//family.prettyPrint();
-		family.busiest();
+		//family.replaceName("Marge", "sarah");
+		//System.out.println(family.busiest());
+
 	}
 
 	public class AmoebaIterator implements Iterator<Amoeba> {
@@ -303,8 +312,20 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 					toRtn = entry.getKey().myName;     // Print the key with max value
 				}
 			}
-
 			return toRtn;
+		}
+
+		private int height() {
+			if (myChildren.isEmpty()) {
+				return 1;
+			} else {
+				int bestSoFar = 1;
+				for (Amoeba a : myChildren) {
+					bestSoFar = Math.max(a.height()+1, bestSoFar);
+
+				}
+				return bestSoFar;
+			}
 		}
     }
 } 
