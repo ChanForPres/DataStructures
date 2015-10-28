@@ -106,11 +106,11 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		family.addChild("me", "Mike");
 		family.addChild("me", "Homer");
 		family.addChild("me", "Marge");
+		family.addChild("me", "Katie");
 		family.addChild("Mike", "Bart");
 		family.addChild("Mike", "Lisa");
 		family.addChild("Marge", "Bill");
 		family.addChild("Marge", "Hilary");
-		family.replaceName("Marge", "Sarah");
 		//family.prettyPrint();
 		family.busiest();
 	}
@@ -266,14 +266,45 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		}
 
 		// Here, we need (1) max number of children so far information, (2) the ancestor information
+		HashMap<Amoeba, Integer> amoebaHashMap = new HashMap<>();
 		public String busiest() {
 			Amoeba busiestAmoebaRoot = this;
-			String busiestAmoebaName = busiestHelper(busiestAmoebaRoot, 0);
+			String busiestAmoebaName = busiestHelper(amoebaHashMap, this);
 			return busiestAmoebaName;
 		}
 
-		public String busiestHelper(Amoeba nodeToRemember, int numSoFar) {
-			return "";
+		public String busiestHelper(HashMap<Amoeba, Integer> amoebaHashMap, Amoeba previousA) {
+			for (Amoeba a : myChildren) {
+				//System.out.println("NOW: "+a);
+				//System.out.println(a.myChildren.toString());
+				if (!amoebaHashMap.containsKey(a) && !(a.myChildren.isEmpty())) {
+					//System.out.println("=============1=============");
+					amoebaHashMap.put(a, 0);
+					//System.out.println("1: "+ a);
+					//System.out.println("1: "+ amoebaHashMap.get(a));
+					if (amoebaHashMap.containsKey(a.myParent)) {
+						amoebaHashMap.put(a.myParent, amoebaHashMap.get(a.myParent)+1);
+					}
+					//System.out.println("===========================");
+					a.busiestHelper(amoebaHashMap, a);
+				} else if (amoebaHashMap.containsKey(a.myParent)) {
+					//System.out.println("=============3=============");
+					amoebaHashMap.put(a.myParent, amoebaHashMap.get(a.myParent)+1);
+					//System.out.println("3: "+ a.myParent);
+					//System.out.println("3: "+ amoebaHashMap.get(a.myParent));
+					//System.out.println("===========================");
+					a.busiestHelper(amoebaHashMap, a);
+				}
+			}
+			int maxValueInMap=(Collections.max(amoebaHashMap.values()));  // This will return max value in the Hashmap
+			String toRtn = "";
+			for (Map.Entry<Amoeba, Integer> entry : amoebaHashMap.entrySet()) {  // Itrate through hashmap
+				if (entry.getValue()==maxValueInMap) {
+					toRtn = entry.getKey().myName;     // Print the key with max value
+				}
+			}
+
+			return toRtn;
 		}
     }
 } 
