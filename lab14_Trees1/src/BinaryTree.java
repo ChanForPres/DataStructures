@@ -55,6 +55,16 @@ public class BinaryTree {
         }
     }
 
+    public boolean isCompletelyBalanced() {
+        if (myRoot == null) {
+            return true; // Empty tree
+        } else if (myRoot.myRight == null && myRoot.myLeft == null) {
+            return true; // Only leaf
+        } else {
+            return myRoot.isCompletelyBalanced();
+        }
+    }
+
     public static void main(String[] args) {
         /*BinaryTree t;
         t = new BinaryTree();
@@ -66,8 +76,9 @@ public class BinaryTree {
 
         BinaryTree t3 = new BinaryTree();
         t3.fillSampleTree3();
-        print(t3, "sample tree 3");
-        System.out.println(t3.height());
+        //print(t3, "sample tree 3");
+        //System.out.println(t3.height());
+        System.out.println(t3.isCompletelyBalanced());
     }
 
     private static void print(BinaryTree t, String description) {
@@ -80,7 +91,7 @@ public class BinaryTree {
 
     private static class TreeNode {
 
-        public Object myItem;
+        public Object myItem; // Root
         public TreeNode myLeft;
         public TreeNode myRight;
 
@@ -128,6 +139,18 @@ public class BinaryTree {
                     bestSoFar = Math.max(this.myLeft.height()+1, this.myRight.height()+1);
                 }
                 return bestSoFar;
+            }
+        }
+
+        private boolean isCompletelyBalanced() {
+            if (myLeft.height() == myRight.height()) {
+                if ((myLeft.height() == 1) && (myRight.height()==1)) {
+                    return true;
+                } else {
+                    return (myLeft.isCompletelyBalanced() && myRight.isCompletelyBalanced());
+                }
+            } else {
+                return false;
             }
         }
     }
