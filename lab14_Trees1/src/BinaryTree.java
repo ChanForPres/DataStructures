@@ -44,7 +44,7 @@ public class BinaryTree {
     }
 
     public void fillSampleTree3() {
-        myRoot = new TreeNode("A", new TreeNode("B"), new TreeNode("C", new TreeNode("D", new TreeNode("E"), new TreeNode("F")), null));
+        myRoot = new TreeNode("A", new TreeNode("B"), new TreeNode("C"));
     }
 
     public int height() {
