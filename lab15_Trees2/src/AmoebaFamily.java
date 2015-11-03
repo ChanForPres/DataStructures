@@ -131,6 +131,7 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		}
 	}
 
+	/* // Depth-first search
 	public class AmoebaIterator implements Iterator<Amoeba> {
 		// Amoebas in the family are enumerated in preorder,
 		// with children enumerated oldest first.
@@ -179,6 +180,55 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 			// Not used for now -- removal from a tree can be difficult.
 			// Once you've learned about different ways to remove from
 			// trees, it might be a good exercise to come back and 
+			// try to implement this.
+		}
+
+	} // end of AmoebaIterator nested class */
+
+	// Breadth-first search
+	public class AmoebaIterator implements Iterator<Amoeba> {
+		// Amoebas in the family are enumerated in preorder,
+		// with children enumerated oldest first.
+		// Members of the family constructed with the main program above
+		// should be enumerated in the following sequence:
+		// Amos McCoy, mom/dad, me, Mike, Bart, Lisa, Homer, Marge,
+		// Bill, Hilary, Fred, Wilma
+		// Complete enumeration of a family of N amoebas should take
+		// O(N) operations.
+
+		// You will supply the details of this class in a future lab.
+
+		private Queue fringe = new LinkedList<>();
+
+		public AmoebaIterator() {
+			if (myRoot != null) {
+				fringe.add(myRoot);
+			}
+		}
+
+		public boolean hasNext() {
+			return !fringe.isEmpty();
+		}
+
+		public Amoeba next() {
+			if (!hasNext()) {
+				throw new NoSuchElementException("Tree ran out of elements");
+			}
+			Amoeba a = (Amoeba) fringe.remove();
+
+			if (a.myChildren != null) {
+				Iterator it = a.myChildren.iterator();
+				while (it.hasNext()) {
+					fringe.add(it.next());
+				}
+			}
+			return a;
+		}
+
+		public void remove() {
+			// Not used for now -- removal from a tree can be difficult.
+			// Once you've learned about different ways to remove from
+			// trees, it might be a good exercise to come back and
 			// try to implement this.
 		}
 

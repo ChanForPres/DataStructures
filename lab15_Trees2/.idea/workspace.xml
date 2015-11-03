@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="14dc0864-b454-4168-9265-9c22c6b5cd73" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AmoebaFamily.java" afterPath="$PROJECT_DIR$/src/AmoebaFamily.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lab15_Trees2.iml" afterPath="$PROJECT_DIR$/lab15_Trees2.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="lab15_Trees2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,20 +27,19 @@
       <file leaf-file-name="AmoebaFamily.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AmoebaFamily.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37037036">
-              <caret line="173" column="13" selection-start-line="173" selection-start-column="13" selection-end-line="173" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.09259259">
+              <caret line="206" column="9" selection-start-line="206" selection-start-column="9" selection-end-line="206" selection-end-column="9" />
               <folding>
                 <element signature="e#2557#2558#0" expanded="true" />
                 <element signature="e#2591#2592#0" expanded="true" />
-                <element signature="e#4056#4064#0" expanded="true" />
-                <element signature="e#4184#4185#0" expanded="true" />
-                <element signature="e#4217#4218#0" expanded="true" />
-                <element signature="e#5305#5306#0" expanded="true" />
-                <element signature="e#5327#5328#0" expanded="true" />
-                <element signature="e#5355#5356#0" expanded="true" />
-                <element signature="e#5385#5386#0" expanded="true" />
-                <element signature="e#6765#6766#0" expanded="true" />
-                <element signature="e#6799#6800#0" expanded="true" />
+                <element signature="e#5704#5705#0" expanded="true" />
+                <element signature="e#5737#5738#0" expanded="true" />
+                <element signature="e#6678#6679#0" expanded="true" />
+                <element signature="e#6700#6701#0" expanded="true" />
+                <element signature="e#6728#6729#0" expanded="true" />
+                <element signature="e#6758#6759#0" expanded="true" />
+                <element signature="e#8138#8139#0" expanded="true" />
+                <element signature="e#8172#8173#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -384,20 +381,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AmoebaFamily.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37037036">
-          <caret line="173" column="13" selection-start-line="173" selection-start-column="13" selection-end-line="173" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.09259259">
+          <caret line="206" column="9" selection-start-line="206" selection-start-column="9" selection-end-line="206" selection-end-column="9" />
           <folding>
             <element signature="e#2557#2558#0" expanded="true" />
             <element signature="e#2591#2592#0" expanded="true" />
-            <element signature="e#4056#4064#0" expanded="true" />
-            <element signature="e#4184#4185#0" expanded="true" />
-            <element signature="e#4217#4218#0" expanded="true" />
-            <element signature="e#5305#5306#0" expanded="true" />
-            <element signature="e#5327#5328#0" expanded="true" />
-            <element signature="e#5355#5356#0" expanded="true" />
-            <element signature="e#5385#5386#0" expanded="true" />
-            <element signature="e#6765#6766#0" expanded="true" />
-            <element signature="e#6799#6800#0" expanded="true" />
+            <element signature="e#5704#5705#0" expanded="true" />
+            <element signature="e#5737#5738#0" expanded="true" />
+            <element signature="e#6678#6679#0" expanded="true" />
+            <element signature="e#6700#6701#0" expanded="true" />
+            <element signature="e#6728#6729#0" expanded="true" />
+            <element signature="e#6758#6759#0" expanded="true" />
+            <element signature="e#8138#8139#0" expanded="true" />
+            <element signature="e#8172#8173#0" expanded="true" />
           </folding>
         </state>
       </provider>
