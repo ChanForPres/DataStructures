@@ -367,7 +367,7 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 				// amoebaHashMap now has a new key "a" and a value 0
 				if (!amoebaHashMap.containsKey(a) && !(a.myChildren.isEmpty())) {
 					amoebaHashMap.put(a, 0);
-					// if amoebaHashMap already contains "a"'s parent, it means we need to add 1 to it
+					// if amoebaHashMap already contains "a"'s parent, it means we need to add 1 to its parent
 					if (amoebaHashMap.containsKey(a.myParent)) {
 						amoebaHashMap.put(a.myParent, amoebaHashMap.get(a.myParent)+1);
 					}

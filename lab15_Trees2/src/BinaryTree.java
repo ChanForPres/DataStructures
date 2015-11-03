@@ -39,13 +39,14 @@ public class BinaryTree {
 
 
     public void fillSampleTree1() {
-        myRoot = new TreeNode("a", new TreeNode("b"), new TreeNode("c"));
+        myRoot = new TreeNode("a", new TreeNode("b"), new TreeNode("a"));
     }
 
 
     public void fillSampleTree2() {
+        TreeNode treenode = new TreeNode("a");
         myRoot = new TreeNode("a", new TreeNode("b", new TreeNode("d",
-                new TreeNode("e"), new TreeNode("f")), null), new TreeNode("c"));
+                new TreeNode("e"), new TreeNode("f")), null), new TreeNode("a"));
     }
 
 
@@ -87,7 +88,7 @@ public class BinaryTree {
         //print(t, "the empty tree");
         t.fillSampleTree1();
         //print(t, "sample tree 1");
-        t.fillSampleTree2();
+        //t.fillSampleTree2();
         //print(t, "sample tree 2");
         t.check();
         BinaryTree t3 = new BinaryTree();
@@ -119,15 +120,32 @@ public class BinaryTree {
         }
     }
 
-
+    // I have two different kinds of solution
+    // 1. Using TreeIterator that implements Iterator<TreeNode>, traverses the tree and checks multiplicity
+    // 2. Using recursion, checks if there's any multiplicity
     private void isOK(TreeNode t) throws IllegalStateException {
-        Iterator<TreeNode> iter = new TreeIterator();
+        /*Iterator<TreeNode> iter = new TreeIterator();
+        System.out.println("alreadySeen: "+alreadySeen);
         if (iter.hasNext()) {
             TreeNode myNext = iter.next();
+            System.out.println("myNext: "+myNext.myItem.toString());
             if (alreadySeen.contains(myNext)) {
                 throw new IllegalStateException("no node appears more than once in the traversal");
             } else {
                 alreadySeen.add(myNext);
+            }
+        }*/
+        alreadySeen.add(t);
+        if (alreadySeen.contains(t)) {
+            System.err.println("no node appears more than once in the traversal");
+            throw new IllegalStateException("no node appears more than once in the traversal");
+        } else {
+            if (t.myLeft != null) {
+                alreadySeen.add(t.myLeft);
+                isOK(t.myLeft);
+            } else if (t.myRight != null) {
+                alreadySeen.add(t.myRight);
+                isOK(t.myRight);
             }
         }
     }
