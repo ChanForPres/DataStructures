@@ -44,7 +44,7 @@ public class BinaryTree {
     }
 
     public void fillSampleTree3() {
-        myRoot = new TreeNode("A", new TreeNode("B"), new TreeNode("C"));
+        myRoot = new TreeNode("A", new TreeNode("B"), new TreeNode("C", new TreeNode("D"), new TreeNode("E")));
     }
 
     public int height() {
@@ -65,6 +65,12 @@ public class BinaryTree {
         }
     }
 
+    public void print() {
+        if (myRoot != null) {
+            myRoot.print(1);
+        }
+    }
+
     public static void main(String[] args) {
         /*BinaryTree t;
         t = new BinaryTree();
@@ -76,8 +82,9 @@ public class BinaryTree {
 
         BinaryTree t3 = new BinaryTree();
         t3.fillSampleTree3();
+        t3.print();
         //print(t3, "sample tree 3");
-        System.out.println(t3.height());
+        //System.out.println(t3.height());
         //System.out.println(t3.isCompletelyBalanced());
     }
 
@@ -152,6 +159,25 @@ public class BinaryTree {
             } else {
                 return false;
             }
+        }
+
+        private static final String indent1 = "    ";
+
+        private void print(int indent) {
+            if (myRight != null) {
+                myRight.print(indent+1);
+            }
+            println (myItem, indent);
+            if (myLeft != null) {
+                myLeft.print(indent+1);
+            }
+        }
+
+        private static void println(Object obj, int indent) {
+            for (int k=0; k<indent; k++) {
+                System.out.print(indent1);
+            }
+            System.out.println(obj);
         }
     }
 }
