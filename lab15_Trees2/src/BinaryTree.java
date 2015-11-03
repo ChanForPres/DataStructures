@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTree {
 
     private TreeNode myRoot;
@@ -22,6 +27,7 @@ public class BinaryTree {
         }
     }
 
+
     // Print the values in the tree in inorder: values in the left
     // subtree first (in inorder), then the root value, then values
     // in the right subtree (in inorder).
@@ -34,18 +40,22 @@ public class BinaryTree {
         }
     }
 
+
     public void fillSampleTree1() {
         myRoot = new TreeNode("a", new TreeNode("b"), new TreeNode("c"));
     }
+
 
     public void fillSampleTree2() {
         myRoot = new TreeNode("a", new TreeNode("b", new TreeNode("d",
                 new TreeNode("e"), new TreeNode("f")), null), new TreeNode("c"));
     }
 
+
     public void fillSampleTree3() {
         myRoot = new TreeNode("A", new TreeNode("B"), new TreeNode("C", new TreeNode("D"), new TreeNode("E")));
     }
+
 
     public int height() {
         if (myRoot == null) {
@@ -54,6 +64,7 @@ public class BinaryTree {
             return myRoot.height();
         }
     }
+
 
     public boolean isCompletelyBalanced() {
         if (myRoot == null) {
@@ -65,28 +76,31 @@ public class BinaryTree {
         }
     }
 
+
     public void print() {
         if (myRoot != null) {
             myRoot.print(1);
         }
     }
 
-    public static void main(String[] args) {
-        /*BinaryTree t;
-        t = new BinaryTree();
-        print(t, "the empty tree");
-        t.fillSampleTree1();
-        print(t, "sample tree 1");
-        t.fillSampleTree2();
-        print(t, "sample tree 2");*/
 
+    public static void main(String[] args) {
+        BinaryTree t;
+        t = new BinaryTree();
+        //print(t, "the empty tree");
+        t.fillSampleTree1();
+        //print(t, "sample tree 1");
+        t.fillSampleTree2();
+        //print(t, "sample tree 2");
+        t.check();
         BinaryTree t3 = new BinaryTree();
         t3.fillSampleTree3();
-        t3.print();
+        //t3.print();
         //print(t3, "sample tree 3");
         //System.out.println(t3.height());
         //System.out.println(t3.isCompletelyBalanced());
     }
+
 
     private static void print(BinaryTree t, String description) {
         System.out.println(description + " in preorder");
@@ -95,6 +109,43 @@ public class BinaryTree {
         t.printInorder();
         System.out.println();
     }
+
+
+    private ArrayList alreadySeen;
+    public boolean check() {
+        alreadySeen = new ArrayList();
+        try {
+            isOK(myRoot);
+            return true;
+        } catch (IllegalStateException e) {
+            return false;
+        }
+    }
+
+
+    private void isOK(TreeNode t) throws IllegalStateException {
+        if (alreadySeen.contains(t)) {
+            throw new IllegalStateException("no node appears more than once in the traversal");
+        } else {
+            alreadySeen.add(t);
+        }
+    }
+
+    public class TreeIterator implements Iterator<TreeNode> {
+
+        private Queue fringe = new LinkedList<>();
+
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public TreeNode next() {
+            return null;
+        }
+    }
+
 
     private static class TreeNode {
 
@@ -107,11 +158,13 @@ public class BinaryTree {
             myLeft = myRight = null;
         }
 
+
         public TreeNode(Object obj, TreeNode left, TreeNode right) {
             myItem = obj;
             myLeft = left;
             myRight = right;
         }
+
 
         private void printPreorder() {
             System.out.print(myItem + " ");
@@ -123,6 +176,7 @@ public class BinaryTree {
             }
         }
 
+
         private void printInorder() {
             if (myLeft != null) {
                 myLeft.printInorder();
@@ -132,6 +186,7 @@ public class BinaryTree {
                 myRight.printInorder();
             }
         }
+
 
         private int height() {
             if (this.myLeft == null && this.myRight == null) {
@@ -149,6 +204,7 @@ public class BinaryTree {
             }
         }
 
+
         private boolean isCompletelyBalanced() {
             if (myLeft.height() == myRight.height()) {
                 if ((myLeft.height() == 1) && (myRight.height()==1)) {
@@ -161,6 +217,7 @@ public class BinaryTree {
             }
         }
 
+
         private static final String indent1 = "    ";
 
         private void print(int indent) {
@@ -172,6 +229,7 @@ public class BinaryTree {
                 myLeft.print(indent+1);
             }
         }
+
 
         private static void println(Object obj, int indent) {
             for (int k=0; k<indent; k++) {
