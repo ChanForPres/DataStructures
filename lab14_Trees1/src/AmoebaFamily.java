@@ -284,30 +284,26 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 
 		public String busiestHelper(HashMap<Amoeba, Integer> amoebaHashMap, Amoeba previousA) {
 			for (Amoeba a : myChildren) {
-				//System.out.println("NOW: "+a);
-				//System.out.println(a.myChildren.toString());
+
+				// If amoebaHashMap does not contain a key "a" and "a" has children
+				// amoebaHashMap now has a new key "a" and a value 0
 				if (!amoebaHashMap.containsKey(a) && !(a.myChildren.isEmpty())) {
-					//System.out.println("=============1=============");
 					amoebaHashMap.put(a, 0);
-					//System.out.println("1: "+ a);
-					//System.out.println("1: "+ amoebaHashMap.get(a));
+					// if amoebaHashMap already contains "a"'s parent, it means we need to add 1 to it
 					if (amoebaHashMap.containsKey(a.myParent)) {
 						amoebaHashMap.put(a.myParent, amoebaHashMap.get(a.myParent)+1);
 					}
-					//System.out.println("===========================");
+					// Recurse again from a
 					a.busiestHelper(amoebaHashMap, a);
 				} else if (amoebaHashMap.containsKey(a.myParent)) {
-					//System.out.println("=============3=============");
+					// if a is a leaf node and amoebaHashMap already contains a.myParent node as a key
 					amoebaHashMap.put(a.myParent, amoebaHashMap.get(a.myParent)+1);
-					//System.out.println("3: "+ a.myParent);
-					//System.out.println("3: "+ amoebaHashMap.get(a.myParent));
-					//System.out.println("===========================");
 					a.busiestHelper(amoebaHashMap, a);
 				}
 			}
 			int maxValueInMap=(Collections.max(amoebaHashMap.values()));  // This will return max value in the Hashmap
 			String toRtn = "";
-			for (Map.Entry<Amoeba, Integer> entry : amoebaHashMap.entrySet()) {  // Itrate through hashmap
+			for (Map.Entry<Amoeba, Integer> entry : amoebaHashMap.entrySet()) {  // Iterate through hashmap
 				if (entry.getValue()==maxValueInMap) {
 					toRtn = entry.getKey().myName;     // Print the key with max value
 				}
