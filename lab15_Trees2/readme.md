@@ -14,3 +14,9 @@ ____|____     ____|_____
 |        |    |         |
 fib(3)  fib(4) fib(4)   fib(5)
 ```
+
+## Tree Iterator
+* We will maintain a collection called *fringe* or *frontier* of all the nodes in the tree that are cnadidates for returning next. <br \>
+* **next** : choose one of the elements in the fringe as the one to return -> add its children to the fringe as candidates for the next element to return
+* **hasNext** : true when the fringe isn't empty
+* **Depth-first iteration** = storing the fringe elements in a stack (LIFO)
