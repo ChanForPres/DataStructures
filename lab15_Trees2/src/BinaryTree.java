@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class BinaryTree {
 
@@ -124,10 +121,14 @@ public class BinaryTree {
 
 
     private void isOK(TreeNode t) throws IllegalStateException {
-        if (alreadySeen.contains(t)) {
-            throw new IllegalStateException("no node appears more than once in the traversal");
-        } else {
-            alreadySeen.add(t);
+        Iterator<TreeNode> iter = new TreeIterator();
+        if (iter.hasNext()) {
+            TreeNode myNext = iter.next();
+            if (alreadySeen.contains(myNext)) {
+                throw new IllegalStateException("no node appears more than once in the traversal");
+            } else {
+                alreadySeen.add(myNext);
+            }
         }
     }
 
@@ -135,14 +136,32 @@ public class BinaryTree {
 
         private Queue fringe = new LinkedList<>();
 
+        public TreeIterator() {
+            if (myRoot != null) {
+                fringe.add(myRoot);
+            }
+        }
+
         @Override
         public boolean hasNext() {
-            return false;
+            return !fringe.isEmpty();
         }
 
         @Override
         public TreeNode next() {
-            return null;
+            if (!hasNext()) {
+                throw new NoSuchElementException("No more elements in the tree");
+            } else {
+                TreeNode thisRoot = (TreeNode) fringe.remove();
+
+                if (thisRoot.myLeft != null) {
+                    fringe.add(thisRoot.myLeft);
+                } else if (thisRoot.myRight != null) {
+                    fringe.add(thisRoot.myRight);
+                }
+
+                return thisRoot;
+            }
         }
     }
 

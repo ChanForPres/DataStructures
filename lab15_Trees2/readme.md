@@ -24,5 +24,5 @@ fib(3)  fib(4) fib(4)   fib(5)
 * **Breath-first iteration** = storing the fringe elements in a queue (FIFO)
 
 ### Check() method in BinaryTree
-A legal binary tree has the property that, when the tree is traversed, no node appears more than once in the traversal. <br \>
-In order to check that, I created **TreeIterator** class that implements **Iterator<TreeNode>**. As I exercised in the AmoebaFamily class, I use TreeIterator to check if there's any node that appears more than once.
+* A legal binary tree has the property that, when the tree is traversed, no node appears more than once in the traversal. <br \>
+* In order to check that, I created **TreeIterator** class that implements Iterator<TreeNode>. Like I exercised in the AmoebaFamily class, TreeIterator is traversing the tree to check if there's any node that appears more than once.
