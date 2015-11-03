@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14dc0864-b454-4168-9265-9c22c6b5cd73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lab14_Trees1/out/production/lab14_Trees1/AmoebaFamily$Amoeba.class" afterPath="$PROJECT_DIR$/../lab14_Trees1/out/production/lab14_Trees1/AmoebaFamily$Amoeba.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lab14_Trees1/out/production/lab14_Trees1/AmoebaFamily.class" afterPath="$PROJECT_DIR$/../lab14_Trees1/out/production/lab14_Trees1/AmoebaFamily.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lab14_Trees1/out/production/lab14_Trees1/BinaryTree.class" afterPath="$PROJECT_DIR$/../lab14_Trees1/out/production/lab14_Trees1/BinaryTree.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lab14_Trees1/src/BinaryTree.java" afterPath="$PROJECT_DIR$/../lab14_Trees1/src/BinaryTree.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lab14_Trees1/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../lab14_Trees1/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
     </list>
     <ignored path="lab15_Trees2.iws" />
     <ignored path=".idea/workspace.xml" />
