@@ -122,6 +122,13 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		//family.replaceName("Marge", "sarah");
 		//System.out.println(family.busiest());
 
+
+		// Amos McCoy, mom/dad, me, Mike, Bart, Lisa, Homer, Marge,
+		// Bill, Hilary, Fred, Wilma
+		Iterator<Amoeba> iter = family.iterator();
+		while (iter.hasNext()) {
+			System.out.println(iter.next());
+		}
 	}
 
 	public class AmoebaIterator implements Iterator<Amoeba> {
@@ -136,15 +143,36 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 
 		// You will supply the details of this class in a future lab.
 
+		private Stack<Amoeba> fringe = new Stack<Amoeba>();
+
 		public AmoebaIterator() {
+			if (myRoot != null) {
+				fringe.add(myRoot);
+
+			}
 		}
 
 		public boolean hasNext() {
-			return false;
+			return !fringe.isEmpty();
 		}
 
 		public Amoeba next() {
-			return null;
+			if (!hasNext()) {
+				throw new NoSuchElementException("Tree ran out of elements");
+			}
+			Amoeba a = (Amoeba) fringe.pop();
+
+			if (a.myChildren != null) {
+				Iterator it = a.myChildren.iterator();
+				LinkedList<Object> listIt = new LinkedList<>();
+				while (it.hasNext()) {
+					listIt.add(it.next());
+				}
+				for (int i = listIt.size()-1; i >= 0; i--) {
+					fringe.push((Amoeba) listIt.get(i));
+				}
+			}
+			return a;
 		}
 
 		public void remove() {
