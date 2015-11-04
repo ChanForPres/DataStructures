@@ -81,23 +81,57 @@ public class BinaryTree {
         }
     }
 
+    public static BinaryTree fibTree(int n) {
+        BinaryTree result = new BinaryTree();
+        result.myRoot = result.fibTreeHelper(n);
+        return result;
+    }
+
+    private TreeNode fibTreeHelper (int n) {
+        if (n == 0) {
+            myRoot = new TreeNode(0);
+            return myRoot;
+        } else if (n == 1) {
+            myRoot = new TreeNode(1);
+            return myRoot;
+        } else {
+            myRoot = new TreeNode(add(fibTreeHelper(n-1), fibTreeHelper(n-2)), new TreeNode(n-1), new TreeNode(n-2));
+            return myRoot;
+        }
+    }
+
+    private Object add(TreeNode myLeft, TreeNode myRight) {
+        Integer leftItem = (int) myLeft.myItem;
+        Integer rightItem = (int) myRight.myItem;
+        return leftItem + rightItem;
+    }
 
     public static void main(String[] args) {
         BinaryTree t;
         t = new BinaryTree();
+        //t = fibTree(0);
+        //t.print();
+        //t = fibTree(1);
+        //t.print();
+        //t = fibTree(2);
+        //t.print();
+        t = fibTree(3);
+        t.print();
+
         //print(t, "the empty tree");
-        t.fillSampleTree1();
+        //t.fillSampleTree1();
         //print(t, "sample tree 1");
         //t.fillSampleTree2();
         //print(t, "sample tree 2");
-        t.check();
-        BinaryTree t3 = new BinaryTree();
-        t3.fillSampleTree3();
+        //t.check();
+        //BinaryTree t3 = new BinaryTree();
+        //t3.fillSampleTree3();
         //t3.print();
         //print(t3, "sample tree 3");
         //System.out.println(t3.height());
         //System.out.println(t3.isCompletelyBalanced());
     }
+
 
 
     private static void print(BinaryTree t, String description) {
@@ -274,5 +308,6 @@ public class BinaryTree {
             }
             System.out.println(obj);
         }
+
     }
 }
