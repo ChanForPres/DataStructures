@@ -95,7 +95,7 @@ public class BinaryTree {
             myRoot = new TreeNode(1);
             return myRoot;
         } else {
-            myRoot = new TreeNode(add(fibTreeHelper(n-1), fibTreeHelper(n-2)), new TreeNode(n-1), new TreeNode(n-2));
+            myRoot = new TreeNode(add(fibTreeHelper(n-1), fibTreeHelper(n-2)), fibTreeHelper(n-1), fibTreeHelper(n-2));
             return myRoot;
         }
     }
