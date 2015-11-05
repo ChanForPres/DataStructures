@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14dc0864-b454-4168-9265-9c22c6b5cd73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab15_Trees2/BinaryTree.class" afterPath="$PROJECT_DIR$/out/production/lab15_Trees2/BinaryTree.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lab14_Trees1/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../lab14_Trees1/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BinaryTree.java" afterPath="$PROJECT_DIR$/src/BinaryTree.java" />
     </list>
     <ignored path="lab15_Trees2.iws" />
@@ -41,8 +39,8 @@
       <file leaf-file-name="BinaryTree.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BinaryTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.03267974">
-              <caret line="125" column="92" selection-start-line="125" selection-start-column="92" selection-end-line="125" selection-end-column="92" />
+            <state vertical-scroll-proportion="0.39215687">
+              <caret line="136" column="30" selection-start-line="136" selection-start-column="30" selection-end-line="136" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -642,12 +640,12 @@
       <workItem from="1446603262650" duration="130000" />
       <workItem from="1446603395468" duration="24000" />
       <workItem from="1446643507382" duration="2285000" />
-      <workItem from="1446689262468" duration="5621000" />
+      <workItem from="1446689262468" duration="5978000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8143000" />
+    <option name="totallyTimeSpent" value="8500000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="35" y="23" width="1309" height="836" extended-state="0" />
@@ -829,8 +827,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BinaryTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03267974">
-          <caret line="125" column="92" selection-start-line="125" selection-start-column="92" selection-end-line="125" selection-end-column="92" />
+        <state vertical-scroll-proportion="0.39215687">
+          <caret line="136" column="30" selection-start-line="136" selection-start-column="30" selection-end-line="136" selection-end-column="30" />
           <folding />
         </state>
       </provider>
