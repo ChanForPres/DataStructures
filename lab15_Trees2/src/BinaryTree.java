@@ -154,6 +154,37 @@ public class BinaryTree {
         }
     }
 
+    public void optimize() {
+        optimizeHelper(this.myRoot);
+    }
+
+    private void optimizeHelper(TreeNode myRoot) {
+        System.out.println("myRoot: "+myRoot.myItem);
+
+        if (myRoot.myLeft != null) {
+            optimizeHelper(myRoot.myLeft);
+        } if (myRoot.myRight != null) {
+            // Regardless myRoot.myLeft != null check, this statement will also be executed
+            // This is why it is if() statement instead of else if()
+            optimizeHelper(myRoot.myRight);
+        } if (myRoot.myItem instanceof String) {
+            if (myRoot.myLeft.myItem instanceof Integer && myRoot.myRight.myItem instanceof Integer) {
+                String op = (String) myRoot.myItem;
+                Integer left_comp = (Integer)myRoot.myLeft.myItem;
+                Integer right_comp = (Integer)myRoot.myRight.myItem;
+                if (op.charAt(0) == '+') {
+                    myRoot.myItem = new Integer(left_comp+right_comp);
+                } else if (op.charAt(0) == '*') {
+                    myRoot.myItem = new Integer(left_comp*right_comp);
+                }
+                myRoot.myRight = null;
+                myRoot.myLeft = null;
+                return;
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
         BinaryTree t;
         t = new BinaryTree();
@@ -165,7 +196,10 @@ public class BinaryTree {
         //t.print();
         //t = fibTree(5);
         //t.print();
-        exprTree("((a+(5*(a+b)))+(6*5))").print();
+        t = exprTree("((a+(5*(9+1)))+(6*5))");
+        t.optimize();
+        t.print();
+
 
         //print(t, "the empty tree");
         //t.fillSampleTree1();
