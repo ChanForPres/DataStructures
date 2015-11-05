@@ -26,3 +26,7 @@ fib(3)  fib(4) fib(4)   fib(5)
 ### Check() method in BinaryTree
 * A legal binary tree has the property that, when the tree is traversed, no node appears more than once in the traversal. <br \>
 * In order to check that, I created **TreeIterator** class that implements Iterator<TreeNode>. Like I exercised in the AmoebaFamily class, TreeIterator is traversing the tree to check if there's any node that appears more than once.
+
+### Building Expression Tree
+* One tricky part was how to decide the operator(+/*) that separates the given expression well. <br \>
+* The solution was incrementing the variable *nesting* by 1 if we see the opening bracket and decrementing the variable *nesting* by 1 if we see the closing bracket. And when the variable *nesting* is 0 and we see any operator + or *, that's the right operator that should separate the expression.

@@ -106,6 +106,87 @@ public class BinaryTree {
         return leftItem + rightItem;
     }
 
+
+    public static BinaryTree exprTree(String s) {
+        BinaryTree result = new BinaryTree();
+        result.myRoot = result.exprTreeHelper(s);
+        return result;
+    }
+
+    // Return the tree corresponding to the given arithmetic expression.
+    // The expression is legal, fully parenthesized, contains no blanks,
+    // and involves only the operations + and *.
+    private TreeNode exprTreeHelper(String expr) {
+
+        // Base case
+        if (expr.charAt(0) != '(') {
+            if (Character.isLetter(expr.charAt(0))) {
+                return new TreeNode(expr.charAt(0));
+            } else {
+                return new TreeNode(new Integer(Character.getNumericValue(expr.charAt(0))));
+            }
+        } else {
+            // expr is a parenthesized expression.
+            // Strip off the beginning and ending parentheses,
+            // find the main operator (an occurrence of + or * not nested
+            // in parentheses, and construct the two subtrees.
+            System.out.println("expr: "+expr);
+            int nesting_comp = 0;
+            int nesting = 0;
+            int opPos = 0;
+            for (int k = 1; k < expr.length() - 1; k++) {
+                if ((expr.charAt(k) == '+'||expr.charAt(k) == '*') && expr.charAt(k+1) == '(' && expr.charAt(k-1) == ')') {
+                    nesting_comp += 1;
+                } else {
+                    if ((expr.charAt(k) == '+'||expr.charAt(k) == '*') && expr.charAt(k+1) == '(') {
+                        nesting += 1;
+                    }
+                }
+            }
+
+            System.out.println("nesting: "+nesting);
+            System.out.println("nesting_comp: "+nesting_comp);
+
+            if (nesting == 1) {
+                for (int j = 1; j <expr.length()-1; j++) {
+                    if (expr.charAt(j+1) == '(' && (expr.charAt(j) == '+' || expr.charAt(j) == '*')) {
+                        opPos = j;
+                    }
+                }
+            } else if (nesting > 1) {
+                for (int j = 1; j <expr.length()-1; j++) {
+                    if (expr.charAt(j+1) == '(' && (expr.charAt(j) == '+' || expr.charAt(j) == '*')) {
+                        opPos = j;
+                        break;
+                    }
+                }
+
+            } else if (nesting_comp != 0) {
+                for (int j = 1; j <expr.length()-1; j++) {
+                    if (expr.charAt(j-1) == ')' && (expr.charAt(j) == '+' || expr.charAt(j) == '*') && (expr.charAt(j+1) == '(')) {
+                        opPos = j;
+                    }
+                }
+            } else {
+                for (int j = 1; j <expr.length()-1; j++) {
+                    if (expr.charAt(j) == '*' || expr.charAt(j) == '+') {
+                        opPos = j;
+                    }
+                }
+            }
+            String opnd1 = expr.substring(1, opPos);
+            String opnd2 = expr.substring(opPos + 1, expr.length() - 1);
+            String op = expr.substring(opPos, opPos + 1);
+            System.out.println("expression = " + expr);
+            System.out.println("operand 1  = " + opnd1);
+            System.out.println("operator   = " + op);
+            System.out.println("operand 2  = " + opnd2);
+            System.out.println();
+
+            return myRoot = new TreeNode(op, exprTreeHelper(opnd1), exprTreeHelper(opnd2));
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree t;
         t = new BinaryTree();
@@ -115,8 +196,9 @@ public class BinaryTree {
         //t.print();
         //t = fibTree(2);
         //t.print();
-        t = fibTree(3);
-        t.print();
+        //t = fibTree(5);
+        //t.print();
+        exprTree("((a+(5*(a+b)))+(6*5))").print();
 
         //print(t, "the empty tree");
         //t.fillSampleTree1();
