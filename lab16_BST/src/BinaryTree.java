@@ -38,6 +38,12 @@ public class BinaryTree<T> implements Iterable<T> {
         }
     }
 
+    public void print() {
+        if (myRoot != null) {
+            myRoot.print(1);
+        }
+    }
+
     public static BinaryTree<String> fillSampleTree1() {
         BinaryTree<String> t = new BinaryTree<String>();
         t.myRoot = t.new TreeNode("a", t.new TreeNode("b"), t.new TreeNode("c"));
@@ -149,6 +155,25 @@ public class BinaryTree<T> implements Iterable<T> {
             if (myRight != null) {
                 myRight.printInorder();
             }
+        }
+
+        private static final String indent1 = "    ";
+
+        private void print(int indent) {
+            if (myRight != null) {
+                myRight.print(indent+1);
+            }
+            println (myItem, indent);
+            if (myLeft != null) {
+                myLeft.print(indent+1);
+            }
+        }
+
+        private void println(Object obj, int indent) {
+            for (int k=0; k<indent; k++) {
+                System.out.print(indent1);
+            }
+            System.out.println(obj);
         }
     }
 }

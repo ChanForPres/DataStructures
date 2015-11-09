@@ -25,9 +25,33 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
         return false;
     }
 
+    public void add(T key) {
+        if (this.contains(key)) {
+            throw new IllegalStateException("key is already in the tree");
+        } else {
+            myRoot = add(myRoot, key);
+        }
+    }
+
+    private TreeNode add(TreeNode t, T key) {
+        if (t == null) {
+            return new TreeNode(key);
+        } else if (key.compareTo(t.myItem) < 0) {
+            t.myLeft = add(t.myLeft, key);
+            return t;
+        } else {
+            t.myRight = add(t.myRight, key);
+            return t;
+        }
+    }
+
     public static void main(String[] args) {
         BinarySearchTree<String> t = new BinarySearchTree<>();
-        t.myRoot = t.new TreeNode("a", t.new TreeNode("b"), t.new TreeNode("c"));
-        t.contains("c");
+        t.add("C");
+        t.add("A");
+        t.add("B");
+        t.add("E");
+        t.add("D");
+        t.print();
     }
 }
