@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="75f59433-abd9-4b95-b207-a02d99d66693" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/BinarySearchTree.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/InorderIterator.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
-    </list>
+    <list default="true" id="75f59433-abd9-4b95-b207-a02d99d66693" name="Default" comment="" />
     <ignored path="lab16_BST.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -588,12 +582,12 @@
       <updated>1446727960334</updated>
       <workItem from="1446727961486" duration="109000" />
       <workItem from="1446728073206" duration="224000" />
-      <workItem from="1447037558297" duration="1701000" />
+      <workItem from="1447037558297" duration="1801000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2034000" />
+    <option name="totallyTimeSpent" value="2134000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="641" y="23" width="803" height="834" extended-state="0" />
