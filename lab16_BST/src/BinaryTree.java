@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 import java.util.NoSuchElementException;
@@ -12,6 +14,36 @@ public class BinaryTree<T> implements Iterable<T> {
 
     public BinaryTree(TreeNode t) {
         myRoot = t;
+    }
+
+    /**
+     * @param a1: contains the objects in a preorder traversal (root-left-right)
+     * @param a2: contains the objects in an inorder traversal (left-root-right)
+     */
+    public BinaryTree(ArrayList<T> a1, ArrayList<T> a2) {
+        Stack<TreeNode> a1stack = new Stack<>();
+        if (a1.isEmpty() || a2.isEmpty()) {
+            System.err.println("both arraylist should not be empty");
+            throw new IllegalArgumentException("both arraylist should not be empty");
+        } else {
+            BinaryTreeHelper(a1, a2, 0, null);
+        }
+    }
+
+    public void BinaryTreeHelper(ArrayList<T> a1, ArrayList<T> a2, int n, TreeNode thisRoot) {
+        myRoot = new TreeNode((T) a1.get(n));
+        int j = 0;
+        while(a2.get(j) != a1.get(n)) {
+            j++;
+        }
+        if (a2.get(j) == a1.get(n)) {
+            int inIndex = j;
+        }
+
+        ArrayList<T> a2_sub_left = new ArrayList<T>(a2.subList(0, j));
+        ArrayList<T> a2_sub_right = new ArrayList<>(a2.subList(j+1, a2.size()-1));
+        BinaryTreeHelper(a1, a2_sub_left, n+1, myRoot.myLeft);
+        BinaryTreeHelper(a1, a2_sub_right, n+1, myRoot.myRight);
     }
 
     // Print the values in the tree in preorder: root value first,
@@ -57,12 +89,29 @@ public class BinaryTree<T> implements Iterable<T> {
     }
 
     public static void main(String[] args) {
-        BinaryTree<String> t = new BinaryTree<String>();
+        /**BinaryTree<String> t = new BinaryTree<String>();
         print(t, "the empty tree");
         BinaryTree<String> s = fillSampleTree1();
         print(s, "sample tree 1");
         BinaryTree<String> r = fillSampleTree2();
-        print(r, "sample tree 2");
+        print(r, "sample tree 2");**/
+        ArrayList<String> a1 = new ArrayList<>();
+        a1.add("A");
+        a1.add("B");
+        a1.add("C");
+        a1.add("D");
+        a1.add("E");
+        a1.add("F");
+        ArrayList<String> a2 = new ArrayList<>();
+        a2.add("B");
+        a2.add("A");
+        a2.add("E");
+        a2.add("D");
+        a2.add("F");
+        a2.add("C");
+        BinaryTree<String> t = new BinaryTree<>(a1, a2);
+        print(t, "tree2");
+
     }
 
     protected static void print(BinaryTree<?> t, String description) {
