@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 public class BinaryTree<T> implements Iterable<T> {
 
     protected TreeNode myRoot;
+    protected int preIndex = 0;
 
     public BinaryTree() {
         myRoot = null;
@@ -17,33 +18,43 @@ public class BinaryTree<T> implements Iterable<T> {
     }
 
     /**
-     * @param a1: contains the objects in a preorder traversal (root-left-right)
-     * @param a2: contains the objects in an inorder traversal (left-root-right)
+     * @param pre: contains the objects in a preorder traversal (root-left-right)
+     * @param in: contains the objects in an inorder traversal (left-root-right)
      */
-    public BinaryTree(ArrayList<T> a1, ArrayList<T> a2) {
-        Stack<TreeNode> a1stack = new Stack<>();
-        if (a1.isEmpty() || a2.isEmpty()) {
-            System.err.println("both arraylist should not be empty");
-            throw new IllegalArgumentException("both arraylist should not be empty");
+    public BinaryTree(ArrayList<T> pre, ArrayList<T> in) {
+        if (pre.isEmpty() || in.isEmpty()) {
+            System.err.println("Both arrayList should not be empty");
+            throw new IllegalArgumentException("Both arrayList should not be empty");
         } else {
-            BinaryTreeHelper(a1, a2, 0, null);
+            myRoot = BinaryTreeHelper(in, pre, 0, in.size()-1);
         }
     }
 
-    public void BinaryTreeHelper(ArrayList<T> a1, ArrayList<T> a2, int n, TreeNode thisRoot) {
-        myRoot = new TreeNode((T) a1.get(n));
-        int j = 0;
-        while(a2.get(j) != a1.get(n)) {
-            j++;
+    private TreeNode BinaryTreeHelper(ArrayList<T> in, ArrayList<T> pre, int inStart, int inEnd) {
+        if (inStart > inEnd) {
+            return null;
         }
-        if (a2.get(j) == a1.get(n)) {
-            int inIndex = j;
+        TreeNode tNode = new TreeNode(pre.get(preIndex++));
+
+        if (inStart == inEnd) {
+            return tNode;
         }
 
-        ArrayList<T> a2_sub_left = new ArrayList<T>(a2.subList(0, j));
-        ArrayList<T> a2_sub_right = new ArrayList<>(a2.subList(j+1, a2.size()-1));
-        BinaryTreeHelper(a1, a2_sub_left, n+1, myRoot.myLeft);
-        BinaryTreeHelper(a1, a2_sub_right, n+1, myRoot.myRight);
+        int inIndex = search(in, inStart, inEnd, myRoot);
+
+        tNode.myLeft = BinaryTreeHelper(in, pre, inStart, inIndex-1);
+        tNode.myRight = BinaryTreeHelper(in, pre, inIndex+1, inEnd);
+
+        return tNode;
+    }
+
+    private int search(ArrayList<T> in, int inStart, int inEnd, TreeNode myRoot) {
+        for (int i = inStart; i <= inEnd; i++) {
+            if (in.get(i) == myRoot) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     // Print the values in the tree in preorder: root value first,
@@ -92,9 +103,9 @@ public class BinaryTree<T> implements Iterable<T> {
         /**BinaryTree<String> t = new BinaryTree<String>();
         print(t, "the empty tree");
         BinaryTree<String> s = fillSampleTree1();
-        print(s, "sample tree 1");
-        BinaryTree<String> r = fillSampleTree2();
-        print(r, "sample tree 2");**/
+        print(s, "sample tree 1");**/
+        //BinaryTree<String> r = fillSampleTree2();
+        //r.print();
         ArrayList<String> a1 = new ArrayList<>();
         a1.add("A");
         a1.add("B");
