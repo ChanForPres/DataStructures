@@ -35,26 +35,30 @@ public class BinaryTree<T> implements Iterable<T> {
             return null;
         }
         TreeNode tNode = new TreeNode(pre.get(preIndex++));
+        System.out.println("tNode: "+tNode.myItem);
 
         if (inStart == inEnd) {
             return tNode;
         }
 
-        int inIndex = search(in, inStart, inEnd, myRoot);
+        int inIndex = search(in, inStart, inEnd, tNode.myItem);
+
 
         tNode.myLeft = BinaryTreeHelper(in, pre, inStart, inIndex-1);
         tNode.myRight = BinaryTreeHelper(in, pre, inIndex+1, inEnd);
-
         return tNode;
     }
 
-    private int search(ArrayList<T> in, int inStart, int inEnd, TreeNode myRoot) {
+    private int search(ArrayList<T> in, int inStart, int inEnd, T myRootItem) {
+
+        int j = 0;
         for (int i = inStart; i <= inEnd; i++) {
-            if (in.get(i) == myRoot) {
-                return i;
+            if (in.get(i) == myRootItem) {
+                j = i;
             }
         }
-        return -1;
+        System.out.println("J: "+j);
+        return j;
     }
 
     // Print the values in the tree in preorder: root value first,
@@ -121,7 +125,7 @@ public class BinaryTree<T> implements Iterable<T> {
         in.add("F");
         in.add("C");
         BinaryTree<String> t = new BinaryTree<>(in, pre);
-        print(t, "tree2");
+       t.print();
 
     }
 
