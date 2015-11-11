@@ -21,7 +21,7 @@ public class BinaryTree<T> implements Iterable<T> {
      * @param pre: contains the objects in a preorder traversal (root-left-right)
      * @param in: contains the objects in an inorder traversal (left-root-right)
      */
-    public BinaryTree(ArrayList<T> pre, ArrayList<T> in) {
+    public BinaryTree(ArrayList<T> in, ArrayList<T> pre) {
         if (pre.isEmpty() || in.isEmpty()) {
             System.err.println("Both arrayList should not be empty");
             throw new IllegalArgumentException("Both arrayList should not be empty");
@@ -106,21 +106,21 @@ public class BinaryTree<T> implements Iterable<T> {
         print(s, "sample tree 1");**/
         //BinaryTree<String> r = fillSampleTree2();
         //r.print();
-        ArrayList<String> a1 = new ArrayList<>();
-        a1.add("A");
-        a1.add("B");
-        a1.add("C");
-        a1.add("D");
-        a1.add("E");
-        a1.add("F");
-        ArrayList<String> a2 = new ArrayList<>();
-        a2.add("B");
-        a2.add("A");
-        a2.add("E");
-        a2.add("D");
-        a2.add("F");
-        a2.add("C");
-        BinaryTree<String> t = new BinaryTree<>(a1, a2);
+        ArrayList<String> pre = new ArrayList<>();
+        pre.add("A");
+        pre.add("B");
+        pre.add("C");
+        pre.add("D");
+        pre.add("E");
+        pre.add("F");
+        ArrayList<String> in = new ArrayList<>();
+        in.add("B");
+        in.add("A");
+        in.add("E");
+        in.add("D");
+        in.add("F");
+        in.add("C");
+        BinaryTree<String> t = new BinaryTree<>(in, pre);
         print(t, "tree2");
 
     }
