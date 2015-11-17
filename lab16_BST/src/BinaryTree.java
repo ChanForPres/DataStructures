@@ -35,8 +35,8 @@ public class BinaryTree<T> implements Iterable<T> {
             return null;
         }
         TreeNode tNode = new TreeNode(pre.get(preIndex++));
-        System.out.println("tNode: "+tNode.myItem);
 
+        // If this node has no children, terminates
         if (inStart == inEnd) {
             return tNode;
         }
