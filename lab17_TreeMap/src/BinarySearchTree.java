@@ -30,25 +30,33 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
             throw new IllegalStateException("key is already in the tree");
         } else {
             int thisSize = 0;
-            myRoot = add(myRoot, key, thisSize);
+            myRoot = add(myRoot, key);
         }
     }
 
-    private TreeNode add(TreeNode t, T key, int thisSize) {
+    private TreeNode add(TreeNode t, T key) {
         if (t == null) {
             TreeNode rtnNode = new TreeNode(key);
-            rtnNode.mySize = thisSize;
+            rtnNode.mySize = 1;
             return rtnNode;
-        } else if (key.compareTo(t.myItem) < 0) {
-            thisSize += 1;
-            t.myLeft = add(t.myLeft, key, thisSize);
+        }
+        // left subtree
+        else if (key.compareTo(t.myItem) < 0) {
+            t.mySize += 1;
+            t.myLeft = add(t.myLeft, key);
             return t;
-        } else {
-            thisSize += 1;
-            t.myRight = add(t.myRight, key, thisSize);
+        }
+        // right subtree
+        else {
+            t.mySize += 1;
+            t.myRight = add(t.myRight, key);
             return t;
         }
     }
+
+    /*public Comparable kthLargest(int k) {
+        if (k < 0 || k > this.)
+    }*/
 
     public static void main(String[] args) {
         BinarySearchTree<Integer> t = new BinarySearchTree<>();
@@ -56,11 +64,12 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
         t.add(2);
         t.add(1);
         t.add(3);
-        t.add(8);
+
+        /*t.add(8);
         t.add(6);
         t.add(5);
         t.add(9);
-        t.add(7);
-        t.print();
+        t.add(7);*/
+        //t.print();
     }
 }
