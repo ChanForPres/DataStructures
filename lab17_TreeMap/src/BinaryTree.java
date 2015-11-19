@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.Stack;
 import java.util.NoSuchElementException;
 
-public class BinaryTree<T> implements Iterable<T> {
+public class BinaryTree<T extends Comparable<T>> implements Iterable<T> {
 
     protected TreeNode myRoot;
     protected int preIndex = 0;
@@ -184,17 +184,19 @@ public class BinaryTree<T> implements Iterable<T> {
 
     }
 
-    protected class TreeNode {
+    protected class TreeNode extends BinarySearchTree<T> {
 
         public T myItem;
         public TreeNode myLeft;
         public TreeNode myRight;
         public int mySize;
+        public int myRank;
 
         public TreeNode(T item) {
             myItem = item;
             myLeft = myRight = null;
             mySize = 0;
+            myRank = 0;
         }
 
         public TreeNode(T item, TreeNode left, TreeNode right) {
@@ -202,9 +204,10 @@ public class BinaryTree<T> implements Iterable<T> {
             myLeft = left;
             myRight = right;
             mySize = 0;
+            myRank = 0;
         }
 
-        private void printPreorder() {
+        public void printPreorder() {
             System.out.print(myItem + " ");
             if (myLeft != null) {
                 myLeft.printPreorder();
@@ -214,7 +217,7 @@ public class BinaryTree<T> implements Iterable<T> {
             }
         }
 
-        private void printInorder() {
+        public void printInorder() {
             if (myLeft != null) {
                 myLeft.printInorder();
             }
