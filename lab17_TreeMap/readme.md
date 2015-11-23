@@ -40,10 +40,19 @@ On the other hand, **inorder predecessor** of a node X is the node Y that comes 
 ```
 
 ### Comparable kthLargest (int k)
-My own solution: There are two different solutions to find the kth largest element in a binary search.<br \>
+My own solution: There are two different solutions to find the kth largest element in a binary search.
+
 1. Simpler method: 
 
 First we already have Inorder traversal of the tree and the value k. Then we could call  ```nextElement``` until we get the desired k. However, if ```k``` is near the number of keys ```N``` in the tree, the algorithm's running time is proportional to ```N```. 
 
 2. Trading Memory for Speed 
+
+Here storing in each node the size of the tree rooted at that node and the rank of the tree allows the design of an algorithm runs in time proportional to ```d```, the depth of the tree.
+
+3. TreeMap Phonebook
+```TreeMap``` implements ```Comparable``` interface to order the map based on keys
+
+
+
 

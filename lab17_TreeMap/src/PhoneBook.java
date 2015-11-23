@@ -25,17 +25,24 @@ public class PhoneBook {
 
     /*
      * A access an entry in the phone book.
+     * If personToLookUp is not in the treeMap,
      */
     public PhoneNumber getNumber(Person personToLookup){
-    	if (phonebook.containsKey(personToLookup)) {
-            ArrayList<PhoneNumber> numArr = phonebook.get(personToLookup);
-            int size = numArr.size();
-            return numArr.get(size-1);
+        if (personToLookup.hasChangedName) {
+            return null;
+        }
+    	ArrayList<PhoneNumber> numToRtn = phonebook.get(personToLookup);
+        if (numToRtn == null) {
+            throw new IllegalArgumentException("The person was not found in the book");
         } else {
-            throw new IllegalArgumentException("Person is not in the book");
+            int size = numToRtn.size();
+            return numToRtn.get(size-1);
         }
     }
 
+    /*
+     *
+     */
     public ArrayList<PhoneNumber> getNumbers(Person personToLookup){
         if (phonebook.containsKey(personToLookup)) {
             ArrayList<PhoneNumber> numArr = phonebook.get(personToLookup);
