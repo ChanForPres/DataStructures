@@ -1,4 +1,5 @@
-public class Person {
+
+public class Person implements Comparable {
 
 	private String myName;
 	protected boolean hasChangedName;
@@ -18,7 +19,11 @@ public class Person {
 		this.myName = newName;
 		this.hasChangedName = true;
 	}
-	
-	// TODO add additional methods
+
+	@Override
+	public int compareTo(Object o) {
+		return myName.compareTo(o.toString());
+	}
+
 	
 }
