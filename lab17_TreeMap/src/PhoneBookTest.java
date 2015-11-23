@@ -19,7 +19,7 @@ public class PhoneBookTest extends TestCase {
 	/*
 	 * Tests that you can add a second phone number for the same person and that
 	 * only the second phone number remains.
-	 */
+
 	public void testCanChangeNumber() {
 		PhoneBook myBook = new PhoneBook();
 		Person person1 = new Person("Sally");
@@ -31,12 +31,12 @@ public class PhoneBookTest extends TestCase {
 		PhoneNumber numReturned = myBook.getNumber(person1);
 		assertEquals("Replaced Number Not Found", numReturned, num2);
 		assertNotSame("Old Phone number was found", numReturned, num1);
-	}
+	}*/
 
 	/*
 	 * Tests that if you add a person, number pair then modify the person, you
 	 * can't get the number out of the phone book again.
-	 */
+
 	public void testCantAccessNumIfChangePersonObj() {
 		PhoneBook myBook = new PhoneBook();
 		Person person1 = new Person("Jane");
@@ -51,12 +51,12 @@ public class PhoneBookTest extends TestCase {
 		myBook.addEntry(person3, num3);
 		person3.changeName("Eungie");
 		assertNull(myBook.getNumber(person3));
-	}
+	}*/
 
 	/*
 	 * Also tests that if you add a person, number pair then modify the person,
 	 * you can't get the number out of the phone book again.
-	 */
+
 	public void testCantAccessNumIfChangePersonObj2() {
 		PhoneBook myBook = new PhoneBook();
 		Person person1 = new Person("Jane");
@@ -65,13 +65,13 @@ public class PhoneBookTest extends TestCase {
 		myBook.addEntry(person1, num1);
 		person1.changeName("Eungie");
 		assertNull(myBook.getNumber(person1));
-	}
+	}*/
 
 	/*
 	 * Tests that if you modify a PhoneNumber that is already in the Phone book
 	 * that the change will be reflected the next time you look up that phone
 	 * number.
-	 */
+
 	public void testCanModifyPhoneNumberAlreadyInBook() {
 		PhoneBook myBook = new PhoneBook();
 		Person person1 = new Person("Jane");
@@ -82,6 +82,6 @@ public class PhoneBookTest extends TestCase {
 		PhoneNumber num2 = myBook.getNumber(person1);
 		assertEquals("Changed PhoneNumber not reflected in PhoneBook", num1,
 				num2);
-	}
+	}*/
 
 }
