@@ -151,6 +151,7 @@ public class MyHashMap<K, V> implements Iterable<K> {
 			myTable[hashCode].add(toadd);
 			size++;
 			return null;
+
 		} else if (containsKey(key)){
 			for (int i = 0; i < myTable[hashCode].size(); i++) {
 				if (myTable[hashCode].get(i).getKey().equals(key)) {
@@ -159,6 +160,7 @@ public class MyHashMap<K, V> implements Iterable<K> {
 				}
 			}
 			return value;
+			
 		} else {
 			myTable[hashCode].add(new KVPair(key, value));
 			size++;

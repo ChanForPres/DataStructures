@@ -43,7 +43,6 @@ public class BinaryTree<T extends Comparable<T>> implements Iterable<T> {
 
         int inIndex = search(in, inStart, inEnd, tNode.myItem);
 
-
         tNode.myLeft = BinaryTreeHelper(in, pre, inStart, inIndex-1);
         tNode.myRight = BinaryTreeHelper(in, pre, inIndex+1, inEnd);
         return tNode;

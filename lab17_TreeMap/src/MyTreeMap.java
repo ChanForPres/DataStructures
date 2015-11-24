@@ -7,6 +7,7 @@ public class MyTreeMap<K extends Comparable<K>, V> {
 	private int size; // the number of items that have been put into the map
 
 	// TODO You may declare new instance variables here
+	private BinarySearchTree<KVPair> bst;
 
 	/**
 	 * Constructs an empty map.
@@ -14,6 +15,7 @@ public class MyTreeMap<K extends Comparable<K>, V> {
 	public MyTreeMap() {
 		// TODO Complete this!
 	}
+
 
 	/**
 	 * Returns the number of items put into the map (and not subsequently
@@ -23,6 +25,7 @@ public class MyTreeMap<K extends Comparable<K>, V> {
 		return size;
 	}
 
+
 	/**
 	 * Returns whether the map contains the given key.
 	 */
@@ -30,6 +33,7 @@ public class MyTreeMap<K extends Comparable<K>, V> {
 		// TODO Complete this!
 		return false;
 	}
+
 
 	/**
 	 * Puts the key in the map with the given value. If the key is already in
@@ -39,9 +43,14 @@ public class MyTreeMap<K extends Comparable<K>, V> {
 	 * no such value.
 	 */
 	public V put(K key, V value) {
-		// TODO Complete this!
-		return null;
+		if (containsKey(key)) {
+
+
+		} else {
+
+		}
 	}
+
 
 	/**
 	 * Removes the key from the map.
@@ -53,6 +62,7 @@ public class MyTreeMap<K extends Comparable<K>, V> {
 		return null;
 	}
 
+
 	/**
 	 * Returns the value associated with the key in the map, or null if there is
 	 * no such value.
@@ -62,11 +72,12 @@ public class MyTreeMap<K extends Comparable<K>, V> {
 		return null;
 	}
 
+
 	/**
 	 * A class that can store a key and a value together. You can modify this 
      * class however you want.
 	 */
-	private class KVPair {
+	private class KVPair implements Comparable<KVPair> {
 		private K key;
 		private V value;
 
@@ -75,8 +86,25 @@ public class MyTreeMap<K extends Comparable<K>, V> {
 			value = v;
 		}
 
+		public K getKey() {
+			return this.key;
+		}
+
+		public V getValue() {
+			return this.value;
+		}
+
+		public void changeKey(K newKey) {
+			this.key = newKey;
+		}
+
 		public void setValue(V v) {
 			value = v;
+		}
+
+		@Override
+		public int compareTo(KVPair o) {
+			return this.key.compareTo(o.key);
 		}
 	}
 }

@@ -39,7 +39,7 @@ public class PhoneBookTest extends TestCase {
 	 * can't get the number out of the phone book again.
 	 *
 	 *
-	 * */
+	 */
 
 	public void testCantAccessNumIfChangePersonObj() {
 		PhoneBook myBook = new PhoneBook();
@@ -54,16 +54,22 @@ public class PhoneBookTest extends TestCase {
 		myBook.addEntry(person2, num2);
 		myBook.addEntry(person3, num3);
 		person3.changeName("Eungie");
-		System.out.println("myBook.getNumber(person3): "+myBook.getNumber(person3));
-		//assertNotNull(myBook.getNumber(person3));
-		//assertNull(myBook.getNumber(person3));
+		assertNull(myBook.getNumber(person3));
 	}
 
 	/*
 	 * Also tests that if you add a person, number pair then modify the person,
-	 * you can't get the number out of the phone book again.*/
-
-
+	 * you can't get the number out of the phone book again.
+	 *
+	 * 1) Even though We changed the String value(myName) that is inside Person object,
+	 *    the Person object (person1, person2, ...) is still there. Therefore, that's why we could find the PhoneNumber
+	 *    we are looking for.
+	 * 2) However, String(myName) is still important because it helps the TreeMap get() method to find where to go (left subtree?/right subtree?)
+	 *    So, if we change the String (myName) of the Person object that directs to the different side of the tree,
+	 *    say person3 was previously in the right subtree but the new String value directs to the left subtree,
+	 *    we cannot find the value and therefore throw the error.
+	 *
+	 * */
 	public void testCantAccessNumIfChangePersonObj2() {
 		PhoneBook myBook = new PhoneBook();
 		Person person1 = new Person("Jane");
@@ -79,8 +85,8 @@ public class PhoneBookTest extends TestCase {
 		myBook.addEntry(person2, num2);
 		myBook.addEntry(person3, num3);
 		myBook.addEntry(person4, num4);
-		person1.changeName("Alice");
-		System.out.println("myBook.getNumber(person1): "+myBook.getNumber(person1));
+		person2.changeName("Alice");
+		System.out.println("myBook.getNumber(person1): "+myBook.getNumber(person2));
 		assertNull(myBook.getNumber(person1));
 	}
 

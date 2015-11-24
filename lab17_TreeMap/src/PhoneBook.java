@@ -28,9 +28,9 @@ public class PhoneBook {
      * If personToLookUp is not in the treeMap,
      */
     public PhoneNumber getNumber(Person personToLookup){
-        if (personToLookup.hasChangedName) {
+        /*if (personToLookup.hasChangedName) {
             return null;
-        }
+        }*/
     	ArrayList<PhoneNumber> numToRtn = phonebook.get(personToLookup);
         if (numToRtn == null) {
             throw new IllegalArgumentException("The person was not found in the book");
