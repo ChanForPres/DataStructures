@@ -106,8 +106,39 @@ public class MyTreeMap<K extends Comparable<K>, V> extends BinarySearchTree {
 	 * Returns the value associated with the key, or null if there was no key.
 	 */
 	public V remove(K key) {
-		// TODO Complete this!
-		return null;
+		V temp = myBST.myRoot.myItem.getValue();
+		if (containsKey(key)) {
+			TreeNode placeToRemove = findKVNode(myBST.myRoot, key);
+
+			// No children
+			if (placeToRemove.myRight == null && placeToRemove.myLeft == null) {
+				((KVPair)placeToRemove.myItem).setKey(null);
+				((KVPair)placeToRemove.myItem).setValue(null);
+				placeToRemove.myRight = null;
+				placeToRemove.myLeft = null;
+			}
+
+			// One child on the right subtree
+			else if (placeToRemove.myRight != null && placeToRemove.myLeft == null) {
+				((KVPair)placeToRemove.myItem).setKey(((KVPair)placeToRemove.myRight.myItem).getKey());
+				((KVPair)placeToRemove.myItem).setValue(((KVPair)placeToRemove.myRight.myItem).getValue());
+				placeToRemove.myLeft = placeToRemove.myRight.myLeft;
+				placeToRemove.myRight = placeToRemove.myRight.myRight;
+			}
+
+			// One child on the left subtree
+			else if (placeToRemove.myRight == null && placeToRemove.myLeft != null) {
+				((KVPair)placeToRemove.myItem).setKey(((KVPair)placeToRemove.myLeft.myItem).getKey());
+				((KVPair)placeToRemove.myItem).setValue(((KVPair)placeToRemove.myLeft.myItem).getValue());
+				placeToRemove.myLeft = placeToRemove.myLeft.myLeft;
+				placeToRemove.myRight = placeToRemove.myLeft.myRight;
+			}
+
+			// Two children
+			else {
+
+			}
+		}
 	}
 
 	/**
@@ -161,6 +192,10 @@ public class MyTreeMap<K extends Comparable<K>, V> extends BinarySearchTree {
 
 		public void setValue(V v) {
 			thisValue = v;
+		}
+
+		public void setKey(K newKey) {
+			thisKey = newKey;
 		}
 
 		@Override

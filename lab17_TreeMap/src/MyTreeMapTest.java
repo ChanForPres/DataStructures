@@ -30,11 +30,17 @@ public class MyTreeMapTest extends TestCase {
         phoneBook.put("Taylor", "111-222-7777");
     }*/
 
-    //public void testRemove() throws Exception {
+    public void testRemove() throws Exception {
+        MyTreeMap<String, String> phoneBook = new MyTreeMap<>();
+        phoneBook.put("Jimmy", "111-222-3333");
+        phoneBook.put("Andy", "111-222-4444");
+        phoneBook.put("Abby", "111-222-5555");
+        phoneBook.put("Zack", "111-222-6666");
+        phoneBook.put("Taylor", "111-222-7777");
+        phoneBook.put("Zonny", "111-222-8888");
+    }
 
-    //}
-
-    public void testGet() throws Exception {
+    /*public void testGet() throws Exception {
         MyTreeMap<String, String> phoneBook = new MyTreeMap<>();
         phoneBook.put("Jimmy", "111-222-3333");
         phoneBook.put("Andy", "111-222-4444");
@@ -42,5 +48,5 @@ public class MyTreeMapTest extends TestCase {
         phoneBook.put("Taylor", "111-222-6666");
         phoneBook.put("Taylor", "111-222-7777");
         assertEquals("111-222-7777", phoneBook.get("Taylor"));
-    }
+    }*/
 }
