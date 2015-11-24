@@ -115,7 +115,26 @@ public class MyTreeMap<K extends Comparable<K>, V> extends BinarySearchTree {
 	 * no such value.
 	 */
 	public V get(K key) {
-		// TODO Complete this!
+		return getHelper(myBST.myRoot, key);
+	}
+
+	private V getHelper(TreeNode thisRoot, K key) {
+
+		if (thisRoot == null) {
+			return null;
+		}
+
+		else if (((KVPair)thisRoot.myItem).getKey().equals(key)) {
+			return ((KVPair)thisRoot.myItem).getValue();
+		}
+
+		else {
+			if (key.compareTo(((KVPair)thisRoot.myItem).getKey()) < 0) {
+				return getHelper(thisRoot.myLeft, key);
+			} else if (key.compareTo(((KVPair)thisRoot.myItem).getKey()) > 0) {
+				return getHelper(thisRoot.myRight, key);
+			}
+		}
 		return null;
 	}
 
