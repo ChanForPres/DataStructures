@@ -13,7 +13,8 @@ public class MyTreeMap<K extends Comparable<K>, V> {
 	 * Constructs an empty map.
 	 */
 	public MyTreeMap() {
-		// TODO Complete this!
+		this.size = 0;
+		bst = new BinarySearchTree<KVPair>();
 	}
 
 
@@ -30,7 +31,31 @@ public class MyTreeMap<K extends Comparable<K>, V> {
 	 * Returns whether the map contains the given key.
 	 */
 	public boolean containsKey(K key) {
-		// TODO Complete this!
+		return containsKeyHelper(bst, key);
+	}
+
+
+	private boolean containsKeyHelper(BinarySearchTree<KVPair> thisBST, K key) {
+		System.out.println("Heelloo: "+thisBST);
+
+		if (size == 0) {
+			return false;
+		}
+
+		if (thisBST == null) {
+			return false;
+		}
+
+		else if (thisBST.myRoot.myItem.getKey() == key) {
+			return true;
+
+		} else {
+			if (key.compareTo(thisBST.myRoot.myItem.getKey()) < 0) {
+				containsKeyHelper(thisBST.myRoot.myLeft, key);
+			} else if (key.compareTo(thisBST.myRoot.myItem.getKey()) > 0) {
+				containsKeyHelper(thisBST.myRoot.myRight, key);
+			}
+		}
 		return false;
 	}
 
@@ -43,14 +68,39 @@ public class MyTreeMap<K extends Comparable<K>, V> {
 	 * no such value.
 	 */
 	public V put(K key, V value) {
+		System.out.println("put key: "+key);
 		if (containsKey(key)) {
-
+			System.out.println("ContainsKey Yes: " + key);
+			KVPair keyValPlace = findKVPair(bst, key);
+			V prevVal = keyValPlace.getValue();
+			keyValPlace.setValue(value);
+			return prevVal;
 
 		} else {
-
+			System.out.println("ContainsKey No: " + key);
+			KVPair toAdd = new KVPair(key, value);
+			bst.add(toAdd);
+			size++;
+			return null;
 		}
 	}
 
+
+	/**
+	 * A helper function that helps find the KVPair in the Binary Search Tree
+	 */
+	public KVPair findKVPair(BinarySearchTree<KVPair> thisBST, K key) {
+		if (thisBST.myRoot.myItem.getKey() == key) {
+			return thisBST.myRoot.myItem;
+		} else {
+			if (key.compareTo(thisBST.myRoot.myItem.getKey()) < 0) {
+				return findKVPair(thisBST.myRoot.myLeft, key);
+			} else if (key.compareTo(thisBST.myRoot.myItem.getKey()) > 0) {
+				return findKVPair(thisBST.myRoot.myRight, key);
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * Removes the key from the map.
