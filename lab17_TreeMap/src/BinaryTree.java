@@ -84,7 +84,7 @@ public class BinaryTree<T extends Comparable<T>> implements Iterable<T> {
         }
     }
 
-    public void print() {
+    public void print(int i) {
         if (myRoot != null) {
             myRoot.print(1);
         }
@@ -124,7 +124,7 @@ public class BinaryTree<T extends Comparable<T>> implements Iterable<T> {
         in.add("F");
         in.add("C");
         BinaryTree<String> t = new BinaryTree<>(in, pre);
-       t.print();
+        t.print(0);
 
     }
 
@@ -183,7 +183,7 @@ public class BinaryTree<T extends Comparable<T>> implements Iterable<T> {
 
     }
 
-    protected class TreeNode extends BinarySearchTree<T> {
+    public class TreeNode extends BinarySearchTree<T> {
 
         public T myItem;
         public TreeNode myLeft;
@@ -228,7 +228,7 @@ public class BinaryTree<T extends Comparable<T>> implements Iterable<T> {
 
         private static final String indent1 = "    ";
 
-        private void print(int indent) {
+        public void print(int indent) {
             if (myRight != null) {
                 myRight.print(indent+1);
             }

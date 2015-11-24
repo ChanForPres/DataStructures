@@ -10,7 +10,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
         return contains(t, key);
     }
 
-    private boolean contains (TreeNode t, T key) {
+    public boolean contains (TreeNode t, T key) {
         if (t == null) {
             return false;
         } else if (t.myItem == key) {
@@ -34,22 +34,29 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
         }
     }
 
-    private TreeNode add(TreeNode t, T key) {
+    public TreeNode add(TreeNode t, T key) {
         if (t == null) {
+            System.out.println("1");
             TreeNode rtnNode = new TreeNode(key);
             rtnNode.mySize = 1;
             return rtnNode;
         }
         // left subtree
         else if (key.compareTo(t.myItem) < 0) {
+            System.out.println("2");
             t.mySize += 1;
             t.myLeft = add(t.myLeft, key);
             return t;
         }
         // right subtree
-        else {
+        else if (key.compareTo(t.myItem) > 0) {
+            System.out.println("3");
             t.mySize += 1;
             t.myRight = add(t.myRight, key);
+            return t;
+        }
+        else {
+            System.out.println("4");
             return t;
         }
     }
@@ -108,4 +115,5 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
         //System.out.println(t.myRoot.mySize);
         //t.print();
     }
+
 }

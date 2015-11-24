@@ -1,22 +1,23 @@
-/* The "extends Comparable<K>" syntax just means that whatever K you use, it has to implement Comparable. 
+import java.util.Map;
+
+/* The "extends Comparable<K>" syntax just means that whatever K you use, it has to implement Comparable.
  * Makes sense, right? Otherwise there would be no way to tell whether it should go on 
  * the left or right branch of the tree.
  */
-public class MyTreeMap<K extends Comparable<K>, V> {
+public class MyTreeMap<K extends Comparable<K>, V> extends BinarySearchTree {
 
 	private int size; // the number of items that have been put into the map
 
 	// TODO You may declare new instance variables here
-	private BinarySearchTree<KVPair> bst;
+	protected BinarySearchTree<KVPair> myBST;
 
 	/**
 	 * Constructs an empty map.
 	 */
 	public MyTreeMap() {
-		this.size = 0;
-		bst = new BinarySearchTree<KVPair>();
+		size = 0;
+		myBST = new BinarySearchTree<>();
 	}
-
 
 	/**
 	 * Returns the number of items put into the map (and not subsequently
@@ -26,39 +27,13 @@ public class MyTreeMap<K extends Comparable<K>, V> {
 		return size;
 	}
 
-
 	/**
 	 * Returns whether the map contains the given key.
 	 */
 	public boolean containsKey(K key) {
-		return containsKeyHelper(bst, key);
-	}
-
-
-	private boolean containsKeyHelper(BinarySearchTree<KVPair> thisBST, K key) {
-		System.out.println("Heelloo: "+thisBST);
-
-		if (size == 0) {
-			return false;
-		}
-
-		if (thisBST == null) {
-			return false;
-		}
-
-		else if (thisBST.myRoot.myItem.getKey() == key) {
-			return true;
-
-		} else {
-			if (key.compareTo(thisBST.myRoot.myItem.getKey()) < 0) {
-				containsKeyHelper(thisBST.myRoot.myLeft, key);
-			} else if (key.compareTo(thisBST.myRoot.myItem.getKey()) > 0) {
-				containsKeyHelper(thisBST.myRoot.myRight, key);
-			}
-		}
+		// TODO Complete this!
 		return false;
 	}
-
 
 	/**
 	 * Puts the key in the map with the given value. If the key is already in
@@ -71,32 +46,73 @@ public class MyTreeMap<K extends Comparable<K>, V> {
 		System.out.println("put key: "+key);
 		if (containsKey(key)) {
 			System.out.println("ContainsKey Yes: " + key);
-			KVPair keyValPlace = findKVPair(bst, key);
-			V prevVal = keyValPlace.getValue();
-			keyValPlace.setValue(value);
+			TreeNode placeToChange = findKVNode(myBST.myRoot, key);
+			V prevVal = ((KVPair)placeToChange.myRoot.myItem).getValue();
+			((KVPair)placeToChange.myRoot.myItem).setValue(value);
 			return prevVal;
 
 		} else {
 			System.out.println("ContainsKey No: " + key);
 			KVPair toAdd = new KVPair(key, value);
-			bst.add(toAdd);
+			myBST.add(toAdd);
 			size++;
 			return null;
 		}
 	}
 
+	public TreeNode findKVNode(TreeNode thisBST, K key) {
+		if (((KVPair)thisBST.myItem).getKey().equals(key)) {
+			return thisBST;
+		}
 
-	/**
-	 * A helper function that helps find the KVPair in the Binary Search Tree
-	 */
-	public KVPair findKVPair(BinarySearchTree<KVPair> thisBST, K key) {
-		if (thisBST.myRoot.myItem.getKey() == key) {
-			return thisBST.myRoot.myItem;
-		} else {
-			if (key.compareTo(thisBST.myRoot.myItem.getKey()) < 0) {
-				return findKVPair(thisBST.myRoot.myLeft, key);
-			} else if (key.compareTo(thisBST.myRoot.myItem.getKey()) > 0) {
-				return findKVPair(thisBST.myRoot.myRight, key);
+		else if (key.compareTo(((KVPair)thisBST.myItem).getKey()) < 0) {
+			return findKVNode(thisBST.myLeft, key);
+		}
+
+		else if (key.compareTo(((KVPair)thisBST.myItem).getKey()) > 0) {
+			return findKVNode(thisBST.myRight, key);
+		}
+		return null;
+	}
+
+
+	private V putHelper(TreeNode curRoot, K key, V value) {
+
+		if (curRoot == null) {
+			System.out.println("1");
+			KVPair toAdd = new KVPair(key, value);
+			curRoot = new TreeNode(toAdd);
+			size++;
+			return null;
+		}
+
+		else if (((KVPair)curRoot.myItem).getKey().equals(key)) {
+			System.out.println("2");
+			V temp = ((KVPair)curRoot.myItem).getValue();
+			((KVPair)curRoot.myItem).setValue(value);
+			return temp;
+		}
+
+		else if (((KVPair)curRoot.myItem).getKey().compareTo(key) < 0) {
+			System.out.println("3");
+			if (curRoot.myRight != null) {
+				return putHelper(curRoot.myRight, key, value);
+			} else {
+				KVPair toAdd = new KVPair(key, value);
+				curRoot.myRight = new TreeNode(toAdd);
+				size++;
+				return null;
+			}
+		}
+
+		else if (((KVPair)curRoot.myItem).getKey().compareTo(key) > 0) {
+			if (curRoot.myLeft != null) {
+				return putHelper(curRoot.myLeft, key, value);
+			} else {
+				KVPair toAdd = new KVPair(key, value);
+				curRoot.myLeft = new TreeNode(toAdd);
+				size++;
+				return null;
 			}
 		}
 		return null;
@@ -112,7 +128,6 @@ public class MyTreeMap<K extends Comparable<K>, V> {
 		return null;
 	}
 
-
 	/**
 	 * Returns the value associated with the key in the map, or null if there is
 	 * no such value.
@@ -122,39 +137,34 @@ public class MyTreeMap<K extends Comparable<K>, V> {
 		return null;
 	}
 
-
 	/**
 	 * A class that can store a key and a value together. You can modify this 
      * class however you want.
 	 */
-	private class KVPair implements Comparable<KVPair> {
-		private K key;
-		private V value;
+	public class KVPair implements Comparable<KVPair> {
+		private K thisKey;
+		private V thisValue;
 
 		public KVPair(K k, V v) {
-			key = k;
-			value = v;
+			thisKey = k;
+			thisValue = v;
 		}
 
 		public K getKey() {
-			return this.key;
+			return thisKey;
 		}
 
 		public V getValue() {
-			return this.value;
-		}
-
-		public void changeKey(K newKey) {
-			this.key = newKey;
+			return thisValue;
 		}
 
 		public void setValue(V v) {
-			value = v;
+			thisValue = v;
 		}
 
 		@Override
 		public int compareTo(KVPair o) {
-			return this.key.compareTo(o.key);
+			return thisKey.compareTo(o.getKey());
 		}
 	}
 }
