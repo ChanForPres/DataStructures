@@ -31,7 +31,29 @@ public class MyTreeMap<K extends Comparable<K>, V> extends BinarySearchTree {
 	 * Returns whether the map contains the given key.
 	 */
 	public boolean containsKey(K key) {
-		// TODO Complete this!
+		return containsKeyHelper(myBST.myRoot, key);
+	}
+
+	private boolean containsKeyHelper(TreeNode thisRoot, K key) {
+		if (size == 0) {
+			return false;
+		}
+
+		else if (thisRoot == null) {
+			return false;
+		}
+
+		else if (((KVPair)thisRoot.myItem).getKey().equals(key)) {
+			return true;
+		}
+
+		else {
+			if (key.compareTo(((KVPair)thisRoot.myItem).getKey()) < 0) {
+				return containsKeyHelper(thisRoot.myLeft, key);
+			} else if (key.compareTo(((KVPair)thisRoot.myItem).getKey()) > 0) {
+				return containsKeyHelper(thisRoot.myRight, key);
+			}
+		}
 		return false;
 	}
 
@@ -47,8 +69,8 @@ public class MyTreeMap<K extends Comparable<K>, V> extends BinarySearchTree {
 		if (containsKey(key)) {
 			System.out.println("ContainsKey Yes: " + key);
 			TreeNode placeToChange = findKVNode(myBST.myRoot, key);
-			V prevVal = ((KVPair)placeToChange.myRoot.myItem).getValue();
-			((KVPair)placeToChange.myRoot.myItem).setValue(value);
+			V prevVal = ((KVPair)placeToChange.myItem).getValue();
+			((KVPair)placeToChange.myItem).setValue(value);
 			return prevVal;
 
 		} else {
@@ -60,63 +82,23 @@ public class MyTreeMap<K extends Comparable<K>, V> extends BinarySearchTree {
 		}
 	}
 
-	public TreeNode findKVNode(TreeNode thisBST, K key) {
-		if (((KVPair)thisBST.myItem).getKey().equals(key)) {
-			return thisBST;
+	public TreeNode findKVNode(TreeNode thisRoot, K key) {
+
+		if (((KVPair)thisRoot.myItem).getKey().equals(key)) {
+			return thisRoot;
 		}
 
-		else if (key.compareTo(((KVPair)thisBST.myItem).getKey()) < 0) {
-			return findKVNode(thisBST.myLeft, key);
-		}
-
-		else if (key.compareTo(((KVPair)thisBST.myItem).getKey()) > 0) {
-			return findKVNode(thisBST.myRight, key);
-		}
-		return null;
-	}
-
-
-	private V putHelper(TreeNode curRoot, K key, V value) {
-
-		if (curRoot == null) {
-			System.out.println("1");
-			KVPair toAdd = new KVPair(key, value);
-			curRoot = new TreeNode(toAdd);
-			size++;
-			return null;
-		}
-
-		else if (((KVPair)curRoot.myItem).getKey().equals(key)) {
-			System.out.println("2");
-			V temp = ((KVPair)curRoot.myItem).getValue();
-			((KVPair)curRoot.myItem).setValue(value);
-			return temp;
-		}
-
-		else if (((KVPair)curRoot.myItem).getKey().compareTo(key) < 0) {
-			System.out.println("3");
-			if (curRoot.myRight != null) {
-				return putHelper(curRoot.myRight, key, value);
-			} else {
-				KVPair toAdd = new KVPair(key, value);
-				curRoot.myRight = new TreeNode(toAdd);
-				size++;
-				return null;
-			}
-		}
-
-		else if (((KVPair)curRoot.myItem).getKey().compareTo(key) > 0) {
-			if (curRoot.myLeft != null) {
-				return putHelper(curRoot.myLeft, key, value);
-			} else {
-				KVPair toAdd = new KVPair(key, value);
-				curRoot.myLeft = new TreeNode(toAdd);
-				size++;
-				return null;
+		else {
+			if (key.compareTo(((KVPair)thisRoot.myItem).getKey()) < 0) {
+				return findKVNode(thisRoot.myLeft, key);
+			} else if (key.compareTo(((KVPair)thisRoot.myItem).getKey()) > 0) {
+				return findKVNode(thisRoot.myRight, key);
 			}
 		}
 		return null;
 	}
+
+
 
 	/**
 	 * Removes the key from the map.

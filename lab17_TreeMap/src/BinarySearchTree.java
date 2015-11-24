@@ -36,27 +36,20 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
     public TreeNode add(TreeNode t, T key) {
         if (t == null) {
-            System.out.println("1");
             TreeNode rtnNode = new TreeNode(key);
             rtnNode.mySize = 1;
             return rtnNode;
         }
         // left subtree
         else if (key.compareTo(t.myItem) < 0) {
-            System.out.println("2");
             t.mySize += 1;
             t.myLeft = add(t.myLeft, key);
             return t;
         }
         // right subtree
-        else if (key.compareTo(t.myItem) > 0) {
-            System.out.println("3");
+        else {
             t.mySize += 1;
             t.myRight = add(t.myRight, key);
-            return t;
-        }
-        else {
-            System.out.println("4");
             return t;
         }
     }
