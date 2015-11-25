@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ec4b497-16f6-43de-9837-ca42fe3b0baa" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab17_TreeMap/MyTreeMap$KVPair.class" afterPath="$PROJECT_DIR$/out/production/lab17_TreeMap/MyTreeMap$KVPair.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab17_TreeMap/MyTreeMap.class" afterPath="$PROJECT_DIR$/out/production/lab17_TreeMap/MyTreeMap.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MyTreeMap.java" afterPath="$PROJECT_DIR$/src/MyTreeMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MyTreeMapTest.java" afterPath="$PROJECT_DIR$/src/MyTreeMapTest.java" />
     </list>
     <ignored path="lab17_TreeMap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,8 +64,8 @@
       <file leaf-file-name="MyTreeMap.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MyTreeMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1324111">
-              <caret line="146" column="37" selection-start-line="146" selection-start-column="37" selection-end-line="146" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.45059288">
+              <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#885#886#0" expanded="true" />
@@ -78,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/src/MyTreeMapTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -90,7 +91,7 @@
         <entry file="file://$PROJECT_DIR$/src/BinarySearchTree.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -710,44 +711,44 @@
       <workItem from="1447765008716" duration="685000" />
       <workItem from="1447849247341" duration="14196000" />
       <workItem from="1448242457729" duration="35274000" />
-      <workItem from="1448475222705" duration="806000" />
+      <workItem from="1448475222705" duration="1534000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="MyTreeMapTest - 2015.11.25 at 02h 14m 02s.xml">
+    <history-entry file="MyTreeMapTest - 2015.11.26 at 03h 33m 35s.xml">
       <configuration name="MyTreeMapTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MyTreeMapTest - 2015.11.25 at 02h 16m 16s.xml">
+    <history-entry file="MyTreeMapTest - 2015.11.26 at 03h 35m 11s.xml">
       <configuration name="MyTreeMapTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MyTreeMapTest - 2015.11.25 at 02h 16m 44s.xml">
+    <history-entry file="MyTreeMapTest - 2015.11.26 at 03h 35m 27s.xml">
       <configuration name="MyTreeMapTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MyTreeMapTest - 2015.11.25 at 02h 17m 39s.xml">
+    <history-entry file="MyTreeMapTest - 2015.11.26 at 03h 35m 42s.xml">
       <configuration name="MyTreeMapTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MyTreeMapTest - 2015.11.25 at 02h 24m 59s.xml">
+    <history-entry file="MyTreeMapTest - 2015.11.26 at 03h 36m 14s.xml">
       <configuration name="MyTreeMapTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MyTreeMapTest - 2015.11.25 at 02h 25m 13s.xml">
+    <history-entry file="MyTreeMapTest - 2015.11.26 at 03h 37m 30s.xml">
       <configuration name="MyTreeMapTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MyTreeMapTest - 2015.11.26 at 03h 25m 24s.xml">
+    <history-entry file="MyTreeMapTest - 2015.11.26 at 03h 37m 43s.xml">
       <configuration name="MyTreeMapTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MyTreeMapTest - 2015.11.26 at 03h 25m 45s.xml">
+    <history-entry file="MyTreeMapTest - 2015.11.26 at 03h 38m 48s.xml">
       <configuration name="MyTreeMapTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MyTreeMapTest - 2015.11.26 at 03h 26m 01s.xml">
+    <history-entry file="MyTreeMapTest - 2015.11.26 at 03h 39m 03s.xml">
       <configuration name="MyTreeMapTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MyTreeMapTest - 2015.11.26 at 03h 26m 09s.xml">
+    <history-entry file="MyTreeMapTest - 2015.11.26 at 03h 39m 18s.xml">
       <configuration name="MyTreeMapTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50961000" />
+    <option name="totallyTimeSpent" value="51689000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="7" y="23" width="1428" height="836" extended-state="0" />
@@ -964,14 +965,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BinarySearchTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/BinaryTree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -985,17 +978,25 @@
     <entry file="file://$PROJECT_DIR$/src/MyTreeMapTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/BinarySearchTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MyTreeMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1324111">
-          <caret line="146" column="37" selection-start-line="146" selection-start-column="37" selection-end-line="146" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.45059288">
+          <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#885#886#0" expanded="true" />
