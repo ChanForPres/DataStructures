@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.Map;
 
 /* The "extends Comparable<K>" syntax just means that whatever K you use, it has to implement Comparable.
@@ -107,11 +108,14 @@ public class MyTreeMap<K extends Comparable<K>, V> extends BinarySearchTree {
 	 */
 	public V remove(K key) {
 		V temp = myBST.myRoot.myItem.getValue();
+		KVPair inorderSuccessor = null;
 		if (containsKey(key)) {
 			TreeNode placeToRemove = findKVNode(myBST.myRoot, key);
+			V valToRtn = ((KVPair)placeToRemove.myItem).getValue();
 
 			// No children
 			if (placeToRemove.myRight == null && placeToRemove.myLeft == null) {
+				System.out.println("1");
 				((KVPair)placeToRemove.myItem).setKey(null);
 				((KVPair)placeToRemove.myItem).setValue(null);
 				placeToRemove.myRight = null;
@@ -120,6 +124,7 @@ public class MyTreeMap<K extends Comparable<K>, V> extends BinarySearchTree {
 
 			// One child on the right subtree
 			else if (placeToRemove.myRight != null && placeToRemove.myLeft == null) {
+				System.out.println("2");
 				((KVPair)placeToRemove.myItem).setKey(((KVPair)placeToRemove.myRight.myItem).getKey());
 				((KVPair)placeToRemove.myItem).setValue(((KVPair)placeToRemove.myRight.myItem).getValue());
 				placeToRemove.myLeft = placeToRemove.myRight.myLeft;
@@ -128,6 +133,7 @@ public class MyTreeMap<K extends Comparable<K>, V> extends BinarySearchTree {
 
 			// One child on the left subtree
 			else if (placeToRemove.myRight == null && placeToRemove.myLeft != null) {
+				System.out.println("3");
 				((KVPair)placeToRemove.myItem).setKey(((KVPair)placeToRemove.myLeft.myItem).getKey());
 				((KVPair)placeToRemove.myItem).setValue(((KVPair)placeToRemove.myLeft.myItem).getValue());
 				placeToRemove.myLeft = placeToRemove.myLeft.myLeft;
@@ -135,10 +141,26 @@ public class MyTreeMap<K extends Comparable<K>, V> extends BinarySearchTree {
 			}
 
 			// Two children
+			// Remove the inorder successor of placeToRemove, copy its myItem into placeToRemove
+			// and return placeToRemove
 			else {
-
+				System.out.println("4");
+				Iterator<KVPair> inorderIterator = myBST.iterator();
+				KVPair curTurn;
+				// if the next item is one that is expected to be removed
+				while (inorderIterator.next() != ((KVPair) placeToRemove.myItem).getKey()) {
+					curTurn = inorderIterator.next();
+				}
+				curTurn = inorderIterator.next();
+				if (curTurn.getKey() == ((KVPair) placeToRemove.myItem).getKey()) {
+					inorderSuccessor = curTurn;
+				}
+				((KVPair)placeToRemove.myItem).setKey(inorderSuccessor.getKey());
+				((KVPair)placeToRemove.myItem).setValue(inorderSuccessor.getValue());
 			}
+			return valToRtn;
 		}
+		return temp;
 	}
 
 	/**

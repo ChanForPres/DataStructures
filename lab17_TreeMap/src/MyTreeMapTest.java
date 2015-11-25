@@ -38,6 +38,8 @@ public class MyTreeMapTest extends TestCase {
         phoneBook.put("Zack", "111-222-6666");
         phoneBook.put("Taylor", "111-222-7777");
         phoneBook.put("Zonny", "111-222-8888");
+        phoneBook.remove("Abby");
+        assertFalse(phoneBook.containsKey("Abby"));
     }
 
     /*public void testGet() throws Exception {
