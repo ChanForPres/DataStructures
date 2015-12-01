@@ -37,16 +37,12 @@ public class MyTreeMap<K extends Comparable<K>, V> extends BinarySearchTree {
 
 	private boolean containsKeyHelper(TreeNode thisRoot, K key) {
 		try {
-			System.out.println("thisRoot getKey: " + ((KVPair) thisRoot.myItem).getKey());
-			System.out.println("thisRoot: "+thisRoot);
+			System.out.println("---thisRoot getKey---: " + ((KVPair) thisRoot.myItem).getKey());
+			System.out.println("thisRoot: "+thisRoot.myRoot);
 		} catch (NullPointerException e) {
 			System.out.println("=====Nullpointerexeception=====");
 		}
 		if (size == 0) {
-			return false;
-		}
-
-		else if (thisRoot.myRoot == null) {
 			return false;
 		}
 
@@ -120,6 +116,7 @@ public class MyTreeMap<K extends Comparable<K>, V> extends BinarySearchTree {
 		V temp = myBST.myRoot.myItem.getValue();
 		KVPair inorderSuccessor = null;
 		if (containsKey(key)) {
+
 			TreeNode placeToRemove = findKVNode(myBST.myRoot, key);
 			V valToRtn = ((KVPair)placeToRemove.myItem).getValue();
 
