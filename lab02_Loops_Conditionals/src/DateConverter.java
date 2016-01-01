@@ -12,19 +12,20 @@ public class DateConverter {
     // should print
     // 12/30
 
-    // The code is missing two assignment statements.
     public static void main (String [ ] args) {
         int dayOfYear = 0;
+        // Catches an exception when it's not an integer
         try {
             dayOfYear = Integer.parseInt (args[0]);
         }catch (NumberFormatException e) {
             e.printStackTrace();
         }
+
+        // Variables assignment
         int month, dateInMonth, daysInMonth;
         month = 1;
         daysInMonth = 31;
         while (dayOfYear > daysInMonth) {
-            // *** Here is one possible place to put assignment statements
             if (month == 2) {
                 daysInMonth = 29;
             } else if (month == 4 || month == 6 || month == 9 || month == 11) {
@@ -36,14 +37,10 @@ public class DateConverter {
                 dayOfYear = dayOfYear;
                 break;
             }
-            System.out.println("dayOfYear2");
-            System.out.println(dayOfYear);
-            System.out.println("daysInMonth2");
-            System.out.println(daysInMonth);
-            // *** Here is another possible place to put assignment statements.
             dayOfYear = dayOfYear - daysInMonth;
             month++;
         }
+        // Edge case (dayOfYear = 366)
         if (month > 12) {
             month = 1;
         }
