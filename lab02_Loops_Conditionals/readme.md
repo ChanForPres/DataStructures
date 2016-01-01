@@ -17,10 +17,10 @@ Lab 2: Loops and Conditionals
 * This machine consists of three parts: ```user input```, ```subtotal```, ```total```. For a nonzero value, it should be added into a subtotal, a zero value should print the subtotal and reset the subtotal to zero, two consecutive zeroes should print the total of all values and terminate.
 * It uses the single while loop and to exit the ```main``` method, it executes a ```return;```. 
 * Introduced ```Scanner``` class to read user input. Initiated by writing ``` Scanner scanner = new Scanner(System.in);``` Then to read the input, following codes are written. <br \>
-``` int k;
+``` int k; <br \>
     k = scanner.nextInt();```
 
 * Comparison: Single loop vs. Two nested loops
-- Which version did you implement for the exercise? I prefer the signle loop version.
-- Describe in words how the other version would work. For nested loop version, I'd use another while loop to add up non-zero values. I also thought a while loop would be used to check termination.
-- Which version do you prefer? The one-loop version. The first reason is that the single loop is easier to read. The single loop version more clearly separates three cases that need to be handled. Another reason is efficiency. I think another while loop unnecessarily takes up memory and time like recursion.
+    - Which version did you implement for the exercise? I prefer the signle loop version.
+    - Describe in words how the other version would work. For nested loop version, I'd use another while loop to add up non-zero values. I also thought a while loop would be used to check termination.
+    - Which version do you prefer? The one-loop version. The first reason is that the single loop is easier to read. The single loop version more clearly separates three cases that need to be handled. Another reason is efficiency. I think another while loop unnecessarily takes up memory and time like recursion.
