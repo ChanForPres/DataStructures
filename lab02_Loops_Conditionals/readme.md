@@ -18,8 +18,8 @@ Lab 2: Loops and Conditionals
 * It uses the single while loop and to exit the ```main``` method, it executes a ```return;```. 
 * Introduced ```Scanner``` class to read user input. Initiated by writing ``` Scanner scanner = new Scanner(System.in);``` Then to read the input, following codes are written. <br \>
 ``` int k;
-    k = scanner.nextInt();
-```
+    k = scanner.nextInt();```
+
 * Comparison: Single loop vs. Two nested loops
 - Which version did you implement for the exercise? I prefer the signle loop version.
 - Describe in words how the other version would work. For nested loop version, I'd use another while loop to add up non-zero values. I also thought a while loop would be used to check termination.
