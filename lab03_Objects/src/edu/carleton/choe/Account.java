@@ -5,8 +5,9 @@ package edu.carleton.choe;
  */
 public class Account {
 
-    // instance variables
+    // instance variable that keeps track of balance
     private int myBalance;
+    // instance variable for parent account
     private Account parentAccount;
 
 
@@ -42,16 +43,21 @@ public class Account {
      * balance unchanged.
      */
     public boolean withdraw(int amount) {
+        // Invalid amount
         if (amount < 0) {
             System.out.println("Cannot withdraw negative amount.");
             return false;
-        } else if (this.myBalance < amount) {
+
+        }
+        // If there's not enough money, withdraw overdraft from the parent account
+        else if (this.myBalance < amount) {
             int overdraftAmt = amount - this.myBalance;
+            // If no parent account, no way to withdraw
             if (this.parentAccount == null) {
                 System.out.println("Error: insufficient funds and no overdraft account");
                 return false;
             }
-
+            // If parent account doesn't have enough money, no way to withdraw
             if (this.parentAccount.myBalance < overdraftAmt) {
                 System.out.println("Error: insufficient funds and no overdraft account");
                 return false;

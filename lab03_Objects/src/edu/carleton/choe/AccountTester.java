@@ -22,14 +22,19 @@ public class AccountTester {
         System.out.println("megan's balance: " + megan.balance());
         System.out.println("kathy's balance: " + kathy.balance());
         System.out.println();
-        megan.deposit(50);
+
+        kathy.merge(megan);
+        System.out.println("kathy's balance: " + kathy.balance());
+        System.out.println("megan's balance: " + megan.balance());
+
+        /*megan.deposit(50);
         megan.withdraw(200);
         System.out.println("megan's balance: " + megan.balance());
         System.out.println("kathy's balance: " + kathy.balance());
         System.out.println();
         megan.deposit(100);
         kathy.deposit(100);
-        megan.withdraw(700);
+        megan.withdraw(700);*/
     }
 
 }

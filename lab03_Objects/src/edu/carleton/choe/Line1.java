@@ -5,6 +5,7 @@ package edu.carleton.choe;
  */
 public class Line1 {
 
+    // integer instance variables x1, y1, x2, y2
     int x1, y1, x2, y2;
 
     void printLength() {

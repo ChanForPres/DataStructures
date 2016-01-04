@@ -7,6 +7,7 @@ import java.awt.Point;
 
 public class Line2 {
 
+    // Point instance variables p1, p2
     Point p1, p2;
 
     void printLength() {
