@@ -19,19 +19,19 @@ Coordinates become an array of two Point objects.
 ### Argument Passing
 #### Copy (Java)
 When we pass an argument in Java, it means the argument is **passed by value**. This means that each argument is **copied** into the corresponding paramenter in the method being called. <br \>
-    ```int y = 0; ```
-    ```makeThree(y);```
-    ```System.out.println(y); // prints 0```
+    ```int y = 0;
+            makeThree(y);
+            System.out.println(y); // prints 0```
 
 However, when the arguments are **objects**, the argument to the method is **reference** to the object. More specifically, you copy the **reference**, but not the **object**. <br \>
     ``` int[] origVal = new int[3];
-        setFirstToThree(origVal);
-        System.out.println(origVal[0]); // prints 3```
+            setFirstToThree(origVal);
+            System.out.println(origVal[0]); // prints 3```
 
 ### Useful Methods
 #### the ```toString``` method
 When we create the new class, ```System.out.println``` will output something not useful. So we could add ```toString``` method to the class. 
 ``` public String toString() {
-    return "(" + points[0].getX();
+        return "(" + points[0].getX()
 } ```
 #### the ```equals``` method
