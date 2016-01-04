@@ -51,21 +51,26 @@ Q. This doesn't work. Why not? <br \>
 ### Debug.java
 Debug some recursive code <br \>
 1) Describe all pairs of arguments that correctly returns true.
+
     * It correctly returns true if ```myString``` is the result of inserting one character at the last index into an argument ```s```. ex) ```abc2, abc``` 
     * It also correctly returns true if the length of ```myString``` is one more than that of ```s```. ex) ```a, ```
 
 2) Describe all pairs of arguments that correctly returns false. 
+
     * if ```myString.length()``` < ```s.length``` ex) ```ab, abc```
     * if ```myString.length()``` > ```s.legnth + 2``` ex) ```abcd, ab```
     * if ```myString``` doesn't match with ```s``` in terms of character. ex) ```abc, def```
 
 3) Describe all pairs of arguments that incorrectly returns true. <br \>
 4) Describe all pairs of arguments that incorrectly returns false. 
+
     * if ```myString``` is the result of inserting one character at the first index into an argument ```s```. ex) ```2ab, ab```
     * if ```myString``` is the result of inserting one character at the middle index into an argument ```s```. ex) ```a2b, ab```
 
 5) Describe all pairs of arguments that crashes.
+
     * When either ```myString``` or ```s``` is null.
+
 6) Determine what's wrong: I think creating another Debug class might be problematic. <br \>
 When ```myString``` contains one character at an index except for the last index, it goes to ```else``` statement. ```else``` statement creates a new String of ```myString``` except for the first word. The problem is to compare two String objects, we cannot use "==" to compare the String contains. Instead, we should use ".equals" to correctly compare two String objects.
 
