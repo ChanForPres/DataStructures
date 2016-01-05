@@ -35,3 +35,18 @@ When we create the new class, ```System.out.println``` will output something not
         return "(" + points[0].getX()
 } ```
 #### the ```equals``` method
+```equals``` method determines whether two objects contain the same information. For any class we write, we can define our own ```equals``` method. (Default ```==``` operator determines whether its operands reference the same object. But this might not be very useful for some cases) <br \>
+``` public boolean equals (Object obc) {
+
+}```
+
+### Testing with JUnit
+1. Write test cases that demonstrate everything you want your program to be able to do
+2. Write as little code as possible so that all the tests are passed
+3. Clean up the code as necessary. Recheck that all tests still pass
+
+#### Testing Principles
+1. Test values should exercise every statement in the program
+2. Test various *paths* through the program
+
+#### Glass-box Testing vs. Black-box Testing
