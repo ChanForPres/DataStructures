@@ -66,7 +66,7 @@ public class IntSequence {
 
     }
 
-    // other methods go here
+    // toString method, helpful for JUnit test
     public String toString() {
         String toRet = new String("");
         for (int i = 0; i < myValues.length; i++) {
@@ -76,16 +76,17 @@ public class IntSequence {
     }
 
     public void remove(int pos) {
+        // Check for invalid position index
         if (pos < 0 || pos >= myValues.length) {
             System.err.println("Wrong place to remove");
             System.exit(1);
-
         } else {
             for (int i = pos; i < myValues.length; i++) {
                 if (i == myValues.length-1) {
                     myValues[myValues.length-1] = 0;
                     break;
                 }
+                // Move forward the subsequent items
                 myValues[i] = myValues[i + 1];
             }
             myCount--;
