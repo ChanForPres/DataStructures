@@ -97,6 +97,13 @@ Q. Reorganizing the Abstract Class: What are the pros and cons of eliminating th
 ### Interfaces
 An interface is like an abstract class except it **only** has **abstract** methods and it **cannot** have **instance variables**. Essentially, an interface is a collection of method header declarations. To call the interface is by writing ```implements```. A class can implement **multiple** interfaces (but it can only extend **one** class) and supply definitions of all its methods. For example, the Java ```Integer``` class implements both the ```Serializable``` and ```Comparable<Integer>``` interfaces. <br \>
 Interfaces can ```extend``` other interfaces. (not ```implement```)
+#### Sorting an array
+Sorting involves comparing array elements, so if we have an array of **objects** of a certain class, that class needs to define some way to **compare** the objects in it. = Having the class implement ```Comparable``` interface and supply a method named ```compareTo``` <br \>
+
+### A Better IntSequence, ResizableIntSequence
+the ```ResizableIntSequence``` increases its capacity to accomodate for the new elements.
+- Dynamically increase a ```ResizableIntSequence``` by one once it has reached its maximum capacity.
+- Dynamically decrease a ```ResizableIntSequence``` once it contained less than 1/3 of its maximum capacity. This is to keep around all of its unused space. The sequence will be shrunk by half.
 
 
 
