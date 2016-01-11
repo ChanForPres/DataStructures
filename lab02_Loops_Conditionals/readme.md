@@ -20,7 +20,7 @@ Lab 2: Loops and Conditionals
 ``` int k; ``` <br \>
 ``` k = scanner.nextInt();```
 
-Q. Comparison: Single loop vs. Two nested loops
-    - Which version did you implement for the exercise? I prefer the signle loop version.
-    - Describe in words how the other version would work. For nested loop version, I'd use another while loop to add up non-zero values. I also thought a while loop would be used to check termination.
-    - Which version do you prefer? The one-loop version. The first reason is that the single loop is easier to read. The single loop version more clearly separates three cases that need to be handled. Another reason is efficiency. I think another while loop unnecessarily takes up memory and time like recursion.
+Q. Comparison: Single loop vs. Two nested loops <br \>
+- Which version did you implement for the exercise? I prefer the single loop version.
+- Describe in words how the other version would work. For nested loop version, I'd use another while loop to add up non-zero values. I also thought a while loop would be used to check termination.
+- Which version do you prefer? The one-loop version. The first reason is that the single loop is easier to read. The single loop version more clearly separates three cases that need to be handled. Another reason is efficiency. I think another while loop unnecessarily takes up memory and time like recursion.

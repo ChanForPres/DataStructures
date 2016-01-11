@@ -36,8 +36,7 @@ When we create the new class, ```System.out.println``` will output something not
 }```
 #### the ```equals``` method
 ```equals``` method determines whether two objects contain the same information. For any class we write, we can define our own ```equals``` method. (Default ```==``` operator determines whether its operands reference the same object. But this might not be very useful for some cases) <br \>
-``` public boolean equals (Object obc) {
-
+```public boolean equals (Object obc) { 
 }```
 
 ### Testing with JUnit

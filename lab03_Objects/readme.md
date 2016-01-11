@@ -21,11 +21,11 @@ Second, if we assign the reference to a ```Dog``` object, ```d = new Dog();```, 
 If and only if we see the ```new``` keyword, we create an object. <br \>
 
 Q. Why does it make sense that objects are not stored inside variables, but are only referred to them? <br \>
-    - For primitives, it's just 4 byte information that are very simple and easy to store. However, objects contain a lot more information in terms of quantity and variety. So it's easier to reference that by variable instead of storing it.
+- For primitives, it's just 4 byte information that are very simple and easy to store. However, objects contain a lot more information in terms of quantity and variety. So it's easier to reference that by variable instead of storing it. <br \>
 Q. Why does it make sense that objects are not drawn inside other objects? <br \>
-    - Again, every object varies and contains many kinds of big and small data. For consistency and efficiency, it's makes more sense to make objects always reference.
+- Again, every object varies and contains many kinds of big and small data. For consistency and efficiency, it's makes more sense to make objects always reference.<br \>
 Q. Why isn't the blue object box labeled with the name of the variable, for example ```d```? <br \>
-    - ```d``` is an object that points to ```new Dog()``` not ```d```. So it makes more sense that the blue object doesn't associate with the name ```d```.
+- ```d``` is an object that points to ```new Dog()``` not ```d```. So it makes more sense that the blue object doesn't associate with the name ```d```.
 
 ### Line1.java
 * This is a class representing a line segment as a pair of points (x1, y1) and (x2, y2), where all ```x1```, ```y1```, ```x2```, ```y2``` are integer instance variables.
