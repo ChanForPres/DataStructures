@@ -49,8 +49,9 @@ public class Date {
         } else {
             leapDay = true;
         }
-
         // YOUR CODE HERE
+        // Throws an IllegalStateException if the integer values are invalid
+        // These exceptions will be caught by test cases DateTest
         if (myYear < 1900 || myYear > 2100) {
             throw new IllegalStateException("Invalid year format");
         } else if (myMonth < 1 || myMonth > 12) {

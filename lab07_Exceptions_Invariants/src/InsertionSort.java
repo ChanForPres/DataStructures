@@ -32,13 +32,14 @@ public class InsertionSort {
     // increasing order.
     // Throws an IllegalStateException otherwise.
     public static void isOK (int[] list, int k) {
-
+        if (k < 0 || k > list.length) {
+            throw new IllegalStateException("k is invalid");
+        }
         for (int i = 0; i < k; i++) {
             if (list[i] > list[i+1]) {
                 throw new IllegalStateException("The order is not sorted");
             }
         }
-
     }
 
     public static int[] insertionSort(int[] list) {

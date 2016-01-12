@@ -37,4 +37,48 @@ Good when dealing with user input.
 1. Throw and catch ```IllegalArgumentException``` + too many leading zeroes in the hours or minutes/ values for hours and minutes that are out of range
 
 ### Consistency Checkers
-The concept of using self-monitoring methods to alert when bugs appear. The concept of **invariants** with **exception throwing**, **catching**, and handling
+The concept of using self-monitoring methods to alert when bugs appear. The concept of **invariants** with **exception throwing**, **catching**, and **handling** to check an object's internal state for **inconsistencies**.
+
+#### Tic-Tac-Toe boards
+My own thoughts on legal Tic-Tac-Toe boards <br \>
+1. # of Xs = # of Os + 1 (for every odd turn)
+2. # of Xs = # of Os (for every even turn)
+3. Invalid when both wins
+
+* Every opoeration that changes the board, the consistency checker ```isOK``` is called. Then if the object being checked is not internally consistent, ```isOK``` should **throw an exception** that can be **handled** by the method that called it or by the tests.
+
+#### Dates.java
+The three integers are instance variables of a ```Date``` class. ```isOK``` method throws an ```IllegalStateException``` if the instance variable's values do not represent a legal date.
+
+#### NumberGuesser.java
+This class uses the *binary search* technique to guess the user's number. From the sorted values, we find a particular value by lowering ```high``` or by rasing ```low``` at each guess. <br \>
+```isOK``` method makes sure 
+* that 0 <= ```low``` <= ```high``` <= 20.
+* Each unsuccessful guess cannot appear again
+
+But the number-guessing code and the ```isOK``` method are inconsistent. 
+* It was ```low = guess;``` in ```NumberGuesser.java```. This is buggy because it cannot guess when the number is **20**. This can be fixed if we **add 1** like ```low = guess+1;```
+
+#### Invariant Relationships
+Formally, ```isOk``` methods are verifying **invariants**(relationships between variable)
+1. **Class invariants** : relate values of **instance variables** to one another. Also known as *data invariants*, the "not varying" property is set up initially in the class constructors. This "not changing" property should hold between calls to the other methods (at least by the time the method exits)
+    ex) Tic-Tac-Toe board, Date example
+
+2. **Loop invariants** : relate values of variables in a **loop** or **recursion**. The "not varing" property is set up the first time at the start of a loop or at the initial call to a recursive method and should hold at the **end** of each loop iteration. This invariant relationship may get invalidated temporarily, it should be restored by the end of the iteration.
+    ex) The buggy number guesser
+
+#### Loop Invariants with Array Processing (XsBeforeOs.java)
+ex) Moving X's to Precede O's
+1. Loop through the array with an index variable ```k```, maintaining the invariant that all the X's in the first ```k``` elements precede all the O's. + keep track of the last X position ```lastXpos```
+2. If ```k``` is O, the invariant is easy to extend. Just move by one.
+3. If ```k``` is X, we exchange element ```k``` with the position of the first O.
+
+* ```isOK``` method should check the first ```k``` elements of ```values``` all the Xs precede all the Os. If this consistency is not satisfied, throw an ```IllegalStatementException```. 
+* ```isOK``` and ```rearrange``` methods are complete.
+
+#### InsertionSort.java
+At the start of the kth time through the loop, the leftmost ```k``` elements of the values array are **in order**. Both ```isOK``` and ```insert``` methods are completed.
+* ```isOK``` throws an ```IllegalStateException``` when elements ```0``` through ```k``` of list are not sorted. It also throws an exception if ```k``` is negative or exceeds the maximum list index.
+
+Again, the ```exception``` is **thrown** during the real programming like class or ```isOK``` method, and we can ```try/catch``` during ```main``` or ```test``` methods.
+

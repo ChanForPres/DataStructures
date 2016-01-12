@@ -43,7 +43,7 @@ public class NumberGuesser {
         if (high > 20 || low < 0 || high < low) {
             return false;
         }
-        if (previousGuesses.contains (guess)) {
+        if (previousGuesses.contains(guess)) {
             return false;
         }
         return true;
