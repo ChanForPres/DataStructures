@@ -24,3 +24,33 @@ This will return the ```String``` representation of the list. e.g. "( 1 3 5 )" f
 
 #### The ```equals``` Method
 Given an ```Object``` as argument, returns ```true``` if this list and the argument list are the **same length** with **equal elements** in corresponding positions.
+
+### Analyzing Program Efficiency
+
+* Statement Conting 
+```for (int k = 0; k < N; k++) {
+        sum = sum + myValues[k]
+}```
+Given this code, we can count the number of statements. 
+
+1. assignmnet of ```k``` : 1 (Literally, assignment is just throwing a number in it)
+2. loop test(```k < N```) : N
+3. increment ```k``` : N
+4. access ```myValues``` : N
+5. add sum : 1
+= 3N + 2
+
+#### Big Theta
+We could say **f(n) is in T(g(n)) iff f(n) is proportional to g(n) for all large enough values of n**. In other words, f(n) in T(g(n)) iff *f(n) in O(g(n))* **AND** *g(n) in O(f(n))*
+
+#### Big Oh (Upper-bounding)
+For positive contants M and N s.t. for all values of n > N: *f(n) < M*g(n)* <br \>
+Given f(n) = n^2 and g(n) = n^3, f(n) in O(g(n))
+
+#### Big Omega (Lower-bounding)
+f(n) in Om(g(n)) iff *g(n) in O(f(n))*
+
+
+
+
+
