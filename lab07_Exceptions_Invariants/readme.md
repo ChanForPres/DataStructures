@@ -61,6 +61,7 @@ But the number-guessing code and the ```isOK``` method are inconsistent.
 
 #### Invariant Relationships
 Formally, ```isOk``` methods are verifying **invariants**(relationships between variable)
+
 1. **Class invariants** : relate values of **instance variables** to one another. Also known as *data invariants*, the "not varying" property is set up initially in the class constructors. This "not changing" property should hold between calls to the other methods (at least by the time the method exits)
     ex) Tic-Tac-Toe board, Date example
 
@@ -69,8 +70,11 @@ Formally, ```isOk``` methods are verifying **invariants**(relationships between 
 
 #### Loop Invariants with Array Processing (XsBeforeOs.java)
 ex) Moving X's to Precede O's
+
 1. Loop through the array with an index variable ```k```, maintaining the invariant that all the X's in the first ```k``` elements precede all the O's. + keep track of the last X position ```lastXpos```
+
 2. If ```k``` is O, the invariant is easy to extend. Just move by one.
+
 3. If ```k``` is X, we exchange element ```k``` with the position of the first O.
 
 * ```isOK``` method should check the first ```k``` elements of ```values``` all the Xs precede all the Os. If this consistency is not satisfied, throw an ```IllegalStatementException```. 
