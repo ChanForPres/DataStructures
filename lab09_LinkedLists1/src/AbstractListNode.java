@@ -61,6 +61,7 @@ class NonemptyListNode extends AbstractListNode {
         if (position > this.size() || position < 0) {
             throw new IllegalArgumentException("incorrect position");
         }
+        // Takes O(n) time for n equals to the length of the list
         while (curNum < position) {
             if (curItem.next().isEmpty()) {
                 return curItem.next();
@@ -90,6 +91,8 @@ class NonemptyListNode extends AbstractListNode {
     public boolean equals(Object node) {
         NonemptyListNode curList = this;
         int nodeSize = ((NonemptyListNode)node).size();
+        // first check if the curList is of NonemptyListNode class
+        // since it should contain anything to compare
         if (curList instanceof NonemptyListNode) {
             if (curList.size() == nodeSize) {
                 for (int i = 0; i < nodeSize; i++) {

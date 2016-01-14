@@ -8,34 +8,16 @@ import java.util.NoSuchElementException;
 
 
 abstract public class AbstractListNode {
-    // Useful **********
     abstract public Comparable item();
-
-    // Useful **********
     abstract public AbstractListNode next();
-
-    // Useful *****
     abstract public void setItem(Comparable newItem);
-
-    // Useful *****
     abstract public void setNext(AbstractListNode newNext);
-
-    // Useful **********
     abstract public boolean isEmpty();
-
-    // Every other list-processing method goes here.
     abstract public int size();
-
     abstract public Comparable get(int position);
-
-    // Useful *****
     abstract public String toString();
-
     abstract public boolean equals(Object node);
-
-    // Useful *****
     public abstract AbstractListNode add(Comparable c);
-
     public abstract AbstractListNode append(AbstractListNode list);
 
 
@@ -249,21 +231,24 @@ class NonemptyListNode extends AbstractListNode {
     }
 
     public AbstractListNode add(Comparable c) {
+        // Recursive method
         AbstractListNode curList = this;
-        //System.out.println("curList"+curList);
         NonemptyListNode listToRtn = new NonemptyListNode(curList.item(), curList.next().add(c));
-        //System.out.println("listToRtn: "+ listToRtn);
         return listToRtn;
     }
 
     public AbstractListNode append(AbstractListNode listToAppend) {
+        // Concatenating the two lists this + listToAppend
         AbstractListNode curList = this;
         AbstractListNode listToRtn;
         if (listToAppend.isEmpty()) {
             listToRtn = new NonemptyListNode(curList.item(), curList.next());
         } else {
+            // if listToAppend is not empty
+            // created a new list called listToRtn
             listToRtn = new EmptyListNode();
 
+            // Using a while loop to traverse everything in the curList
             while (!curList.isEmpty()) {
                 listToRtn = listToRtn.add(curList.item());
                 curList = curList.next();
@@ -277,6 +262,7 @@ class NonemptyListNode extends AbstractListNode {
     }
 
     // Another version of append using recursion
+    // It recursively traverses through list1 and then the last item in list1 points to list2
     /*
     public AbstractListNode append(AbstractListNode list) {
         return appendHelper(this, list);
@@ -291,6 +277,7 @@ class NonemptyListNode extends AbstractListNode {
     }*/
 
     public AbstractListNode reverse() {
+        // return a new list (non-destructive) with a reversed order
         AbstractListNode curList = this;
         AbstractListNode listToRtn = new EmptyListNode();
         AbstractListNode tempNextList;
