@@ -91,6 +91,7 @@ public class Sequence implements Iterable {
     // Precondition: the given position is at least 0 and less than mySize.
     public void delete(int deletePos) {
         DListNode current = myHead;
+        // if the deleted position is the first element
         if (deletePos == 0) {
             DListNode temp = myHead.myPrev;
             myHead = myHead.myNext;
@@ -101,12 +102,14 @@ public class Sequence implements Iterable {
             myHead = null;
         } else {
             int i = 0;
+            //
             while (i < deletePos - 1) {
                 current = current.myNext;
                 i++;
             }
-            current.myNext = myHead;
-            myHead.myPrev = current;
+            DListNode toMove = current.myNext.myNext;
+            current.myNext = toMove;
+            toMove.myPrev = current;
             mySize--;
         }
     }

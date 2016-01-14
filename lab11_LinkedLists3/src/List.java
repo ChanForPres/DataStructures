@@ -199,6 +199,7 @@ public class List implements Iterable {
     */
 
     public void add(Object x) {
+        // Destructive add method
         if (this.isEmpty()) {
             ListNode newX = new ListNode(x);
             this.myHead = newX;
@@ -252,14 +253,19 @@ public class List implements Iterable {
 
     public void remove(Object obj) {
         for (ListNode p = myHead; p.myNext != null; p = p.myNext) {
+            // if the next item is the obj that we are looking for
             if (p.myNext.myItem.equals(obj)) {
+                // if the obj is located at the tail
                 if (p.myNext.myNext == null) {
                     p.myNext = null;
                     break;
                 } else {
+                    // Shifts all the values by one
                     for (ListNode p2 = p.myNext; p2.myNext != null; p2 = p2.myNext) {
                         p2.myItem = p2.myNext.myItem;
                     }
+                    // Handles the last item.
+                    // Since all the myItems are shifted, we need to take care of the last item that is useless
                     for (ListNode p3 = p.myNext; p3.myNext != null; p3 = p3.myNext) {
                         if (p3.myNext.myNext == null) {
                             p3.myNext = null;
@@ -267,7 +273,9 @@ public class List implements Iterable {
                         }
                     }
                 }
-            } else if (p.myItem.equals(obj)) {
+            }
+            // Double check
+            else if (p.myItem.equals(obj)) {
                 for (ListNode p2 = p; p2.myNext != null; p2 = p2.myNext) {
                     p2.myItem = p2.myNext.myItem;
                 }
