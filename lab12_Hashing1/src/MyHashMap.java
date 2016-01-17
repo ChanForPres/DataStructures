@@ -116,6 +116,7 @@ public class MyHashMap<K, V> implements Iterable<K> {
 		}
 		return false;
 	}
+
 	/**
 	 * Puts the key in the map with the given value. If the key is already in
 	 * the map, replaces the value. Should run in O(1) time on average with
@@ -127,8 +128,6 @@ public class MyHashMap<K, V> implements Iterable<K> {
 	 * Note: If this method causes size / capacity to be greater than the load
 	 * factor, then this method should also expand the map.
 	 */
-
-
 	public V put(K key, V value) {
 		int hashCode = key.hashCode();
 		hashCode = hashCode % this.capacity;
@@ -142,13 +141,17 @@ public class MyHashMap<K, V> implements Iterable<K> {
 			size++;
 			return null;
 
-		} else if (myTable[hashCode].size() == 0) {
+		}
+		// if there's a key but no values
+		else if (myTable[hashCode].size() == 0) {
 			KVPair toadd = new KVPair(key, value);
 			myTable[hashCode].add(toadd);
 			size++;
 			return null;
 
-		} else if (containsKey(key)){
+		}
+		// If the key and value are there, replace the value
+		else if (containsKey(key)){
 			for (int i = 0; i < myTable[hashCode].size(); i++) {
 				if (myTable[hashCode].get(i).getKey().equals(key)) {
 					myTable[hashCode].get(i).changeValue(value);
@@ -157,7 +160,9 @@ public class MyHashMap<K, V> implements Iterable<K> {
 			}
 			return value;
 			
-		} else {
+		}
+		// If load factor is exceeded, expand the map
+		else {
 			myTable[hashCode].add(new KVPair(key, value));
 			size++;
 			if (needLoadFactor() == true) {
@@ -180,15 +185,16 @@ public class MyHashMap<K, V> implements Iterable<K> {
 		if (myTable[hashCode] == null) {
 			return null;
 		}
+
 		if (myTable[hashCode].size() == 0) {
 			return null;
 		}
-		if (myTable[hashCode] == null) {
-			return null;
-		} else {
+
+		else {
 			for (int i = 0; i < myTable[hashCode].size(); i++) {
 				if (myTable[hashCode].get(i).getKey().equals(key)) {
 					V valueToRtn = myTable[hashCode].get(i).getValue();
+					// Uses linked list remove method
 					myTable[hashCode].remove(i);
 					size--;
 					return valueToRtn;
