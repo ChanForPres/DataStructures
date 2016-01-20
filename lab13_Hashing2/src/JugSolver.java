@@ -16,23 +16,29 @@ public class JugSolver {
 	// Try to solve the puzzle, starting at configuration b.
 	public boolean tryPouring (JugContents jugsObject) {
 		System.out.println(jugsObject.toString());
+
+		// If reached the desired amount, tryPouring returns true
 		if (jugsObject.jugs[0] == desiredAmt || jugsObject.jugs[1] == desiredAmt
 		        || jugsObject.jugs[2] == desiredAmt) {
 			return true;
 		}
 
-		// Your code at this line, and possibly below
+		// if the confiugration is already stored in contentHashset
+		// then returns false and
 		if (contentsHashset.contains(jugsObject)) {
-			//System.out.println("CONTAINED");
+			System.out.println("CONTAINED");
 			return false;
 		}
 		contentsHashset.add(jugsObject);
-		//System.out.println("ADDED");
+		System.out.println("ADDED");
 
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
+				// If tryPouring is false AND i == j
+				// then the j loop moves, if j moves all the way up to 2, then i moves
+				// Otherwise, it's inside pour(jugsObject, i, j)'s tryPouring method (recursive)
 				if (i != j && tryPouring(pour(jugsObject, i, j))) {
-					System.out.println ("Pouring from jug " + i + " to jug " + j);
+					System.out.println ("FINAL: Pouring from jug " + i + " to jug " + j);
 					return true;
 				}
 			}

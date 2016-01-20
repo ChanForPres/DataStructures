@@ -5,6 +5,8 @@ public class BinarySearch {
 
 	public static void main (String[] args) {
 		int[] values = new int[31];
+		// smallest value of number of buckets, 3,
+		// for which the total number of comparisons to find all 31 values in the hash table is less
 		MyHashMap<Integer, Integer> hashMap = new MyHashMap<>(3);
 		/*for (int k = 0; k < 31; k++) {
 			values[k] = k+1;
