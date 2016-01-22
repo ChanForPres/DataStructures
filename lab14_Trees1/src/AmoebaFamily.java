@@ -193,7 +193,10 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 
 		// Makes all Amoeba names only lower case letters.
 		public void makeNamesLowercase() {
+			// use toLowerCase() method
 			this.myName = this.myName.toLowerCase();
+			// then go deeper in the tree and
+			// recursively call the makeNamesLowercase() method
 			for (Amoeba a : myChildren) {
 				a.makeNamesLowercase();
 			}
@@ -202,9 +205,11 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		// Replaces the name of an amoeba named currentName with the name newName.
 		// Precondition: the amoeba family contains exactly one amoeba named currentName.
 		public void replaceName(String currentName, String newName) {
+			// if we reach currentName, change it to newName
 			if (this.myName.equals(currentName)) {
 				this.myName = newName;
 			} else {
+				// recursive call with its children
 				for (Amoeba a : myChildren) {
 					a.replaceName(currentName,newName);
 				}
@@ -219,17 +224,20 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 			}
 		}
 
+		// Print the root amoeba's name - name of all its descendants
+		// printed per line and their children indented four spaces more than the name of their parent
 		public void prettyPrint() {
 			this.prettyPrintHelper(0);
 		}
 
 		public void prettyPrintHelper(int indentLevel) {
-			// Since it's a recursion, I think it stores a corresponding indent level for each child
+			// Since it's a recursion, I think each child keeps track of its corresponding indentLevel
 			for (int i = 0; i < indentLevel; i++) {
 				System.out.print(" ");
 			}
 			System.out.print(this.myName);
-			System.out.println();
+			System.out.println(); // newLine
+			// for each child in the subtree, indent 4 more spaces
 			for (Amoeba a : this.myChildren) {
 				a.prettyPrintHelper(indentLevel+4);
 			}
@@ -239,12 +247,15 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
         //Returns the length of the longest name of this Amoeba's children
         public int longestNameLength() {
             int maxLengthSeen = myName.length();
+			// Recursively searches through the tree
+			// to find the longest name length
             for (Amoeba a : myChildren) {
                 maxLengthSeen = Math.max(maxLengthSeen, a.longestNameLength());
             }
             return maxLengthSeen;
         }
 
+		//
 		public String longestName() {
 			int maxLength = this.longestNameLength();
 			String longestNameSoFar = this.longestNameHelper(maxLength);
@@ -253,9 +264,12 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 
 		public String longestNameHelper(int maxLength) {
 			String longestName = "";
+			// if the length of the myName equals to maxLength
+			// then return that name
 			if (this.myName.length() == maxLength) {
 				return this.myName;
 			}
+			// else recursively find its children
 			for (Amoeba a : myChildren) {
 				if (a.myName.length() == maxLength) {
 					return a.myName;
@@ -284,26 +298,31 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 
 		public String busiestHelper(HashMap<Amoeba, Integer> amoebaHashMap, Amoeba previousA) {
 			for (Amoeba a : myChildren) {
-
 				// If amoebaHashMap does not contain a key "a" and "a" has children
 				// amoebaHashMap now has a new key "a" and a value 0
 				if (!amoebaHashMap.containsKey(a) && !(a.myChildren.isEmpty())) {
 					amoebaHashMap.put(a, 0);
-					// if amoebaHashMap already contains "a"'s parent, it means we need to add 1 to it
+					// if amoebaHashMap contains "a"'s parent, it means a's parent has one child
+					// So we need to add 1 to it
 					if (amoebaHashMap.containsKey(a.myParent)) {
 						amoebaHashMap.put(a.myParent, amoebaHashMap.get(a.myParent)+1);
 					}
 					// Recurse again from a
 					a.busiestHelper(amoebaHashMap, a);
-				} else if (amoebaHashMap.containsKey(a.myParent)) {
-					// if a is a leaf node and amoebaHashMap already contains a.myParent node as a key
+
+				}
+				// if amoebaHashMap contains "a"'s parent, it means a's parent has one child
+				// if a is a leaf node and amoebaHashMap already contains a.myParent node as a key
+				else if (amoebaHashMap.containsKey(a.myParent)) {
 					amoebaHashMap.put(a.myParent, amoebaHashMap.get(a.myParent)+1);
 					a.busiestHelper(amoebaHashMap, a);
 				}
 			}
-			int maxValueInMap=(Collections.max(amoebaHashMap.values()));  // This will return max value in the Hashmap
+
+			// Finding the node with the most number of children
+			int maxValueInMap=(Collections.max(amoebaHashMap.values()));  // This will return max value in the HashMap
 			String toRtn = "";
-			for (Map.Entry<Amoeba, Integer> entry : amoebaHashMap.entrySet()) {  // Iterate through hashmap
+			for (Map.Entry<Amoeba, Integer> entry : amoebaHashMap.entrySet()) {  // Iterate through hashMap
 				if (entry.getValue()==maxValueInMap) {
 					toRtn = entry.getKey().myName;     // Print the key with max value
 				}
@@ -312,13 +331,13 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		}
 
 		private int height() {
+			// if the current node is a leaf node
 			if (myChildren.isEmpty()) {
 				return 1;
 			} else {
 				int bestSoFar = 1;
 				for (Amoeba a : myChildren) {
 					bestSoFar = Math.max(a.height()+1, bestSoFar);
-
 				}
 				return bestSoFar;
 			}

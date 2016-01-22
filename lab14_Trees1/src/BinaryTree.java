@@ -39,8 +39,8 @@ public class BinaryTree {
     }
 
     public void fillSampleTree2() {
-        myRoot = new TreeNode("a", new TreeNode("b", new TreeNode("d",
-                new TreeNode("e"), new TreeNode("f")), null), new TreeNode("c"));
+        myRoot = new TreeNode("a", new TreeNode("b"),  new TreeNode("c", new TreeNode("d",
+                new TreeNode("e"), new TreeNode("f")), null));
     }
 
     public void fillSampleTree3() {
@@ -126,16 +126,25 @@ public class BinaryTree {
             }
         }
 
+        // Computes the height of the binary tree
         private int height() {
+            // for a leaf node
             if (this.myLeft == null && this.myRight == null) {
                 return 1;
-            } else {
+            }
+            // if it contains at least one child
+            else {
                 int bestSoFar = 1;
-                if (this.myRight != null) {
+                // if it only contains right child
+                if (this.myLeft == null) {
                     bestSoFar = Math.max(this.myRight.height()+1, bestSoFar);
-                } else if (this.myLeft != null) {
+                }
+                // if it only contains left child
+                else if (this.myRight == null) {
                     bestSoFar = Math.max(this.myLeft.height()+1, bestSoFar);
-                } else {
+                }
+                // if it contains both left and right child
+                else {
                     bestSoFar = Math.max(this.myLeft.height()+1, this.myRight.height()+1);
                 }
                 return bestSoFar;
