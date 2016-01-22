@@ -131,8 +131,9 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		}
 	}
 
-	/* // Depth-first search
-	public class AmoebaIterator implements Iterator<Amoeba> {
+	/*
+	 // Depth-first search
+	 public class AmoebaIterator implements Iterator<Amoeba> {
 		// Amoebas in the family are enumerated in preorder,
 		// with children enumerated oldest first.
 		// Members of the family constructed with the main program above
@@ -142,39 +143,42 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		// Complete enumeration of a family of N amoebas should take
 		// O(N) operations.
 
-		// You will supply the details of this class in a future lab.
+		 // Since it's a depth-first search, we need Stack
+		 private Stack<Amoeba> fringe = new Stack<Amoeba>();
 
-		private Stack<Amoeba> fringe = new Stack<Amoeba>();
-
-		public AmoebaIterator() {
-			if (myRoot != null) {
-				fringe.add(myRoot);
-
+		 // constructor
+		 public AmoebaIterator() {
+			 if (myRoot != null) {
+				 fringe.add(myRoot);
 			}
 		}
 
-		public boolean hasNext() {
-			return !fringe.isEmpty();
-		}
+		 // hasNext should be true as long as fringe is not empty
+		 public boolean hasNext() {
+			 return !fringe.isEmpty();
+		 }
 
-		public Amoeba next() {
-			if (!hasNext()) {
-				throw new NoSuchElementException("Tree ran out of elements");
-			}
-			Amoeba a = (Amoeba) fringe.pop();
+		 // next
+		 public Amoeba next() {
+			 if (!hasNext()) {
+				 throw new NoSuchElementException("Tree ran out of elements");
+			 }
+			 // First return the item in the fringe
+			 Amoeba a = (Amoeba) fringe.pop();
 
-			if (a.myChildren != null) {
-				Iterator it = a.myChildren.iterator();
-				LinkedList<Object> listIt = new LinkedList<>();
-				while (it.hasNext()) {
-					listIt.add(it.next());
-				}
-				for (int i = listIt.size()-1; i >= 0; i--) {
-					fringe.push((Amoeba) listIt.get(i));
-				}
-			}
-			return a;
-		}
+			 // Then add its children to the fringe
+			 if (a.myChildren != null) {
+				 Iterator it = a.myChildren.iterator();
+				 LinkedList<Object> listIt = new LinkedList<>();
+				 while (it.hasNext()) {
+					 listIt.add(it.next());
+				 }
+				 for (int i = listIt.size()-1; i >= 0; i--) {
+					 fringe.push((Amoeba) listIt.get(i));
+				 }
+			 }
+			 return a;
+		 }
 
 		public void remove() {
 			// Not used for now -- removal from a tree can be difficult.
@@ -196,8 +200,7 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		// Complete enumeration of a family of N amoebas should take
 		// O(N) operations.
 
-		// You will supply the details of this class in a future lab.
-
+		// We need queue for breath first search
 		private Queue fringe = new LinkedList<>();
 
 		public AmoebaIterator() {

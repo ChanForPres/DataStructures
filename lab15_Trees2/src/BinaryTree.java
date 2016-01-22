@@ -81,6 +81,7 @@ public class BinaryTree {
         }
     }
 
+    // Creates a Fibonacci tree
     public static BinaryTree fibTree(int n) {
         BinaryTree result = new BinaryTree();
         result.myRoot = result.fibTreeHelper(n);
@@ -88,13 +89,19 @@ public class BinaryTree {
     }
 
     private TreeNode fibTreeHelper (int n) {
+        // Base case
         if (n == 0) {
             myRoot = new TreeNode(0);
             return myRoot;
-        } else if (n == 1) {
+        }
+        // when n is 1, it is the leaf node
+        else if (n == 1) {
             myRoot = new TreeNode(1);
             return myRoot;
-        } else {
+        }
+        // For any number greater than 1
+        // The root should be the sum of fibTreeHelper(n-1), fibTreeHelper(n-2)
+        else {
             myRoot = new TreeNode(add(fibTreeHelper(n-1), fibTreeHelper(n-2)), fibTreeHelper(n-1), fibTreeHelper(n-2));
             return myRoot;
         }
@@ -117,7 +124,6 @@ public class BinaryTree {
     // The expression is legal, fully parenthesized, contains no blanks,
     // and involves only the operations + and *.
     private TreeNode exprTreeHelper(String expr) {
-
         // Base case
         if (expr.charAt(0) != '(') {
             if (Character.isLetter(expr.charAt(0))) {
@@ -253,10 +259,12 @@ public class BinaryTree {
             }
         }*/
         alreadySeen.add(t);
+        // if alreadySeen contains t, it breaks the validity
         if (alreadySeen.contains(t)) {
             System.err.println("no node appears more than once in the traversal");
             throw new IllegalStateException("no node appears more than once in the traversal");
         } else {
+            // recursively check its children
             if (t.myLeft != null) {
                 alreadySeen.add(t.myLeft);
                 isOK(t.myLeft);
@@ -267,6 +275,7 @@ public class BinaryTree {
         }
     }
 
+    // BreadthFirst Iterator
     public class TreeIterator implements Iterator<TreeNode> {
 
         private Queue fringe = new LinkedList<>();
@@ -374,6 +383,7 @@ public class BinaryTree {
 
         private static final String indent1 = "    ";
 
+        // Print the tree that is turned 90 degree counter-clockwise
         private void print(int indent) {
             if (myRight != null) {
                 myRight.print(indent+1);
