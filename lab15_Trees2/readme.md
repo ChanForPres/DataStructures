@@ -64,9 +64,10 @@ print the tree in such a way that the output is turned 90 degree counter-clockwi
 * ```private TreeNode fibTreeHelper (int n)```, ```private Object add(TreeNode myLeft, TreeNode myRight)```
 
 #### Building Expression Tree
-* One tricky part was how to decide the operator(+/*) that separates the given expression well. <br \>
-* The solution was incrementing the variable *nesting* by 1 if we see the opening bracket and decrementing the variable *nesting* by 1 if we see the closing bracket. And when the variable *nesting* is 0 and we see any operator + or *, that's the right operator that should separate the expression.
-
+* Given a String representation of an expression, returns a tree representing that expression
+* One tricky part was how to decide the operator(+/*) that separates the given expression well. 
+* The solution was **incrementing** the variable nesting by 1 if we see the **opening bracket** and **decrementing** the variable nesting by 1 if we see the **closing bracket**. And when the variable nesting is 0 and we see any operator + or *, that's the right operator that should separate the expression.
+* ```optimize()```: replaces all occurrences of an expression involving only integers with the computed value
 
 
 
