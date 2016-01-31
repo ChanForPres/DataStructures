@@ -10,6 +10,9 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
         return contains(t, key);
     }
 
+    // Recursively find the TreeNode t with a given key
+    // Because the generic type T is the subclass of Comparable
+    // we can use compareTo method
     private boolean contains (TreeNode t, T key) {
         if (t == null) {
             return false;
