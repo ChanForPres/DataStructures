@@ -46,7 +46,13 @@ public class AVLTree {
 		return myRoot.toString();
 	}
 
-	private abstract class TreeNode {
+
+    /**
+     * Abstract Class TreeNode
+     * - Abstract cannot be instantiated, only be extended
+     * - must be overridden by the extending class
+     */
+    private abstract class TreeNode {
 
 		/**
 		 * Returns the item that belongs to this node.
@@ -118,9 +124,14 @@ public class AVLTree {
 		public abstract void setParent(TreeNode t);
 
 		/*
-		 * TODO Add more abstract methods here if you like. By putting helper
-		 * methods in TreeNode, you can avoid doing any casting in this problem.
+		 * TODO Add more abstract methods here if you like.
+		 * By putting helper methods in TreeNode,
+		 * you can avoid doing any casting in this problem.
 		 */
+
+        public abstract TreeNode rotateRight(TreeNode t);
+
+        public abstract TreeNode rotateLeft(TreeNode t);
 
 		@Override
 		public String toString() {
@@ -145,8 +156,7 @@ public class AVLTree {
 				return toReturn;
 			}
 		}
-
-	}
+    }
 
 	private class NonEmptyTreeNode extends TreeNode {
 
@@ -155,6 +165,7 @@ public class AVLTree {
 		private TreeNode myRight;
 		private TreeNode myParent;
 
+        // set myItem to be item and myParent to be empty
 		private NonEmptyTreeNode(int item) {
 			this(item, theEmptyTreeNode);
 		}
@@ -178,8 +189,74 @@ public class AVLTree {
 		 */
 		@Override
 		public void insert(int item) {
-			// TODO Your code here!
+            if (this.contains(item)) {
+                throw new IllegalStateException("Key is already in the tree");
+            } else {
+               myRoot = add(this, item);
+            }
 		}
+
+        private TreeNode add(TreeNode t, int item) {
+            if (t.isEmpty()) {
+                TreeNode rtnNode = new NonEmptyTreeNode(item, this);
+                return rtnNode;
+            } else {
+                // if item is smaller than the root, left
+                if (item < t.item()) {
+                    t.setLeft(add(t.left(), item));
+                }
+                // if item is greater than the root, right
+                else {
+                    t.setRight(add(t.right(), item));
+                }
+
+                // Now rotate if balance is broken
+                // if balanceFactor < -1: longer right, rotate left essentially
+                if (t.balanceFactor() < -1) {
+                    // insertion into left subtree of the right child of a
+                    if (t.right().balanceFactor() > 0) {
+                        TreeNode newRight = rotateRight(t.right());
+                        t.setRight(newRight);
+                        return rotateLeft(t);
+                    } else {
+                        return rotateLeft(t);
+                    }
+                }
+                // if balanceFactor > 1: longer left, rotate right
+                else if (t.balanceFactor() > 1) {
+                    // insertion into right subtree of the left child of a
+                    if (t.left().balanceFactor() < 0) {
+                        TreeNode newLeft = rotateLeft(t.left());
+                        t.setLeft(newLeft);
+                        return rotateRight(t);
+                    } else {
+                        return rotateRight(t);
+                    }
+                } else;
+            }
+            return t;
+        }
+
+
+        /**
+         * Rotate the tree to the right
+         */
+        public TreeNode rotateRight(TreeNode t) {
+            TreeNode root = t.left();
+            t.setLeft(root.right());
+            root.setRight(t);
+            return root;
+        }
+
+        /**
+         * Rotate the tree to the left
+         */
+        public TreeNode rotateLeft(TreeNode t) {
+            TreeNode root = t.right();
+            t.setRight(root.left());
+            root.setLeft(t);
+            return root;
+        }
 
 		@Override
 		public boolean isAlmostBalanced() {
@@ -196,7 +273,7 @@ public class AVLTree {
 
 		@Override
 		public int balanceFactor() {
-			return left().height() - right().height();
+			return this.left().height() - this.right().height();
 		}
 
 		@Override
@@ -325,7 +402,17 @@ public class AVLTree {
 		public void setParent(TreeNode t) {
 		}
 
-	}
+        @Override
+        public TreeNode rotateRight(TreeNode t) {
+            return null;
+        }
+
+        @Override
+        public TreeNode rotateLeft(TreeNode t) {
+            return null;
+        }
+
+    }
 
 	/**
 	 * Main method that runs some simple tests. This is NOT sufficient to cover
@@ -337,7 +424,8 @@ public class AVLTree {
 
 		// Should cause a rotation to occur.
 		t1.insert(3);
-		System.out.println(t1);
+        System.out.println(t1.myRoot.height());
+        System.out.println(t1);
 		System.out.println(t1.isAlmostBalanced());
 
 		t1.insert(4);

@@ -35,18 +35,20 @@ public class BST {
         if (start > end) {
             return null;
         }
-        System.out.println("start: "+start+" end: "+end + " mid: "+(start+end) / 2);
         int mid = (start+end) / 2;
+        // separate the left part of the linked list based on mid
+        // and recursively call until we hit the very left of the given boundary
         BSTNode leftChild = sortedListToBST(start, mid-1);
+        // if we hit the very left and return null
+        // we set root to be the next item in the list (iterator.next())
         BSTNode root = new BSTNode(iterator.next());
-        System.out.println("root: "+root.myItem);
+        // and set leftChild to be root.myLeft
         root.myLeft = leftChild;
-        System.out.println("here1");
+        // find the remaining rightChild
+        // recursively call until we hit the very right of the given boundary
         BSTNode rightChild = sortedListToBST(mid+1, end);
-        System.out.println("here2");
+        // set the rightChild to be the root.myRight
         root.myRight = rightChild;
-        System.out.println("here3");
-        System.out.println("final root: "+root.myItem);
         return root;
     }
 
