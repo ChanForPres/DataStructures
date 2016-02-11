@@ -59,6 +59,12 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
         return kthLargestHelper(this.myRoot, k).myItem;
     }
 
+    /**
+     *
+     * @param t
+     * @param k
+     * @return TreeNode that is kth largest
+     */
     private TreeNode kthLargestHelper(TreeNode t, int k) {
         if (k < 0 || k > this.myRoot.mySize) {
             throw new IllegalArgumentException("k is not a valid number");

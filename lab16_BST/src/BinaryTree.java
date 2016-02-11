@@ -18,6 +18,7 @@ public class BinaryTree<T> implements Iterable<T> {
     }
 
     /**
+     * New constructor method
      * @param pre: contains the objects in a preorder traversal (root-left-right)
      * @param in: contains the objects in an inorder traversal (left-root-right)
      */
@@ -30,25 +31,34 @@ public class BinaryTree<T> implements Iterable<T> {
         }
     }
 
+    // Recursive method
     private TreeNode BinaryTreeHelper(ArrayList<T> in, ArrayList<T> pre, int inStart, int inEnd) {
         if (inStart > inEnd) {
             return null;
         }
+
+        // Because we know that item in pre is helpful to separate left and right
         TreeNode tNode = new TreeNode(pre.get(preIndex++));
 
-        // If this node has no children, terminates
+        // If this node has no children, terminates (end case)
         if (inStart == inEnd) {
             return tNode;
         }
 
         int inIndex = search(in, inStart, inEnd, tNode.myItem);
 
-
+        // Since inorder is left-root-right, and prelist is root-left-right,
+        // given root from prelist, we can separate left and right from in list
+        // we should increment and decrement inStart and inEnd correspondingly
         tNode.myLeft = BinaryTreeHelper(in, pre, inStart, inIndex-1);
         tNode.myRight = BinaryTreeHelper(in, pre, inIndex+1, inEnd);
         return tNode;
     }
 
+    /**
+     * This method searches "myRootItem" in the "in" list
+     * And returns the index of the "myRootItem" place in "in" list
+     */
     private int search(ArrayList<T> in, int inStart, int inEnd, T myRootItem) {
 
         int j = 0;

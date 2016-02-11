@@ -1,8 +1,17 @@
-Lab 17: TreeMap
+Lab 17: TreeMaps
 ===
+1. Algorithm for deleting a node
+2. Analyzing some properties of the inorder successor of a node
+3. Finding the kth-largest value quickly
+4. Second way to implement a map: instead of using **hashing**, using **binary search trees**, resulting a ```TreeMap```.
+
+### Delete a key from a BST
+- To minimize restructring and unbalancing of the tree after deletion
+1. Find the node to be removed, called ```remNode```. If it's a leaf, remove immediately by returning ```null```. If it has one child, remove it by returning the other child node.
+2. Otherwise, remove the **inorder successor** of ```remNode```, copy its ```myItem``` into ```remNode``` and return ```remoNode```.
 
 ### Inorder Successor vs. Inorder Predecessor
-**Inorder successor** of a node X is the node Y that comes just **after** the node X in inorder traversal of the Binary Tree. Consider the following tree.
+**Inorder successor** is the node X that comes right **after** the ```remNode``` if I were to do an inorder traversal of the Binary Tree. Consider the following tree.
 ```
 		20
 	   /  \
@@ -12,9 +21,12 @@ Lab 17: TreeMap
 	  /  \
 	 10  14
 ```
+
 The whole inorder traversal goes like this: 4-8-10-12-14-20-22. Therefore inorder successor of 8 is 10. Inorder successor of 10 is 12. Inorder successor of 14 is 20.
 
-On the other hand, **inorder predecessor** of a node X is the node Y that comes just **before** node X in inorder traversal. The algorithm is as follows: 
+On the other hand, **inorder predecessor** is the node X that comes just **before** the ```remNode``` in inorder traversal. The following algorithm is to find the inorder successor and predecessor of a given int key: <br \> 
+
+http://www.geeksforgeeks.org/inorder-predecessor-successor-given-key-bst/ 
 
 ```
 1. If root is NULL
@@ -32,23 +44,24 @@ On the other hand, **inorder predecessor** of a node X is the node Y that comes 
     	Then successor will be the key itself.
     return
 3. If key is smaller then root node
-        set the successor as root
+        successor = root
         search recursively into left subtree
     else
-        set the predecessor as root
+        predcessor = root
         search recursively into right subtree
 ```
 
 ### Comparable kthLargest (int k)
-My own solution: There are two different solutions to find the kth largest element in a binary search.
+Consider the problem of finding the ```k```th largest key in a BST. 
 
-1. Simpler method: 
+1. Obvious solution) **inorder enumeration** : call ```nextElement``` until we get the desired key/ but if ```k``` is near the number of keys ```N``` in the tree, its running time is proportional to ```N```.
 
-First we already have Inorder traversal of the tree and the value k. Then we could call  ```nextElement``` until we get the desired k. However, if ```k``` is near the number of keys ```N``` in the tree, the algorithm's running time is proportional to ```N```. 
+2. Better solution) Storing in each node the size of the tree rooted at that node: allows an algorithm's running time proportional to ```d```, depth of the tree.
 
-2. Trading Memory for Speed 
+* My own solution: 
 
-Here storing in each node the size of the tree rooted at that node and the rank of the tree allows the design of an algorithm runs in time proportional to ```d```, the depth of the tree.
+    * Trading Memory for Speed 
+    * Here storing in each node the size of the tree rooted at that node and the rank of the tree allows the design of an algorithm runs in time proportional to ```d```, the depth of the tree.
 
 3. TreeMap Phonebook
 ```TreeMap``` implements ```Comparable``` interface to order the map based on keys

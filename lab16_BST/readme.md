@@ -62,10 +62,15 @@ Recursive method that compares if ```key``` is equal to ```t.myItem```. If ```ke
 #### ```Comparable``` object: <br \>
 Since we implement ```Comparable``` interface, we can use its method, ```int compareTo(object)```. When we use ```obj1.compareTo(obj2)```, it's **negative** if ```obj1 < obj2```. It's positive if ```obj1 > obj2``` and zero if two are equal.
 
+#### Insertion into a BST
+To minimize restructuring the tree, we choose to insert a new key only as a new **leaf**.
 
-* ```public BinaryTree(ArrayList<T> in, ArrayList<T> pre)``` constructor: 
-	* This is a constructor for the ```BinaryTree``` class that, given two ```ArrayLists```, constructs the corresponding binary tree. The **first** ArrayList contains the objects in the *preorder* traversal and the **second** ArrayList contains the objects in the *inorder* traversal.
-	* **How I figured out**: <br \>
-	Imagine we have one preorder arraylist ```ArrayLists["A", "B", "C", "D", "E", "F"]``` and inorder arraylist ```ArrayLists["B", "A", "E", "D", "F", "C"]```. Let's call it preList and inList for simplicity. Since preorder starts from the root, it is clear that the first element ```"A"``` in the preList is the root of the whole tree. And since inorder starts from the left subtree to the root and to the right subtree, we can deduce that once we find the same first element ```A``` in the inList, the left element```B``` from that item ```A``` in inList are the whole items of the left subtree and the right elements```"C", "D", "E", "F"``` from that item ```A``` in inList are the whole of the right subtree. Then we recursively operate this process with these left and right subtree items until our nodes have no children. 
+#### ```public BinaryTree(ArrayList<T> in, ArrayList<T> pre)``` constructor: 
+* This is a constructor for the ```BinaryTree``` class that, given two ```ArrayLists```, constructs the corresponding binary tree. The **first** ArrayList contains the objects in the **preorder** traversal and the **second** ArrayList contains the objects in the **inorder** traversal.
+
+* Before we move on, **preorder** is root-left-right. **inorder** is left-root-right.
+
+* **How I figured out**: <br \>
+Imagine we have one preorder arraylist ```ArrayLists["A", "B", "C", "D", "E", "F"]``` and inorder arraylist ```ArrayLists["B", "A", "E", "D", "F", "C"]```. Let's call it preList and inList for simplicity. Since preorder starts from the root, it is clear that the first element ```"A"``` in the preList is the root of the whole tree. And since inorder starts from the left subtree to the root and to the right subtree, we can deduce that once we find the same first element ```A``` in the inList, the left element```B``` from that item ```A``` in inList are the whole items of the left subtree and the right elements```"C", "D", "E", "F"``` from that item ```A``` in inList are the whole of the right subtree. Then we recursively operate this process with these left and right subtree items until our nodes have no children. 
 
 
