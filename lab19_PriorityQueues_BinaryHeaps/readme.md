@@ -124,19 +124,6 @@ Like an AVL Tree, a red-black tree also uses **rotation** to balance. However, t
 * add words and defns to the dictionary
 * allow you to lookup the defns associated with words
 * words and defns in a trie structure
-* since trie node can have so many children, the children are stored in a map
-```
-    ( )
- ____|____
-|    |    |
-map  map  map 
-|    |    |
-map  map  map
-|    |    |
-defn map  defn
-     |
-    defn
-```
 
 
 
