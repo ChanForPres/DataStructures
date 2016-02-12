@@ -1,3 +1,5 @@
+import sun.text.normalizer.Trie;
+
 import java.util.HashMap;
 
 public class Dictionary {
@@ -11,6 +13,21 @@ public class Dictionary {
 	public Dictionary() {
 		myStartingLetters = new HashMap<>();
 	}
+
+	public void printKeys() {
+		for (Character key:this.myStartingLetters.keySet()) {
+			System.out.println(key);
+			TrieNode nextChild = this.myStartingLetters.get(key);
+			printMore(nextChild, key);
+		}
+	}
+
+	public void printMore(TrieNode nextChild, Character keyChr) {
+		for (Character key:nextChild.myNextLetters.keySet()) {
+			System.out.println("more: "+key);
+		}
+	}
+
 
 	public void insert(String str) {
 		// if any part of str was not saved at all
@@ -31,7 +48,7 @@ public class Dictionary {
 		// if not, we need to create one
 		else {
 			nextChild = new TrieNode();
-			nextChild.myNextLetters.put(str.charAt(0), nextChild);
+			trieNode.myNextLetters.put(str.charAt(0), nextChild);
 		}
 
 		// end of the word
@@ -58,8 +75,6 @@ public class Dictionary {
 
 	public void addDefnHelper(String word, String definition, TrieNode hashMap) {
 		final TrieNode nextTrie;
-		System.out.println("word: "+word.charAt(0));
-		System.out.println("myNextLetters: "+hashMap.myNextLetters);
 		if (hashMap.myNextLetters.containsKey(word.charAt(0))) {
 			nextTrie = hashMap.myNextLetters.get(word.charAt(0));
 		} else {
@@ -79,9 +94,29 @@ public class Dictionary {
 	 * null if there is no definition for the word.
 	 */
 	public String lookupDefinition(String word) {
-		// TODO your code here!
-		return null;
+		if (!myStartingLetters.containsKey(word.charAt(0))) {
+			throw new IllegalStateException("The word is not in the dictionary");
+		}
+		return lookupDefnHelper(word.substring(1), myStartingLetters.get(word.charAt(0)));
 	}
+
+	private String lookupDefnHelper(String substring, TrieNode trieNode) {
+		final TrieNode nextTrie2;
+		System.out.println("substring: "+substring);
+		if (trieNode.myNextLetters.containsKey(substring.charAt(0))) {
+			nextTrie2 = trieNode.myNextLetters.get(substring.charAt(0));
+		} else {
+			throw new IllegalStateException("The word is not in the dictionary");
+		}
+		if (nextTrie2.endOfWord && nextTrie2.myDefinition != null) {
+			return nextTrie2.myDefinition;
+		} else if (nextTrie2.endOfWord && nextTrie2.myDefinition == null) {
+			return null;
+		} else {
+			return lookupDefnHelper(substring.substring(1), trieNode.myNextLetters.get(substring.charAt(0)));
+		}
+	}
+
 
 	private class TrieNode {
 		// like a recursion
@@ -90,7 +125,7 @@ public class Dictionary {
 		private boolean endOfWord = false;
 
 		// Leave this null if this TrieNode is not the end of a complete word.
-		private String myDefinition;
+		private String myDefinition = null;
 
 		private TrieNode() {
 			myNextLetters = new HashMap<>();

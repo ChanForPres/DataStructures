@@ -9,14 +9,16 @@ public class DictionaryTest extends TestCase {
         dict.insert("dog");
         dict.insert("dot");
         dict.insert("angel");
+        dict.printKeys();
     }
 
     public void testAddDefinition() {
         Dictionary dict1 = new Dictionary();
         dict1.insert("dog");
-        dict1.insert("cat");
-        dict1.insert("duck");
-        dict1.addDefinition("dog", "My darling, such pure and innocent");
+        dict1.insert("dot");
+        dict1.insert("angel");
+        dict1.addDefinition("dog", "My darling");
+        assertEquals(dict1.lookupDefinition("dog"), "My darling");
     }
 
 }
