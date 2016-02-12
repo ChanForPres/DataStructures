@@ -138,5 +138,7 @@ defn map  defn
     defn
 ```
 
+Always keep in mind that trees are in some sort of recursion and that it should call itself. 
+
 
 

@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
 public class ArrayBST {
+
+    // contents is the array that trees will be saved
     private ArrayList<Node> contents = new ArrayList<Node>();
 
     public void insert(int value) {
@@ -61,43 +63,51 @@ public class ArrayBST {
 
 	/**
 	 * Returns the index of the node to the left of the node at i.
+     * left means small and is at index 2n
 	 */
 	private int getLeftOf(int i) {
-		// TODO Complete this method!
-		return 0;
+        return 2*i;
 	}
 
 	/**
 	 * Returns the index of the node to the right of the node at i.
 	 */
 	private int getRightOf(int i) {
-		// TODO Complete this method!
-		return 0;
+		return (2*i)+1;
 	}
 
 	/**
 	 * Returns the index of the node that is the parent of the node at i.
 	 */
 	private int getParentOf(int i) {
-		// TODO Complete this method!
-		return 0;
+        // if left child
+		if (i%2 == 0) {
+            return i/2;
+        }
+        // if right child
+        if (i%2 == 1) {
+            return i-2;
+        }
+        return 0;
 	}
+
 
 	/**
 	 * Adds the given node as a left child of the node at the given index.
 	 */
 	private void setLeft(int index, Node n) {
-		// TODO Complete this method!
+		this.setNode(index*2, n);
 	}
 
 	/**
 	 * Adds the given node as the right child of the node at the given index.
 	 */
 	private void setRight(int index, Node n) {
-		// TODO Complete this method!
+        this.setNode(index*2+1, n);
 	}
 
 	/**
+     * IF root is not null
 	 * Inserts a value into this subtree according to the BST invariants. This
 	 * won't work until you complete the missing methods.
 	 */
@@ -109,16 +119,23 @@ public class ArrayBST {
 		}
 		// should it go in the left subtree?
 		else if (value < subTreeRoot.value()) {
-			int left = getLeftOf(subTreeRootIndex);
+
+			// find the appropriate index to be placed
+            int left = getLeftOf(subTreeRootIndex);
+            // if that place is not empty
+            // find another one
 			if (getNode(left) != null) {
 				insertInSubtree(left, value);
-			} else {
+			}
+            // if it's empty, set
+            else {
 				setLeft(subTreeRootIndex, new Node(value));
 			}
 		}
 		// should it go in the right subtree?
 		else {
 			int right = getRightOf(subTreeRootIndex);
+
 			if (getNode(right) != null) {
 				insertInSubtree(right, value);
 			} else {
@@ -144,6 +161,7 @@ public class ArrayBST {
 		}
     }
 
+
     public static void main(String[] args) {
         ArrayBST bst = new ArrayBST();
         bst.insert(9);
@@ -153,6 +171,8 @@ public class ArrayBST {
         bst.insert(11);
         bst.insert(10);
 		System.out.println(bst);
+
     }
+
 
 }
