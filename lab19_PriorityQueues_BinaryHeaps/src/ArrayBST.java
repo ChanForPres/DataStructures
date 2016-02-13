@@ -106,7 +106,48 @@ public class ArrayBST {
         this.setNode(index*2+1, n);
 	}
 
-	/**
+
+    /**
+     * Contains method that run time proportional to the height of the tree
+     */
+	public boolean contains (int value) {
+        Node root = this.getNode(1);
+        if (root != null) {
+            return containsHelper(1, value);
+        }
+        // if there's nothing
+        else {
+            return false;
+        }
+    }
+
+    private boolean containsHelper(int index, int value) {
+        Node subTreeRoot = getNode(index);
+        // found
+        if (subTreeRoot.value() == value) {
+            return true;
+        }
+        // left
+        else if (value < subTreeRoot.value()) {
+            int left = getLeftOf(index);
+            if (getNode(left) != null) {
+                return containsHelper(left, value);
+            } else {
+                return false;
+            }
+        }
+        // right
+        else {
+            int right = getLeftOf(index);
+            if (getNode(right) != null) {
+                return containsHelper(right, value);
+            } else {
+                return false;
+            }
+        }
+    }
+
+    /**
      * IF root is not null
 	 * Inserts a value into this subtree according to the BST invariants. This
 	 * won't work until you complete the missing methods.
@@ -171,7 +212,9 @@ public class ArrayBST {
         bst.insert(11);
         bst.insert(10);
 		System.out.println(bst);
-
+        bst.contains(10); //true
+        bst.contains(6); //true
+        bst.contains(13); //false
     }
 
 

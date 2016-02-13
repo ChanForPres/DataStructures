@@ -14,3 +14,6 @@ Lab 19: Priority Queues and Binary Heaps
 ```insertInSubtree``` was a bit confusing. But it all made sense when I set ```setLeft()``` method to call ```this.setNode(index*2, n);``` and ```setRight()``` method to call ```this.setNode(index*2+1, n);```. <br \>
 When you look at the ```insertInSubtree``` method carefully, if the value is smaller than the subroot(it is either real root or the parent node during the recursion), then it should go to the left. And ```getLeftOf``` method finds the appropriate index. If that place is filled, then we should look for somewhere else. That's why we recursively call ```insertInSubtree(left, value);``` with now the ```subroot``` is ```left```.  Then we find the left child of left child. <br \>
 If ```left``` index is empty, then we can simply fill that place with the node. (where ```setLeft``` automatically finds the right place by multiplying 2)
+
+#### ```contains()``` 
+This new ```contains()``` method run in time proportional to the height of the tree. 
