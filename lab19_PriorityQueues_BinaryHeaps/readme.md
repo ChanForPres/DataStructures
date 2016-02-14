@@ -68,7 +68,19 @@ A priority queue with fast operations. So we want to insert objects into the hea
 * Has all available positions for nodes **filled**, except for possibly the last row, which must be filled left-to-right
 
 #### ```ArrayHeap.java```
-Implements a **binary max heap** using an ```ArrayList```. Check out this website: http://www.cs.usfca.edu/~galles/JavascriptVisual/Heap.html. We think binary max heap as a binary tree, but this can be formulated by ```ArrayList```. So the 0th index is left empty and when we add 5, it will be stored in the 1st index. Consecutively, we add item and check that with its parent node and see if it's bigger. If bigger, swap, else, stay. 
+
+* Implements a **binary max heap** using an ```ArrayList```. Check out this website: http://www.cs.usfca.edu/~galles/JavascriptVisual/Heap.html. The concept of the binary max heap is a binary tree, and this can be formulated by ```ArrayList```. So the 0th index is left empty and when we add 5, it will be stored in the 1st index. Consecutively, we add item and check that with its parent node and see if it's bigger. If bigger, swap, else, stay. 
+
+* As a side note, for ArrayBST, if we add 5, 4, 3, 6, 7, then the array should look like the following: 
+
+```
+|x|5|4|6|3|x|x|7|
+```
+
+* Generic class 
+
+
+
 
 
 

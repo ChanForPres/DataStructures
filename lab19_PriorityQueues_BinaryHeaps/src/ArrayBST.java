@@ -16,6 +16,44 @@ public class ArrayBST {
     }
 
 	/**
+	 * IF root is not null
+	 * Inserts a value into this subtree according to the BST invariants. This
+	 * won't work until you complete the missing methods.
+	 */
+	private void insertInSubtree(int subTreeRootIndex, int value) {
+		Node subTreeRoot = getNode(subTreeRootIndex);
+		// is it already here in the tree?
+		if (subTreeRoot.value() == value) {
+			return;
+		}
+		// should it go in the left subtree?
+		else if (value < subTreeRoot.value()) {
+
+			// find the appropriate index to be placed
+			int left = getLeftOf(subTreeRootIndex);
+			// if that place is not empty
+			// find another one
+			if (getNode(left) != null) {
+				insertInSubtree(left, value);
+			}
+			// if it's empty, set
+			else {
+				setLeft(subTreeRootIndex, new Node(value));
+			}
+		}
+		// should it go in the right subtree?
+		else {
+			int right = getRightOf(subTreeRootIndex);
+
+			if (getNode(right) != null) {
+				insertInSubtree(right, value);
+			} else {
+				setRight(subTreeRootIndex, new Node(value));
+			}
+		}
+	}
+
+	/**
 	 * Used to print out the tree sideways.
 	 */
 	@Override
@@ -81,14 +119,7 @@ public class ArrayBST {
 	 */
 	private int getParentOf(int i) {
         // if left child
-		if (i%2 == 0) {
-            return i/2;
-        }
-        // if right child
-        if (i%2 == 1) {
-            return i-2;
-        }
-        return 0;
+		return i/2;
 	}
 
 
@@ -147,43 +178,6 @@ public class ArrayBST {
         }
     }
 
-    /**
-     * IF root is not null
-	 * Inserts a value into this subtree according to the BST invariants. This
-	 * won't work until you complete the missing methods.
-	 */
-	private void insertInSubtree(int subTreeRootIndex, int value) {
-		Node subTreeRoot = getNode(subTreeRootIndex);
-		// is it already here in the tree?
-		if (subTreeRoot.value() == value) {
-			return;
-		}
-		// should it go in the left subtree?
-		else if (value < subTreeRoot.value()) {
-
-			// find the appropriate index to be placed
-            int left = getLeftOf(subTreeRootIndex);
-            // if that place is not empty
-            // find another one
-			if (getNode(left) != null) {
-				insertInSubtree(left, value);
-			}
-            // if it's empty, set
-            else {
-				setLeft(subTreeRootIndex, new Node(value));
-			}
-		}
-		// should it go in the right subtree?
-		else {
-			int right = getRightOf(subTreeRootIndex);
-
-			if (getNode(right) != null) {
-				insertInSubtree(right, value);
-			} else {
-				setRight(subTreeRootIndex, new Node(value));
-			}
-		}
-	}
 
 	public class Node {
         private int myValue;

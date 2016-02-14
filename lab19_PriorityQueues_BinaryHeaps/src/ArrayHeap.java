@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * (represented by type T), along with a priority value. Why do it this way? It
  * will be useful later on in the class...
  */
+
 public class ArrayHeap<T> {
 	private ArrayList<Node> contents = new ArrayList<Node>();
 
@@ -13,10 +14,44 @@ public class ArrayHeap<T> {
 	 * Inserts an item with the given priority value. This is enqueue, or offer.
 	 */
 	public void insert(T item, double priority) {
+        Node rootNode = this.getNode(1);
+        if (rootNode != null) {
+            insertInSub(1, item, priority);
+        } else {
+            Node newRoot = new Node(item, priority);
+            this.setNode(1, newRoot);
+        }
+    }
 
-	}
+    // Recursive method to insert
+    private void insertInSub(int index, T item, double priority) {
+        Node subRootNode = this.getNode(index);
+        int leftIndex = this.getLeftOf(index);
+        // if left is not empty, getRight
+        if (getNode(leftIndex) != null) {
+            int rightIndex = this.getRightOf(index);
+            if (getNode(rightIndex) != null) {
+                insertInSub(leftIndex, item, priority);
+            }
+            Node newRight = new Node(item, priority);
+            this.setNode(rightIndex, newRight);
+            // Compare if this newly created node is bigger than its parent, if so, swap
+            if (priority > subRootNode.myPriority) {
+                this.swap(index, rightIndex);
+            }
+        }
+        // if left is empty, temporarily place the new item there
+        else {
+            Node newLeft = new Node(item, priority);
+            this.setNode(leftIndex, newLeft);
+            // Compare if this newly created node is bigger than its parent
+            if (priority > subRootNode.myPriority) {
+                this.swap(index, leftIndex);
+            }
+        }
+    }
 
-	/**
+    /**
 	 * Returns the Node with the smallest priority value, but does not remove it
 	 * from the heap.
 	 */
@@ -103,38 +138,35 @@ public class ArrayHeap<T> {
 	 * Returns the index of the node to the left of the node at i.
 	 */
 	private int getLeftOf(int i) {
-		// TODO Complete this method!
-		return 0;
+        return 2*i;
 	}
 
 	/**
 	 * Returns the index of the node to the right of the node at i.
 	 */
 	private int getRightOf(int i) {
-		// TODO Complete this method!
-		return 0;
+        return (2*i)+1;
 	}
 
 	/**
 	 * Returns the index of the node that is the parent of the node at i.
 	 */
 	private int getParentOf(int i) {
-		// TODO Complete this method!
-		return 0;
+		return i/2;
 	}
 
 	/**
 	 * Adds the given node as a left child of the node at the given index.
 	 */
 	private void setLeft(int index, Node n) {
-		// TODO Complete this method!
+        this.setNode(index*2, n);
 	}
 
 	/**
 	 * Adds the given node as the right child of the node at the given index.
 	 */
-	private void setRight(int inde, Node n) {
-		// TODO Complete this method!
+	private void setRight(int index, Node n) {
+        this.setNode(index*2+1, n);
 	}
 
 	/**
@@ -195,8 +227,8 @@ public class ArrayHeap<T> {
 	public static void main(String[] args) {
 		ArrayHeap<String> heap = new ArrayHeap<String>();
 		heap.insert("c", 3);
-		heap.insert("i", 9);
-		heap.insert("g", 7);
+        heap.insert("i", 9);
+        heap.insert("g", 7);
 		heap.insert("d", 4);
 		heap.insert("a", 1);
 		heap.insert("h", 8);
