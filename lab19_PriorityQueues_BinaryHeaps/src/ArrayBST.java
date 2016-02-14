@@ -138,7 +138,7 @@ public class ArrayBST {
         }
         // right
         else {
-            int right = getLeftOf(index);
+            int right = getRightOf(index);
             if (getNode(right) != null) {
                 return containsHelper(right, value);
             } else {
@@ -212,9 +212,10 @@ public class ArrayBST {
         bst.insert(11);
         bst.insert(10);
 		System.out.println(bst);
-        bst.contains(10); //true
-        bst.contains(6); //true
-        bst.contains(13); //false
+        System.out.println(bst.contains(10)); //true
+        System.out.println(bst.contains(6)); //true
+        System.out.println(bst.contains(13)); //false
+        System.out.println(bst.contains(3)); //false
     }
 
 
