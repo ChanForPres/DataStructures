@@ -32,12 +32,10 @@ public class ArrayHeap<T> {
             int rightIndex = this.getRightOf(index);
             if (getNode(rightIndex) != null) {
                 insertInSub(leftIndex, item, priority);
-            }
-            Node newRight = new Node(item, priority);
-            this.setNode(rightIndex, newRight);
-            // Compare if this newly created node is bigger than its parent, if so, swap
-            if (priority > subRootNode.myPriority) {
-                this.swap(index, rightIndex);
+            } else {
+                Node newRight = new Node(item, priority);
+                this.setNode(rightIndex, newRight);
+                this.bubbleUp(rightIndex);
             }
         }
         // if left is empty, temporarily place the new item there
@@ -45,9 +43,7 @@ public class ArrayHeap<T> {
             Node newLeft = new Node(item, priority);
             this.setNode(leftIndex, newLeft);
             // Compare if this newly created node is bigger than its parent
-            if (priority > subRootNode.myPriority) {
-                this.swap(index, leftIndex);
-            }
+            this.bubbleUp(leftIndex);
         }
     }
 
@@ -75,10 +71,31 @@ public class ArrayHeap<T> {
 	 * nodes with the same item. Check for item equality with .equals(), not ==
 	 */
 	public void changePriority(T item, double priority) {
-		// TODO Complete this method!
+		Node rootNode = getNode(1);
+        if (rootNode != null) {
+            changePriorHelper(1, item, priority);
+        } else {
+            throw new IllegalStateException("The tree is not constructed");
+        }
 	}
 
-	/**
+    private void changePriorHelper(int index, T item, double priority) {
+        Node subTreeRoot = getNode(index);
+        int leftIdx = this.getLeftOf(index);
+        int rightIdx = this.getRightOf(index);
+        // base case
+        if (subTreeRoot.myItem.equals(item)) {
+            subTreeRoot.myPriority = priority;
+            this.bubbleDown(1);
+            return;
+        } else if (this.getNode(leftIdx) != null) {
+            changePriorHelper(leftIdx, item, priority);
+        } else if (this.getNode(rightIdx) != null) {
+            changePriorHelper(rightIdx, item, priority);
+        }
+    }
+
+    /**
 	 * Prints out the heap sideways.
 	 */
 	@Override
@@ -173,14 +190,44 @@ public class ArrayHeap<T> {
 	 * Bubbles up the node currently at the given index.
 	 */
 	private void bubbleUp(int index) {
-		// TODO Complete this method!
+        // Compare if this newly created node is bigger than its parent, if so, swap
+        Node curNode = this.getNode(index);
+        int parentIdx = this.getParentOf(index);
+        Node parentNode = this.getNode(parentIdx);
+        if (curNode.myPriority > parentNode.myPriority) {
+            this.swap(index, parentIdx);
+        }
 	}
 
 	/**
 	 * Bubbles down the node currently at the given index.
 	 */
-	private void bubbleDown(int inex) {
-		// TODO Complete this method!
+	private void bubbleDown(int index) {
+        // Compare if the current node is smaller than any of its children
+        // Figure out even smaller one of the left/right and swap
+        Node curNode = this.getNode(index);
+        int leftIdx = this.getLeftOf(index);
+        int rightIdx = this.getRightOf(index);
+        Node leftNode = this.getNode(leftIdx);
+        Node rightNode = this.getNode(rightIdx);
+        if (leftNode == null && rightNode == null) {
+            return;
+        }
+        else if (curNode.myPriority > leftNode.myPriority && curNode.myPriority > rightNode.myPriority) {
+            return;
+        }
+        // bubble down to the left
+        else if (curNode.myPriority < leftNode.myPriority || curNode.myPriority < rightNode.myPriority) {
+            if (leftNode.myPriority < rightNode.myPriority) {
+                swap(rightIdx, index);
+                bubbleDown(rightIdx);
+            }
+            // bubble down to the right
+            else {
+                swap(leftIdx, index);
+                bubbleDown(leftIdx);
+            }
+        }
 	}
 
 	/**
@@ -228,14 +275,15 @@ public class ArrayHeap<T> {
 		ArrayHeap<String> heap = new ArrayHeap<String>();
 		heap.insert("c", 3);
         heap.insert("i", 9);
-        heap.insert("g", 7);
 		heap.insert("d", 4);
 		heap.insert("a", 1);
-		heap.insert("h", 8);
+        heap.insert("g", 7);
+		/*heap.insert("h", 8);
 		heap.insert("e", 5);
 		heap.insert("b", 2);
 		heap.insert("c", 3);
-		heap.insert("d", 4);
+		heap.insert("d", 4);*/
+        heap.changePriority("i", 2);
 		System.out.println(heap);
 	}
 

@@ -56,7 +56,7 @@ A priority queue with fast operations. So we want to insert objects into the hea
 
 * Invariant 2 guarantees that the min element will always be at the root of the tree.
 
-* **Add an item** binary min heap case
+* **Add an item** *binary min heap case*
     1. Put the item you're adding in the next available spot in the bottom row (leaf row)
     2. Swap the item you just added with its parent until it is larger than its parent (swap if parent is bigger), or until it is the new root (*bubbling up*)
 
