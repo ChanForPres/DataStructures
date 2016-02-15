@@ -5,7 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab19_PriorityQueues_BinaryHeaps/ArrayHeap$Node.class" afterPath="$PROJECT_DIR$/out/production/lab19_PriorityQueues_BinaryHeaps/ArrayHeap$Node.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab19_PriorityQueues_BinaryHeaps/ArrayHeap.class" afterPath="$PROJECT_DIR$/out/production/lab19_PriorityQueues_BinaryHeaps/ArrayHeap.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ArrayHeap.java" afterPath="$PROJECT_DIR$/src/ArrayHeap.java" />
     </list>
     <ignored path="lab19_PriorityQueues_BinaryHeaps.iws" />
@@ -42,8 +41,8 @@
       <file leaf-file-name="ArrayHeap.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ArrayHeap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5495868">
-              <caret line="217" column="9" selection-start-line="217" selection-start-column="9" selection-end-line="217" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.588843">
+              <caret line="76" column="7" selection-start-line="76" selection-start-column="7" selection-end-line="76" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -624,12 +623,12 @@
       <workItem from="1455257930433" duration="5026000" />
       <workItem from="1455373781644" duration="2304000" />
       <workItem from="1455445196040" duration="4833000" />
-      <workItem from="1455497157206" duration="2010000" />
+      <workItem from="1455497157206" duration="3280000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14214000" />
+    <option name="totallyTimeSpent" value="15484000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="72" y="23" width="1368" height="832" extended-state="0" />
@@ -714,8 +713,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ArrayHeap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5495868">
-          <caret line="217" column="9" selection-start-line="217" selection-start-column="9" selection-end-line="217" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.588843">
+          <caret line="76" column="7" selection-start-line="76" selection-start-column="7" selection-end-line="76" selection-end-column="7" />
           <folding />
         </state>
       </provider>

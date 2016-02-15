@@ -48,21 +48,26 @@ public class ArrayHeap<T> {
     }
 
     /**
-	 * Returns the Node with the smallest priority value, but does not remove it
+	 * Returns the Node with the largest priority value, but does not remove it
 	 * from the heap.
 	 */
 	public Node peek() {
-		// TODO Complete this method!
-		return null;
+        Node toRtn = this.getNode(1);
+        return toRtn;
 	}
 
 	/**
-	 * Returns the Node with the smallest priority value, and removes it from
+	 * Returns the Node with the largest priority value, and removes it from
 	 * the heap. This is dequeue, or poll.
 	 */
 	public Node removeMin() {
-		// TODO Complete this method!
-		return null;
+		Node toRtn = this.getNode(1);
+        int lastIdx = contents.size() - 2;
+        Node lastNode = contents.get(lastIdx);
+        this.setNode(1, lastNode);
+        contents.remove(lastIdx);
+        bubbleDown(1);
+        return toRtn;
 	}
 
 	/**
@@ -278,13 +283,15 @@ public class ArrayHeap<T> {
 		heap.insert("d", 4);
 		heap.insert("a", 1);
         heap.insert("g", 7);
+        heap.changePriority("i", 2);
+        heap.removeMin();
+        System.out.println(heap);
 		/*heap.insert("h", 8);
 		heap.insert("e", 5);
 		heap.insert("b", 2);
 		heap.insert("c", 3);
 		heap.insert("d", 4);*/
-        heap.changePriority("i", 2);
-		System.out.println(heap);
+
 	}
 
 }
