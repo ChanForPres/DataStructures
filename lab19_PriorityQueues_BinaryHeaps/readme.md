@@ -69,7 +69,8 @@ A priority queue with fast operations. So we want to insert objects into the hea
 
 #### ```ArrayHeap.java```
 
-* Implements a **binary max heap** using an ```ArrayList```. Check out this website: http://www.cs.usfca.edu/~galles/JavascriptVisual/Heap.html. The concept of the binary max heap is a binary tree, and this can be formulated by ```ArrayList```. So the 0th index is left empty and when we add 5, it will be stored in the 1st index. Consecutively, we add item and check that with its parent node and see if it's bigger. If bigger, swap, else, stay. 
+* Implements a **binary max heap** using an ```ArrayList```. <br \> 
+Check out this website: http://www.cs.usfca.edu/~galles/JavascriptVisual/Heap.html. The concept of the binary max heap is a binary tree, and this can be formulated by ```ArrayList```. So the 0th index is left empty and when we add 5, it will be stored in the 1st index. Consecutively, we add item and check that with its parent node and see if it's bigger. If bigger, swap, else, stay. 
 
 * As a side note, for ArrayBST, if we add 5, 4, 3, 6, 7, then the array should look like the following: 
 
@@ -78,6 +79,56 @@ A priority queue with fast operations. So we want to insert objects into the hea
 ```
 
 * Generic class 
+* Heaps CAN contain duplicates
+
+* ```insert```, ```removeMin```, ```changePriority```, ```bubbleUp```, ```bubbleDown```, ```bubbleUp``` and ```getLeft```, ```getRight``` and ```getParent```
+
+#### Determining if a tree is maximally balanced
+Q. A binary tree is maximally balanced if all the leaves in the tree come at the end of a breadth-first traversal of the tree. True? or False? 
+```
+          x
+      ____|____
+     |         |
+     x         x
+ ____|     ____|
+|         |
+x         x
+```
+
+Suppose we have a tree looks like the one above. When we do the breadth-first search, all the leaves in the tree come at the end. However, it's obviously not maximally balanced. Therefore, this approach is also not perfect.
+
+### Heapsort
+Suppose we have an array of ```N``` numbers and sort to largest-to-smallest. 
+
+1. Put all of the numbers in a max heap ```NlogN``` (heapify makes it faster ```N```)
+2. Repeatedly remove the max element from the heap, and store them in an array in that order ```log N```
+
+Since each insertion takes ```log N``` comparisons, and each removal takes ```log N``` comparisons, the whole process takes proportional to ```N log N```.
+
+We can make it **faster** to ```N``` comparisons using a process called **heapify**.
+
+#### Heapify
+The algorithm for taking an arbitrary array and making it into a min(max) heap in time proportional to ```N``` is called **heapify**. https://www.cs.princeton.edu/~wayne/kleinberg-tardos/pdf/DemoHeapify.pdf is a good resource.
+
+```
+def heapify(array):
+    index = N/2
+    while index < 0:
+        bubble down item at index
+        index--
+```
+
+Conceptually, this is building a heap from the bottom up. Starting from the lowest level and moving upwards, shift the root of each subtree downward as in the deletion algorithm until the heap property is restored. 
+
+More specifically if all the subtrees starting at some height h (measured from the bottom) have already been "heapified", the trees at height h+1 can be heapified by sending their root down along the path of maximum valued children when building a max-heap
+
+#### Finding the K Largest Elements
+* Create a heap of size ```K```. 
+* **min heap** would be better to use since we want quick access to the smallest of the top k elements and replace it easily if necessary.
+* The run-time is proportional to ```Nlogk``` comparisons. Because we will add all ```N``` elements to our heap of size ```K```. Each insertion of an element will take ```log K``` time.
+
+
+
 
 
 

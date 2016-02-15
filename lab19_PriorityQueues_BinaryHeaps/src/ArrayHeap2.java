@@ -7,9 +7,8 @@ import java.util.ArrayList;
  * will be useful later on in the class...
  */
 
-public class ArrayHeap<T> {
+public class ArrayHeap2<T> {
     private ArrayList<Node> contents = new ArrayList<Node>();
-    int size = 0;
 
     /**
      * Inserts an item with the given priority value. This is enqueue, or offer.
@@ -21,7 +20,6 @@ public class ArrayHeap<T> {
         } else {
             Node newRoot = new Node(item, priority);
             this.setNode(1, newRoot);
-            size++;
         }
     }
 
@@ -37,7 +35,6 @@ public class ArrayHeap<T> {
             } else {
                 Node newRight = new Node(item, priority);
                 this.setNode(rightIndex, newRight);
-                size++;
                 this.bubbleUp(rightIndex);
             }
         }
@@ -45,7 +42,6 @@ public class ArrayHeap<T> {
         else {
             Node newLeft = new Node(item, priority);
             this.setNode(leftIndex, newLeft);
-            size++;
             // Compare if this newly created node is bigger than its parent
             this.bubbleUp(leftIndex);
         }
@@ -147,9 +143,6 @@ public class ArrayHeap<T> {
         this.contents.set(index2, node1);
     }
 
-    private int getSize() {
-        return size;
-    }
     /**
      * Returns the index of the node to the left of the node at i.
      */
@@ -204,10 +197,11 @@ public class ArrayHeap<T> {
      * the heap. This is dequeue, or poll.
      */
     public Node removeMin() {
-        Node toRtn = this.peek();
-        swap(1, size);
-        this.contents.remove(size);
-        size--;
+        Node toRtn = this.getNode(1);
+        int lastIdx = this.contents.size() - 2;
+        Node lastNode = this.contents.get(lastIdx);
+        this.setNode(1, lastNode);
+        this.contents.remove(lastIdx);
         this.bubbleDown(1);
         return toRtn;
     }
@@ -219,35 +213,59 @@ public class ArrayHeap<T> {
     private void bubbleDown(int index) {
         // Compare if the current node is smaller than any of its children
         // Figure out even smaller one of the left/right and swap
-        while (hasLeftChild(index)) {
-            int left = getLeftOf(index);
-            int right = getRightOf(index);
-            Node curNode = this.getNode(index);
-            Node leftNode = this.getNode(left);
-            Node rightNode = this.getNode(right);
-            Node child = leftNode;
-            int childIdx = left;
-            if (hasRightChild(index) && rightNode.priority() > leftNode.priority()) {
-                child = rightNode;
-                childIdx = right;
+        Node curNode = this.getNode(index);
+        int leftIdx = this.getLeftOf(index);
+        int rightIdx = this.getRightOf(index);
+        Node leftNode = this.getNode(leftIdx);
+        Node rightNode = this.getNode(rightIdx);
+        if (leftNode == null && rightNode == null) {
+            return;
+        }
+        if (canBubbleDown(index)) {
+            // bubble down to the right
+            if (leftNode.priority() < rightNode.priority()) {
+                System.out.println("rightIdx: " + rightIdx + " rightnode: " + this.getNode(rightIdx) + " | index: "+index + " indexNode: " + this.getNode(index));
+                swap(rightIdx, index);
+                System.out.println("After swap: rightIdx: " + rightIdx + " rightnode: " + this.getNode(rightIdx) + " | index: "+index + " indexNode: " + this.getNode(index));
+                bubbleDown(rightIdx);
             }
-            if (curNode.priority() < child.priority()) {
-                swap(index, childIdx);
-                index = childIdx;
-            } else {
-                break;
+            else {
+                System.out.println("leftIdx: " + leftIdx + " rightnode: " + this.getNode(leftIdx) + " | index: "+index + " indexNode: " + this.getNode(index));
+                swap(leftIdx, index);
+                System.out.println("After swap: leftIdx: " + leftIdx + " rightnode: " + this.getNode(leftIdx) + " | index: "+index + " indexNode: " + this.getNode(index));
+                bubbleDown(leftIdx);
             }
+        } else if (!canBubbleDown(index)) {
+            return;
+        } else {
+            return;
         }
     }
 
-    private boolean hasRightChild(int index) {
-        return getRightOf(index) <= size;
-    }
 
-    private boolean hasLeftChild(int index) {
-        return getLeftOf(index) <= size;
-    }
+    private boolean canBubbleDown(int index) {
+        Node curNode = this.getNode(index);
+        int leftIdx = this.getLeftOf(index);
+        int rightIdx = this.getRightOf(index);
+        Node leftNode = this.getNode(leftIdx);
+        Node rightNode = this.getNode(rightIdx);
 
+        if (leftNode == null && rightNode == null) {
+            return false;
+        }
+        else if (curNode.priority() > leftNode.priority() && curNode.priority() > rightNode.priority()) {
+            return false;
+        } else if (curNode.priority() > leftNode.priority() && rightNode == null) {
+            return false;
+        } else if (curNode.priority() > rightNode.priority() && leftNode == null) {
+            return false;
+        }
+        // bubble down to the left
+        else if (curNode.priority() < leftNode.priority() || curNode.priority() < rightNode.priority()) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Returns the index of the node with smaller priority. Precondition: Not
@@ -298,7 +316,9 @@ public class ArrayHeap<T> {
         heap.insert("d", 4);
         heap.insert("a", 1);
         heap.insert("g", 7);
-        heap.heapSort();
+        //System.out.println(heap);
+        heap.removeMin();
+        //heap.heapSort();
 		/*heap.insert("h", 8);
 		heap.insert("e", 5);
 		heap.insert("b", 2);
@@ -312,14 +332,11 @@ public class ArrayHeap<T> {
      */
     private void heapSort() {
         ArrayList <Node> toRtn = new ArrayList<>();
-        int size = this.contents.size() - 2;
-        for (int i = 0; i < size; i++) {
-            toRtn.add(this.removeMin());
-        }
-        for (int j = 0; j < size; j++) {
-            System.out.println(toRtn.get(j));
-        }
-
+        toRtn.add(this.removeMin());
+        //toRtn.add(this.removeMin());
+        //toRtn.add(this.removeMin());
+        System.out.println(toRtn.get(0));
+        //System.out.println(toRtn.get(1));
     }
 
 }
