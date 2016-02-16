@@ -298,6 +298,7 @@ public class ArrayHeap<T> {
         heap.insert("d", 4);
         heap.insert("a", 1);
         heap.insert("g", 7);
+        heap.changePriority("i", 2);
         heap.heapSort();
 		/*heap.insert("h", 8);
 		heap.insert("e", 5);
@@ -310,7 +311,7 @@ public class ArrayHeap<T> {
     /**
      * heap sort
      */
-    private void heapSort() {
+    public void heapSort() {
         ArrayList <Node> toRtn = new ArrayList<>();
         int size = this.contents.size() - 2;
         for (int i = 0; i < size; i++) {
@@ -319,7 +320,6 @@ public class ArrayHeap<T> {
         for (int j = 0; j < size; j++) {
             System.out.println(toRtn.get(j));
         }
-
     }
 
 }

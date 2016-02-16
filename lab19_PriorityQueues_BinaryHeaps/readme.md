@@ -127,6 +127,8 @@ More specifically if all the subtrees starting at some height h (measured from t
 * **min heap** would be better to use since we want quick access to the smallest of the top k elements and replace it easily if necessary.
 * The run-time is proportional to ```Nlogk``` comparisons. Because we will add all ```N``` elements to our heap of size ```K```. Each insertion of an element will take ```log K``` time.
 
+#### ```heapSort()```
+Created both recursive/iterative versions. I realized that ```print``` statement should be done more carefully. 
 
 
 

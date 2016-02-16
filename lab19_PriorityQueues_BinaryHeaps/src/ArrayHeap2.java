@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ArrayHeap2<T> {
     private ArrayList<Node> contents = new ArrayList<Node>();
-
+    int size = 0;
     /**
      * Inserts an item with the given priority value. This is enqueue, or offer.
      */
@@ -20,6 +20,7 @@ public class ArrayHeap2<T> {
         } else {
             Node newRoot = new Node(item, priority);
             this.setNode(1, newRoot);
+            size++;
         }
     }
 
@@ -35,6 +36,7 @@ public class ArrayHeap2<T> {
             } else {
                 Node newRight = new Node(item, priority);
                 this.setNode(rightIndex, newRight);
+                size++;
                 this.bubbleUp(rightIndex);
             }
         }
@@ -42,6 +44,7 @@ public class ArrayHeap2<T> {
         else {
             Node newLeft = new Node(item, priority);
             this.setNode(leftIndex, newLeft);
+            size++;
             // Compare if this newly created node is bigger than its parent
             this.bubbleUp(leftIndex);
         }
@@ -197,11 +200,10 @@ public class ArrayHeap2<T> {
      * the heap. This is dequeue, or poll.
      */
     public Node removeMin() {
-        Node toRtn = this.getNode(1);
-        int lastIdx = this.contents.size() - 2;
-        Node lastNode = this.contents.get(lastIdx);
-        this.setNode(1, lastNode);
-        this.contents.remove(lastIdx);
+        Node toRtn = this.getNode(1); // root node
+        swap(1, size);
+        this.contents.remove(size);
+        size--;
         this.bubbleDown(1);
         return toRtn;
     }
@@ -218,54 +220,29 @@ public class ArrayHeap2<T> {
         int rightIdx = this.getRightOf(index);
         Node leftNode = this.getNode(leftIdx);
         Node rightNode = this.getNode(rightIdx);
-        if (leftNode == null && rightNode == null) {
+
+        if (rightNode == null && leftNode == null) {
             return;
-        }
-        if (canBubbleDown(index)) {
+        } else if (curNode.priority() > leftNode.priority() && rightNode == null) {
+            return;
+        } else if (curNode.priority() < leftNode.priority() && rightNode == null) {
+            swap(index, leftIdx);
+            return;
+        } else if (curNode.priority() < leftNode.priority() || curNode.priority() < rightNode.priority()) {
             // bubble down to the right
             if (leftNode.priority() < rightNode.priority()) {
-                System.out.println("rightIdx: " + rightIdx + " rightnode: " + this.getNode(rightIdx) + " | index: "+index + " indexNode: " + this.getNode(index));
-                swap(rightIdx, index);
-                System.out.println("After swap: rightIdx: " + rightIdx + " rightnode: " + this.getNode(rightIdx) + " | index: "+index + " indexNode: " + this.getNode(index));
+                swap(index, rightIdx);
                 bubbleDown(rightIdx);
             }
             else {
-                System.out.println("leftIdx: " + leftIdx + " rightnode: " + this.getNode(leftIdx) + " | index: "+index + " indexNode: " + this.getNode(index));
-                swap(leftIdx, index);
-                System.out.println("After swap: leftIdx: " + leftIdx + " rightnode: " + this.getNode(leftIdx) + " | index: "+index + " indexNode: " + this.getNode(index));
+                swap(index, leftIdx);
                 bubbleDown(leftIdx);
             }
-        } else if (!canBubbleDown(index)) {
-            return;
         } else {
             return;
         }
     }
 
-
-    private boolean canBubbleDown(int index) {
-        Node curNode = this.getNode(index);
-        int leftIdx = this.getLeftOf(index);
-        int rightIdx = this.getRightOf(index);
-        Node leftNode = this.getNode(leftIdx);
-        Node rightNode = this.getNode(rightIdx);
-
-        if (leftNode == null && rightNode == null) {
-            return false;
-        }
-        else if (curNode.priority() > leftNode.priority() && curNode.priority() > rightNode.priority()) {
-            return false;
-        } else if (curNode.priority() > leftNode.priority() && rightNode == null) {
-            return false;
-        } else if (curNode.priority() > rightNode.priority() && leftNode == null) {
-            return false;
-        }
-        // bubble down to the left
-        else if (curNode.priority() < leftNode.priority() || curNode.priority() < rightNode.priority()) {
-            return true;
-        }
-        return false;
-    }
 
     /**
      * Returns the index of the node with smaller priority. Precondition: Not
@@ -282,6 +259,21 @@ public class ArrayHeap2<T> {
             return index1;
         } else {
             return index2;
+        }
+    }
+
+
+    /**
+     * heap sort
+     */
+    public void heapSort() {
+        ArrayList <Node> toRtn = new ArrayList<>();
+        int thisSize = this.contents.size() - 2;
+        for (int i = 0; i < thisSize; i++) {
+            toRtn.add(this.removeMin());
+        }
+        for (int j = 0; j < thisSize; j++) {
+            System.out.println(toRtn.get(j));
         }
     }
 
@@ -309,16 +301,20 @@ public class ArrayHeap2<T> {
         }
     }
 
+    public void test() {
+        int leftIdx = getLeftOf(1);
+        Node leftNode = getNode(leftIdx);
+        System.out.println(leftNode == null);
+    }
     public static void main(String[] args) {
-        ArrayHeap<String> heap = new ArrayHeap<String>();
+        ArrayHeap2<String> heap = new ArrayHeap2<String>();
         heap.insert("c", 3);
         heap.insert("i", 9);
         heap.insert("d", 4);
         heap.insert("a", 1);
         heap.insert("g", 7);
-        //System.out.println(heap);
-        heap.removeMin();
-        //heap.heapSort();
+        System.out.println(heap.toString());
+        heap.heapSort();
 		/*heap.insert("h", 8);
 		heap.insert("e", 5);
 		heap.insert("b", 2);
@@ -327,16 +323,5 @@ public class ArrayHeap2<T> {
 
     }
 
-    /**
-     * heap sort
-     */
-    private void heapSort() {
-        ArrayList <Node> toRtn = new ArrayList<>();
-        toRtn.add(this.removeMin());
-        //toRtn.add(this.removeMin());
-        //toRtn.add(this.removeMin());
-        System.out.println(toRtn.get(0));
-        //System.out.println(toRtn.get(1));
-    }
 
 }
