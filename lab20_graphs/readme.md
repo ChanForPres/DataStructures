@@ -77,15 +77,21 @@ Q. Common Neighbor Timing: For a graph with N vertices and E edges impletemented
 
 ### Processing Graphs
 #### Graph Traversal
+Stack = DFS, Queue = BFS <br \>
 We could create a **Stack** and traverse. However a graph might contain a *cycle* of vertices and loop infinitely. The fix is to **keep track of vertices** that we've visited already. <br \>
 Because graphs are usually **interconnected**, the ordering of vertices can be scrambled up. Thus using a depth-first/breadth-first traversal is not a big concern. Instead, we use a **priority queue** to implement **best-first traversal**.
 
+### ```Graph.java```
+- A graph of ```Integer```s using an adjacency list. ```myAdjLists``` is the LinkedList of ```Edge```s (not Integer).
 
+#### ```addEdge(v1, v2, edgeInfo)```
+Add to the graph a **directed edge** from vertex v1 to vertex v2. I thought that the ```myAdjList``` contains random ```Integer``` in its list, but it seems like the index numbers are the vertex Integers. So if there's a LinkedList of size 5, it means there's a graph with numbers from 0 to 4.
 
+#### ```addUndirectedEdge(v1, v2, edgeInfo)```
+Because it's undirected, it should contain information from both v1 to v2 and v2 to v1.
 
-
-
-
+#### ```DFSIterator```
+Q. I wondered why exactly can we call ```Iterator<Edge> dfsIterator = myAdjLists[toRtn].iterator();```. Then I realized that the ```iterator``` is not from ```Graph.java``` but from ```LinkedList```. ```LinkedList``` contains ```iterator()``` method which is ```Iterator<E> iterator()``` that returns an iterator over the elements in the list. 
 
 
 
