@@ -81,7 +81,7 @@ Stack = DFS, Queue = BFS <br \>
 We could create a **Stack** and traverse. However a graph might contain a *cycle* of vertices and loop infinitely. The fix is to **keep track of vertices** that we've visited already. <br \>
 Because graphs are usually **interconnected**, the ordering of vertices can be scrambled up. Thus using a depth-first/breadth-first traversal is not a big concern. Instead, we use a **priority queue** to implement **best-first traversal**.
 
-### Implementing the ```Graph.java```
+### ```Graph.java```
 - A graph of ```Integer```s using an adjacency list. ```myAdjLists``` is the LinkedList of ```Edge```s (not Integer).
 
 #### ```addEdge(v1, v2, edgeInfo)```
@@ -96,7 +96,7 @@ Because it's undirected, it should contain information from both v1 to v2 and v2
 * Using LinkedLists' iterator() method, find if there's an edge from vertex "from" to vertex "to"
 
 #### ```neighbors(vertex)```, ```inDegree(vertex)```
-* I should've thought to use ```isAdjacent``` method I implemented should be used in ```inDegree```.
+* I should've thought to use ```isAdjacent``` method I implemented to work with ```inDegree```.
 
 #### ```DFSIterator```
 Q. I wondered why exactly can we call ```Iterator<Edge> dfsIterator = myAdjLists[toRtn].iterator();```. Then I realized that the ```iterator``` is not from ```Graph.java``` but from ```LinkedList```. ```LinkedList``` contains ```iterator()``` method which is ```Iterator<E> iterator()``` that returns an iterator over the elements in the list. 
@@ -115,5 +115,15 @@ Actually find a path.
 
 4. Collecting all these vertices in the correct sequence produces the desired path.
 
+### Topological Sort (Linearization)
+* A *topological* sort of a directed graph is a list of vertices in such an order that if there is a directed path from vertex ```v``` to vertex ```w```, then ```v``` preceds ```w``` in the list. (The graph must be **directed acyclic graphs**)
 
+* The first vertices are **sourcese** and the last vertices are **sink**.
+* A good analogy: Think that the vertices represent a bunch of tasks you need to complete on a to-do list. Some of those tasks cannot be completed until others are done. e.g. the socks must be put on before the shoes. A topological sort gives you an order in which you can do the tasks.
 
+#### Algorithm
+1. Given a graph, to find a topological sort, we need an array ```currentInDegree``` with one element per vertex. ```currentInDegree[v]``` is initialized with the in-degree of each vertex ```v```. <br \>
+2. The algorithm also uses a **fringe**. 
+3. The fringe is initialized with all vertices whose in-degree is 0. (so those vertices that nothing is pointing to them)
+4. When a vertex is popped off the fringe and added to a results list, the ```currentInDegree``` value of its neighbors are reduced by 1.
+5. Then the fringe is updated again with vertices shows in-degree is now 0.

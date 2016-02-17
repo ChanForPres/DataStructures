@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa5448d4-f677-4962-8566-e319f8376edc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab20_graphs/Graph$TopologicalIterator.class" afterPath="$PROJECT_DIR$/out/production/lab20_graphs/Graph$TopologicalIterator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab20_graphs/Graph.class" afterPath="$PROJECT_DIR$/out/production/lab20_graphs/Graph.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
@@ -32,8 +31,8 @@
       <file leaf-file-name="Graph.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Graph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8140496">
-              <caret line="415" column="31" selection-start-line="415" selection-start-column="31" selection-end-line="415" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.7364017">
+              <caret line="296" column="29" selection-start-line="296" selection-start-column="29" selection-end-line="296" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#963#964#0" expanded="true" />
@@ -50,10 +49,9 @@
                 <element signature="e#3550#3551#0" expanded="true" />
                 <element signature="e#5493#5502#0" expanded="true" />
                 <element signature="e#6551#6560#0" expanded="true" />
-                <element signature="e#6937#6946#0" expanded="true" />
-                <element signature="e#7994#8003#0" expanded="true" />
-                <element signature="e#8506#8507#0" expanded="true" />
-                <element signature="e#8554#8555#0" expanded="true" />
+                <element signature="e#7987#7996#0" expanded="true" />
+                <element signature="e#8807#8808#0" expanded="true" />
+                <element signature="e#8855#8856#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -625,12 +623,12 @@
       <workItem from="1455582591510" duration="1206000" />
       <workItem from="1455597170383" duration="1151000" />
       <workItem from="1455670184780" duration="531000" />
-      <workItem from="1455670747491" duration="10575000" />
+      <workItem from="1455670747491" duration="13254000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13463000" />
+    <option name="totallyTimeSpent" value="16142000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="37" y="23" width="1403" height="832" extended-state="0" />
@@ -643,7 +641,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32896462" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30144167" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16821098" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -701,10 +699,9 @@
             <element signature="e#3550#3551#0" expanded="true" />
             <element signature="e#5493#5502#0" expanded="true" />
             <element signature="e#6551#6560#0" expanded="true" />
-            <element signature="e#6937#6946#0" expanded="true" />
-            <element signature="e#7994#8003#0" expanded="true" />
-            <element signature="e#8506#8507#0" expanded="true" />
-            <element signature="e#8554#8555#0" expanded="true" />
+            <element signature="e#7987#7996#0" expanded="true" />
+            <element signature="e#8807#8808#0" expanded="true" />
+            <element signature="e#8855#8856#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -729,10 +726,9 @@
             <element signature="e#3550#3551#0" expanded="true" />
             <element signature="e#5493#5502#0" expanded="true" />
             <element signature="e#6551#6560#0" expanded="true" />
-            <element signature="e#6937#6946#0" expanded="true" />
-            <element signature="e#7994#8003#0" expanded="true" />
-            <element signature="e#8506#8507#0" expanded="true" />
-            <element signature="e#8554#8555#0" expanded="true" />
+            <element signature="e#7987#7996#0" expanded="true" />
+            <element signature="e#8807#8808#0" expanded="true" />
+            <element signature="e#8855#8856#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -746,8 +742,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Graph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8140496">
-          <caret line="415" column="31" selection-start-line="415" selection-start-column="31" selection-end-line="415" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.7364017">
+          <caret line="296" column="29" selection-start-line="296" selection-start-column="29" selection-end-line="296" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#963#964#0" expanded="true" />
@@ -764,10 +760,9 @@
             <element signature="e#3550#3551#0" expanded="true" />
             <element signature="e#5493#5502#0" expanded="true" />
             <element signature="e#6551#6560#0" expanded="true" />
-            <element signature="e#6937#6946#0" expanded="true" />
-            <element signature="e#7994#8003#0" expanded="true" />
-            <element signature="e#8506#8507#0" expanded="true" />
-            <element signature="e#8554#8555#0" expanded="true" />
+            <element signature="e#7987#7996#0" expanded="true" />
+            <element signature="e#8807#8808#0" expanded="true" />
+            <element signature="e#8855#8856#0" expanded="true" />
           </folding>
         </state>
       </provider>

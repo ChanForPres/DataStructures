@@ -214,21 +214,21 @@ public class Graph implements Iterable<Integer>{
         }
         // return the path
         else {
-            ArrayList<Integer> fromStart = new ArrayList<Integer>();
+            ArrayList<Integer> fromStart = new ArrayList<>();
             Iterator<Integer> iter = new DFSIterator(startVertex);
-
+            int vertex;
             while (iter.hasNext()) {
-                Integer nextItem = iter.next();
-                if (nextItem == stopVertex) {
+                vertex = iter.next();
+                if (vertex == stopVertex) {
                     break;
-                } else {
-                    fromStart.add(nextItem);
                 }
+                fromStart.add(vertex);
             }
+
             Integer bStartItem = stopVertex;
             int i = fromStart.size() - 1;
-            Integer u = fromStart.get(i);;
-            while (i > 0) {
+            Integer u = fromStart.get(i);
+            while (i > 0 || u != startVertex) {
                 if (isAdjacent(bStartItem, u)) {
                     toRtn.add(u);
                     bStartItem = u;
@@ -258,12 +258,19 @@ public class Graph implements Iterable<Integer>{
     private class TopologicalIterator implements Iterator<Integer> {
 
         private Stack<Integer> fringe;
-
-        // todo more instance variables go here
+        private Integer[] currentInDegree;
+        private HashSet<Integer> visited;
 
         public TopologicalIterator() {
             fringe = new Stack<Integer>();
-            // todo more statements go here
+            visited = new HashSet<Integer>();
+            currentInDegree = new Integer[myVertexCount];
+            for (int i = 0; i < myVertexCount; i++) {
+                currentInDegree[i] = inDegree(i);
+                if (inDegree(i) == 0) {
+                    fringe.push(i);
+                }
+            }
         }
 
         public boolean hasNext() {
@@ -271,8 +278,24 @@ public class Graph implements Iterable<Integer>{
         }
 
         public Integer next() {
-            return new Integer(0);
-            // todo you supply the real body of this method
+            if (!hasNext()) {
+                throw new IllegalStateException("There's nothing more to return");
+            } else {
+                // Pop the item with in-degree of 0
+                // and decrement currentIndegree that the popped item is pointing to
+                Integer toRtn = fringe.pop();
+                for (Edge e : myAdjLists[toRtn]) {
+                    currentInDegree[e.myTo]--;
+                }
+                visited.add(toRtn);
+                // Update fringe with vertices shows in-degree of 0
+                for (int i = 0; i < myVertexCount; i++) {
+                    if (!visited.contains(i) && !fringe.contains(i) && currentInDegree[i] == 0) {
+                        fringe.push(i);
+                    }
+                }
+                return toRtn;
+            }
         }
 
         public void remove() {
@@ -367,7 +390,7 @@ public class Graph implements Iterable<Integer>{
             System.out.println("*** should be no path!");
         }*/
 
-        /*Graph g2 = new Graph(5);
+        Graph g2 = new Graph(5);
         g2.addEdge(0, 1);
         g2.addEdge(0, 2);
         g2.addEdge(0, 4);
@@ -378,18 +401,19 @@ public class Graph implements Iterable<Integer>{
         System.out.println();
         System.out.println("Topological sort");
         result = g2.topologicalSort();
+        Iterator<Integer> iter;
         iter = result.iterator();
         while (iter.hasNext()) {
             System.out.println(iter.next() + " ");
-        }*/
+        }
 
-        Graph g3 = new Graph(7);
+        /*Graph g3 = new Graph(7);
         g3.addUndirectedEdge(0,2);
         g3.addUndirectedEdge(0,3);
         g3.addUndirectedEdge(1,4);
         g3.addUndirectedEdge(1,5);
         g3.addUndirectedEdge(2,3);
-        g3.addUndirectedEdge(2,6);
+        g3.addUndirectedEdge(3,6);
         g3.addUndirectedEdge(4,5);
 
         System.out.println(g3.pathExists(2,6)); // True
@@ -397,8 +421,8 @@ public class Graph implements Iterable<Integer>{
         System.out.println(g3.pathExists(1,0)); // False
         System.out.println();
         System.out.println();
-        /*System.out.println("Path from 0");
-        result = g3.visitAll(0);
+        System.out.println("Path from 2");
+        result = g3.visitAll(2);
         Iterator<Integer> iter1;
         iter1 = result.iterator();
         while (iter1.hasNext()) {
@@ -411,15 +435,13 @@ public class Graph implements Iterable<Integer>{
         iter2 = result.iterator();
         while (iter2.hasNext()) {
             System.out.println(iter2.next() + " ");
-        }*/
-        System.out.println("Path from 0 to 7");
-        result = g3.path(6, 0);
+        }
+        System.out.println("Path from 2 to 6");
+        result = g3.path(2,6);
         Iterator<Integer> iter;
         iter = result.iterator();
         while (iter.hasNext()) {
             System.out.println(iter.next() + " ");
-        }
-
+        }*/
     }
-
 }
