@@ -85,14 +85,35 @@ Because graphs are usually **interconnected**, the ordering of vertices can be s
 - A graph of ```Integer```s using an adjacency list. ```myAdjLists``` is the LinkedList of ```Edge```s (not Integer).
 
 #### ```addEdge(v1, v2, edgeInfo)```
-Add to the graph a **directed edge** from vertex v1 to vertex v2. I thought that the ```myAdjList``` contains random ```Integer``` in its list, but it seems like the index numbers are the vertex Integers. So if there's a LinkedList of size 5, it means there's a graph with numbers from 0 to 4.
+Add to the graph a **directed edge** from vertex v1 to vertex v2. 
+    
+* I thought that the ```myAdjList``` contains random ```Integer``` in its list, but it seems like the index numbers are the vertex Integers. So if there's a LinkedList of size 5, it means there's a graph with numbers from 0 to 4.
 
 #### ```addUndirectedEdge(v1, v2, edgeInfo)```
 Because it's undirected, it should contain information from both v1 to v2 and v2 to v1.
 
+#### ```isAdjacent(from, to)```
+* Using LinkedLists' iterator() method, find if there's an edge from vertex "from" to vertex "to"
+
+#### ```neighbors(vertex)```, ```inDegree(vertex)```
+* I should've thought to use ```isAdjacent``` method I implemented to work with ```inDegree```.
+
 #### ```DFSIterator```
 Q. I wondered why exactly can we call ```Iterator<Edge> dfsIterator = myAdjLists[toRtn].iterator();```. Then I realized that the ```iterator``` is not from ```Graph.java``` but from ```LinkedList```. ```LinkedList``` contains ```iterator()``` method which is ```Iterator<E> iterator()``` that returns an iterator over the elements in the list. 
 
+#### ```pathExists(startVertex, stopVertex)```
+Use ```visitAll``` method to find if ```startVertex``` and ```stopVertex``` has a path between them.
+
+#### ```path(startVertex, stopVertex)```
+Actually find a path. 
+
+1. Add code to stop calling ```next``` when you encounter the finish vertex
+
+2. Trace back from the ```stopVertex``` to the ```startVertex``` by first finding a visted vertex ```u``` for which (u, finish) is an edge, then a vertex ```v``` vistited earlier than u for which (v, u) is an edge, etc
+
+3. Finally find a vertex ```w``` for which (start, w) is an edge
+
+4. Collecting all these vertices in the correct sequence produces the desired path.
 
 
 

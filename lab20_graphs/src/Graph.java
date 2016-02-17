@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Graph implements Iterable<Integer>{
@@ -78,7 +79,11 @@ public class Graph implements Iterable<Integer>{
     // i.e. the number of vertices v such that (v, vertex) is an edge.
     public int inDegree(int vertex) {
         int count = 0;
-        //todo your code here
+        for (int i = 0; i < myVertexCount; i++) {
+            if (isAdjacent(i, vertex)) {
+                count++;
+            }
+        }
         return count;
     }
 
@@ -176,11 +181,19 @@ public class Graph implements Iterable<Integer>{
         return result;
     }
 
-    // Returns true iff there exists a path from STARVETEX to
+    // Returns true iff there exists a path from STARTVERTEX to
     // STOPVERTEX. Assumes both STARTVERTEX and STOPVERTEX are
     // in this graph. If STARVERTEX == STOPVERTEX, returns true.
     public boolean pathExists(int startVertex, int stopVertex) {
-        // todo your code here
+        if (startVertex == stopVertex) {
+            return true;
+        }
+        ArrayList<Integer> result = visitAll(startVertex);
+        for (int i = 0 ; i < result.size(); i++) {
+            if (result.get(i) == stopVertex) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -189,8 +202,20 @@ public class Graph implements Iterable<Integer>{
     // If no path exists, returns an empty arrayList.
     // If startVertex == stopVertex, returns a one element arrayList.
     public ArrayList<Integer> path(int startVertex, int stopVertex) {
-        return new ArrayList<Integer>();
-        //todo you supply the body of this method
+        ArrayList<Integer> toRtn = new ArrayList<Integer>();
+        // if startVertex == stopVertex
+        if (startVertex == stopVertex) {
+            toRtn.add(startVertex);
+            return toRtn;
+        }
+        // if no path exists
+        else if (!pathExists(startVertex, stopVertex)) {
+            return toRtn;
+        }
+        // return the path
+        else {
+            return toRtn;
+        }
     }
 
     public ArrayList<Integer> topologicalSort() {
@@ -240,13 +265,14 @@ public class Graph implements Iterable<Integer>{
         g1.addEdge(2, 0);
         g1.addEdge(2, 3);
         g1.addEdge(4, 3);
+        //System.out.println(g1.inDegree(2));
         //System.out.println(g1.isAdjacent(0,4)); // True
         //System.out.println(g1.isAdjacent(1,4)); // False
-        //System.out.println("Traversal starting at 0");
-        //result = g1.visitAll(0);
+        /*System.out.println("Traversal starting at 0");
+        result = g1.visitAll(0);
         Iterator<Integer> iter;
-        //iter = result.iterator();
-        /*while (iter.hasNext()) {
+        iter = result.iterator();
+        while (iter.hasNext()) {
             System.out.println(iter.next() + " ");
         }
         System.out.println();
@@ -272,7 +298,7 @@ public class Graph implements Iterable<Integer>{
         iter = result.iterator();
         while (iter.hasNext()) {
             System.out.println(iter.next() + " ");
-        }*/
+        }
         System.out.println();
         System.out.println();
         System.out.println("Path from 0 to 3");
@@ -311,7 +337,7 @@ public class Graph implements Iterable<Integer>{
         result = g1.path(4, 0);
         if (result.size() != 0) {
             System.out.println("*** should be no path!");
-        }
+        }*/
 
         /*Graph g2 = new Graph(5);
         g2.addEdge(0, 1);
@@ -328,6 +354,44 @@ public class Graph implements Iterable<Integer>{
         while (iter.hasNext()) {
             System.out.println(iter.next() + " ");
         }*/
+
+        Graph g3 = new Graph(7);
+        g3.addUndirectedEdge(0,2);
+        g3.addUndirectedEdge(0,3);
+        g3.addUndirectedEdge(1,4);
+        g3.addUndirectedEdge(1,5);
+        g3.addUndirectedEdge(2,3);
+        g3.addUndirectedEdge(2,6);
+        g3.addUndirectedEdge(4,5);
+
+        System.out.println(g3.pathExists(2,6)); // True
+        System.out.println(g3.pathExists(0,6)); // True
+        System.out.println(g3.pathExists(1,0)); // False
+        System.out.println();
+        System.out.println();
+        System.out.println("Path from 0");
+        result = g3.visitAll(0);
+        Iterator<Integer> iter1;
+        iter1 = result.iterator();
+        while (iter1.hasNext()) {
+            System.out.println(iter1.next() + " ");
+        }
+
+        System.out.println("Path from 06");
+        result = g3.visitAll(6);
+        Iterator<Integer> iter2;
+        iter2 = result.iterator();
+        while (iter2.hasNext()) {
+            System.out.println(iter2.next() + " ");
+        }
+        /*System.out.println("Path from 0 to 7");
+        result = g3.path(0, 6);
+        Iterator<Integer> iter;
+        iter = result.iterator();
+        while (iter.hasNext()) {
+            System.out.println(iter.next() + " ");
+        }*/
+
     }
 
 }
