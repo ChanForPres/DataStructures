@@ -214,6 +214,34 @@ public class Graph implements Iterable<Integer>{
         }
         // return the path
         else {
+            ArrayList<Integer> fromStart = new ArrayList<Integer>();
+            Iterator<Integer> iter = new DFSIterator(startVertex);
+
+            while (iter.hasNext()) {
+                Integer nextItem = iter.next();
+                if (nextItem == stopVertex) {
+                    break;
+                } else {
+                    fromStart.add(nextItem);
+                }
+            }
+            Integer bStartItem = stopVertex;
+            int i = fromStart.size() - 1;
+            Integer u = fromStart.get(i);;
+            while (i > 0) {
+                if (isAdjacent(bStartItem, u)) {
+                    toRtn.add(u);
+                    bStartItem = u;
+                    u = fromStart.get(i-1);
+                    i--;
+                } else {
+                    i--;
+                    u = fromStart.get(i);
+                }
+            }
+            // [3,2] in toRtn
+            toRtn.add(0, startVertex);
+            toRtn.add(stopVertex);
             return toRtn;
         }
     }
@@ -369,7 +397,7 @@ public class Graph implements Iterable<Integer>{
         System.out.println(g3.pathExists(1,0)); // False
         System.out.println();
         System.out.println();
-        System.out.println("Path from 0");
+        /*System.out.println("Path from 0");
         result = g3.visitAll(0);
         Iterator<Integer> iter1;
         iter1 = result.iterator();
@@ -377,20 +405,20 @@ public class Graph implements Iterable<Integer>{
             System.out.println(iter1.next() + " ");
         }
 
-        System.out.println("Path from 06");
+        System.out.println("Path from 6");
         result = g3.visitAll(6);
         Iterator<Integer> iter2;
         iter2 = result.iterator();
         while (iter2.hasNext()) {
             System.out.println(iter2.next() + " ");
-        }
-        /*System.out.println("Path from 0 to 7");
-        result = g3.path(0, 6);
+        }*/
+        System.out.println("Path from 0 to 7");
+        result = g3.path(6, 0);
         Iterator<Integer> iter;
         iter = result.iterator();
         while (iter.hasNext()) {
             System.out.println(iter.next() + " ");
-        }*/
+        }
 
     }
 

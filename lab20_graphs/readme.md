@@ -81,7 +81,7 @@ Stack = DFS, Queue = BFS <br \>
 We could create a **Stack** and traverse. However a graph might contain a *cycle* of vertices and loop infinitely. The fix is to **keep track of vertices** that we've visited already. <br \>
 Because graphs are usually **interconnected**, the ordering of vertices can be scrambled up. Thus using a depth-first/breadth-first traversal is not a big concern. Instead, we use a **priority queue** to implement **best-first traversal**.
 
-### ```Graph.java```
+### Implementing the ```Graph.java```
 - A graph of ```Integer```s using an adjacency list. ```myAdjLists``` is the LinkedList of ```Edge```s (not Integer).
 
 #### ```addEdge(v1, v2, edgeInfo)```
@@ -96,7 +96,7 @@ Because it's undirected, it should contain information from both v1 to v2 and v2
 * Using LinkedLists' iterator() method, find if there's an edge from vertex "from" to vertex "to"
 
 #### ```neighbors(vertex)```, ```inDegree(vertex)```
-* I should've thought to use ```isAdjacent``` method I implemented to work with ```inDegree```.
+* I should've thought to use ```isAdjacent``` method I implemented should be used in ```inDegree```.
 
 #### ```DFSIterator```
 Q. I wondered why exactly can we call ```Iterator<Edge> dfsIterator = myAdjLists[toRtn].iterator();```. Then I realized that the ```iterator``` is not from ```Graph.java``` but from ```LinkedList```. ```LinkedList``` contains ```iterator()``` method which is ```Iterator<E> iterator()``` that returns an iterator over the elements in the list. 

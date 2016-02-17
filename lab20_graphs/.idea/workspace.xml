@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa5448d4-f677-4962-8566-e319f8376edc" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab20_graphs/Graph$TopologicalIterator.class" afterPath="$PROJECT_DIR$/out/production/lab20_graphs/Graph$TopologicalIterator.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab20_graphs/Graph.class" afterPath="$PROJECT_DIR$/out/production/lab20_graphs/Graph.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Graph.java" afterPath="$PROJECT_DIR$/src/Graph.java" />
     </list>
@@ -29,8 +32,8 @@
       <file leaf-file-name="Graph.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Graph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="7.553719">
-              <caret line="372" column="19" selection-start-line="372" selection-start-column="19" selection-end-line="372" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.8140496">
+              <caret line="415" column="31" selection-start-line="415" selection-start-column="31" selection-end-line="415" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#963#964#0" expanded="true" />
@@ -47,9 +50,10 @@
                 <element signature="e#3550#3551#0" expanded="true" />
                 <element signature="e#5493#5502#0" expanded="true" />
                 <element signature="e#6551#6560#0" expanded="true" />
-                <element signature="e#7023#7032#0" expanded="true" />
-                <element signature="e#7535#7536#0" expanded="true" />
-                <element signature="e#7583#7584#0" expanded="true" />
+                <element signature="e#6937#6946#0" expanded="true" />
+                <element signature="e#7994#8003#0" expanded="true" />
+                <element signature="e#8506#8507#0" expanded="true" />
+                <element signature="e#8554#8555#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -621,12 +625,12 @@
       <workItem from="1455582591510" duration="1206000" />
       <workItem from="1455597170383" duration="1151000" />
       <workItem from="1455670184780" duration="531000" />
-      <workItem from="1455670747491" duration="8388000" />
+      <workItem from="1455670747491" duration="10575000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11276000" />
+    <option name="totallyTimeSpent" value="13463000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="37" y="23" width="1403" height="832" extended-state="0" />
@@ -697,9 +701,10 @@
             <element signature="e#3550#3551#0" expanded="true" />
             <element signature="e#5493#5502#0" expanded="true" />
             <element signature="e#6551#6560#0" expanded="true" />
-            <element signature="e#7023#7032#0" expanded="true" />
-            <element signature="e#7535#7536#0" expanded="true" />
-            <element signature="e#7583#7584#0" expanded="true" />
+            <element signature="e#6937#6946#0" expanded="true" />
+            <element signature="e#7994#8003#0" expanded="true" />
+            <element signature="e#8506#8507#0" expanded="true" />
+            <element signature="e#8554#8555#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -724,9 +729,10 @@
             <element signature="e#3550#3551#0" expanded="true" />
             <element signature="e#5493#5502#0" expanded="true" />
             <element signature="e#6551#6560#0" expanded="true" />
-            <element signature="e#7023#7032#0" expanded="true" />
-            <element signature="e#7535#7536#0" expanded="true" />
-            <element signature="e#7583#7584#0" expanded="true" />
+            <element signature="e#6937#6946#0" expanded="true" />
+            <element signature="e#7994#8003#0" expanded="true" />
+            <element signature="e#8506#8507#0" expanded="true" />
+            <element signature="e#8554#8555#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -740,8 +746,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Graph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.553719">
-          <caret line="372" column="19" selection-start-line="372" selection-start-column="19" selection-end-line="372" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.8140496">
+          <caret line="415" column="31" selection-start-line="415" selection-start-column="31" selection-end-line="415" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#963#964#0" expanded="true" />
@@ -758,9 +764,10 @@
             <element signature="e#3550#3551#0" expanded="true" />
             <element signature="e#5493#5502#0" expanded="true" />
             <element signature="e#6551#6560#0" expanded="true" />
-            <element signature="e#7023#7032#0" expanded="true" />
-            <element signature="e#7535#7536#0" expanded="true" />
-            <element signature="e#7583#7584#0" expanded="true" />
+            <element signature="e#6937#6946#0" expanded="true" />
+            <element signature="e#7994#8003#0" expanded="true" />
+            <element signature="e#8506#8507#0" expanded="true" />
+            <element signature="e#8554#8555#0" expanded="true" />
           </folding>
         </state>
       </provider>
