@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 
 public class ArrayHeap<T> {
-    private ArrayList<Node> contents = new ArrayList<Node>();
+    protected ArrayList<Node> contents = new ArrayList<Node>();
     int size = 0;
 
     /**
@@ -67,6 +67,7 @@ public class ArrayHeap<T> {
      * priority. For this method only, you can assume the heap will not have two
      * nodes with the same item. Check for item equality with .equals(), not ==
      */
+    // problem when its (2, 10, 0)
     public void changePriority(T item, double priority, T pred) {
         Node rootNode = getNode(1);
         if (rootNode != null) {
@@ -81,15 +82,28 @@ public class ArrayHeap<T> {
         int leftIdx = this.getLeftOf(index);
         int rightIdx = this.getRightOf(index);
         // base case
-        if (subTreeRoot.myItem.equals(item)) {
-            subTreeRoot.myPriority = priority;
-            subTreeRoot.myPred = pred;
-            this.bubbleDown(1);
+        if (subTreeRoot.item() == null) {
             return;
-        } else if (this.getNode(leftIdx) != null) {
-            changePriorHelper(leftIdx, item, priority, pred);
-        } else if (this.getNode(rightIdx) != null) {
-            changePriorHelper(rightIdx, item, priority, pred);
+        } else {
+            if (this.getNode(leftIdx) != null) {
+                if (this.getNode(leftIdx).myItem.equals(item)) {
+                    this.getNode(leftIdx).myPriority = priority;
+                    this.getNode(leftIdx).myPred = pred;
+                    this.bubbleDown(1);
+                    return;
+                } else {
+                    changePriorHelper(leftIdx, item, priority, pred);
+                }
+            } if (this.getNode(rightIdx) != null) {
+                if (this.getNode(rightIdx).myItem.equals(item)) {
+                    this.getNode(rightIdx).myPriority = priority;
+                    this.getNode(rightIdx).myPred = pred;
+                    this.bubbleDown(1);
+                    return;
+                } else {
+                    changePriorHelper(rightIdx, item, priority, pred);
+                }
+            }
         }
     }
 
@@ -271,7 +285,7 @@ public class ArrayHeap<T> {
     }
 
     public boolean contains(T myEndVertex) {
-        Node rootNode = getNode(1);
+        Node rootNode = this.getNode(1);
         if (rootNode != null) {
             return containsHelper(1, myEndVertex);
         } else {
@@ -284,15 +298,68 @@ public class ArrayHeap<T> {
         int leftIdx = this.getLeftOf(index);
         int rightIdx = this.getRightOf(index);
         // base case
-        if (subTreeRoot.myItem.equals(myEndVertex)) {
-            return true;
-        } else if (this.getNode(leftIdx) != null) {
-            return containsHelper(leftIdx, myEndVertex);
-        } else if (this.getNode(rightIdx) != null) {
-            return containsHelper(rightIdx, myEndVertex);
-        } else {
+        if (subTreeRoot.myItem == null) {
             return false;
+        } else {
+            if (this.getNode(leftIdx) != null) {
+                Node leftNode = getNode(leftIdx);
+                if (leftNode.myItem.equals(myEndVertex)) {
+                    return true;
+                } else {
+                    containsHelper(leftIdx, myEndVertex);
+                }
+            }
+            if (this.getNode(rightIdx) != null) {
+                Node rightNode = getNode(rightIdx);
+                if (rightNode.myItem.equals(myEndVertex)) {
+                    return true;
+                } else {
+                    containsHelper(rightIdx, myEndVertex);
+                }
+            }
         }
+        return false;
+    }
+
+    /**
+     * Find the distance for a given item
+     */
+    public double find(T item) {
+        Node rootNode = this.getNode(1);
+        if (rootNode != null) {
+            return findHelper(1, item);
+        } else {
+            throw new IllegalStateException("The tree is not constructed");
+        }
+    }
+
+    private double findHelper(int index, T item) {
+        double inf = Double.POSITIVE_INFINITY;
+        Node subTreeRoot = getNode(index);
+        int leftIdx = this.getLeftOf(index);
+        int rightIdx = this.getRightOf(index);
+        // base case
+        if (subTreeRoot.myItem == null) {
+            throw new IllegalStateException("we couldn't find the item");
+        } else {
+            if (this.getNode(leftIdx) != null) {
+                Node leftNode = getNode(leftIdx);
+                if (leftNode.myItem.equals(item)) {
+                    return leftNode.myPriority;
+                } else {
+                    containsHelper(leftIdx, item);
+                }
+            }
+            if (this.getNode(rightIdx) != null) {
+                Node rightNode = getNode(rightIdx);
+                if (rightNode.myItem.equals(item)) {
+                    return rightNode.myPriority;
+                } else {
+                    containsHelper(rightIdx, item);
+                }
+            }
+        }
+        return inf;
     }
 
 

@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Graph implements Iterable<Integer>{
@@ -29,23 +28,23 @@ public class Graph implements Iterable<Integer>{
 
     // Add to the graph a directed edge from vertex v1 to vertex v2.
     public void addEdge(int v1, int v2) {
-        addEdge(v1, v2, null);
+        addEdge(v1, v2, Double.parseDouble(null));
     }
 
     // Add to the graph an undirected edge from vertex v1 to vertex v2.
     public void addUndirectedEdge(int v1, int v2) {
-        addUndirectedEdge(v1, v2, null);
+        addUndirectedEdge(v1, v2, Double.parseDouble(null));
     }
 
     // Add to the graph a directed edge from vertex v1 to vertex v2,
     // with the given edge information.
-    public void addEdge(int v1, int v2, Object edgeInfo) {
+    public void addEdge(int v1, int v2, double edgeInfo) {
         myAdjLists[v1].add(new Edge(v1, v2, edgeInfo));
     }
 
     // Add to the graph an undirected edge from vertex v1 to vertex v2,
     // with the given edge information.
-    public void addUndirectedEdge(int v1, int v2, Object edgeInfo) {
+    public void addUndirectedEdge(int v1, int v2, double edgeInfo) {
         addEdge(v1, v2, edgeInfo);
         addEdge(v2, v1, edgeInfo);
     }
@@ -223,79 +222,104 @@ public class Graph implements Iterable<Integer>{
     /**
      * Dijkstra's algorithm
      */
-    public ArrayList<Integer> shortestPath (int startVertex, int endVertex){
-
+    public ArrayList<Double> shortestPath (int startVertex, int endVertex){
+        ArrayList<Double> result = new ArrayList<Double>();
+        Iterator<Double> iter = new DijkstraIterator(startVertex, endVertex);
+        while (iter.hasNext()) {
+            result.add(iter.next());
+        }
+        System.out.println(result);
+        return result;
     }
 
-    public class DijkstraIterator implements Iterator<Integer> {
+    public class DijkstraIterator implements Iterator<Double> {
 
-        ArrayList<Integer> arrToRtn = new ArrayList<>();
+        ArrayList<ArrayHeap<Integer>.Node> arrToRtn = new ArrayList<>();
         // fringe contains myItem(myTo), priority, myPred(myFrom)
         ArrayHeap<Integer> fringe = new ArrayHeap<>();
         double inf = Double.POSITIVE_INFINITY;
-        int myStartVertex;
-        int myEndVertex;
+        int myStartVertexDjk;
+        int myEndVertexDjk;
+        int countIdx = -1;
 
         public DijkstraIterator(int startVertex, int endVertex) {
             // Step 1: Assign 0 to our start node and inf to all other
             // All predecessors start as null
-            myStartVertex = startVertex;
-            myEndVertex = endVertex;
+            myStartVertexDjk = startVertex;
+            myEndVertexDjk = endVertex;
             for (int i = 0; i < myVertexCount; i++) {
-                if (i == myStartVertex) {
+                if (i == myStartVertexDjk) {
                     fringe.insert(i, 0, null);
                 } else {
                     fringe.insert(i, inf, null);
                 }
             }
+
+            //System.out.println(fringe);
+            ArrayHeap<Integer>.Node toRtn = fringe.removeMin(); // returns the startVertex
+
+            // Iterate through startVertex's neighbors
+            // And change their priorities from inf to distance
+            // Find the shortest one
+
+            Iterator<Edge> djkIterator1 = myAdjLists[toRtn.item()].iterator();
+            while (djkIterator1.hasNext()) {
+                //System.out.println("---------");
+                //System.out.println(fringe);
+                Edge e1 = djkIterator1.next();
+                if (fringe.contains(e1.myTo)) {
+                    fringe.changePriority(e1.myTo, e1.info(), e1.myFrom);
+                }
+            }
+            //System.out.println(fringe);
         }
 
         @Override
         public boolean hasNext() {
             // Stops when fringe is empty
             // Or destination node has been marked visited
-            if (fringe.size == 0 || !fringe.contains(myEndVertex)) {
+            if (fringe.size == 0) {
+                System.out.println("size = 0");
                 return false;
-            } else {
+            } //else if (!fringe.contains(myEndVertexDjk)) {
+                //System.out.println("myEnd is already reached");
+                //return false;
+            //}
+            else {
                 return true;
             }
         }
 
         @Override
-        public Integer next() {
+        public Double next() {
             if (!hasNext()) {
                 throw new IllegalStateException("There's nothing more to return");
             } else {
-                Integer toRtn = fringe.removeMin().item(); // returns the startVertex
-                arrToRtn.add(toRtn);
+                //System.out.println("-------");
+                //System.out.println(fringe);
 
-                Iterator<Edge> djkIterator1 = myAdjLists[toRtn].iterator();
-                // Iterate through startVertex's neighbors
-                // And change the priority from inf to distance
-                // Find the shortest one
-                while (djkIterator1.hasNext()) {
-                    Edge e1 = djkIterator1.next();
-                    if (fringe.contains(e1.myTo)) {
-                        fringe.changePriority(e1.myTo, (Double) e1.info(), e1.myFrom);
-                    }
-                }
-                Integer smallest = fringe.removeMin().item();
+                double weightStartV;
+                ArrayHeap<Integer>.Node smallest = fringe.removeMin();
+                //System.out.println("SMALLEST: " + smallest);
+                weightStartV = smallest.priority();
+                //System.out.println("SMALEEST: " + smallest);
                 arrToRtn.add(smallest);
-
-                // For each smallest neighbor, w
-                Iterator<Edge> djkIterator2 = myAdjLists[smallest].iterator();
+                countIdx++;
+                // For each smallest's neighbor, w
+                // Replace if it's shorter than existing fringe
+                Iterator<Edge> djkIterator2 = myAdjLists[smallest.item()].iterator();
                 while (djkIterator2.hasNext()) {
                     Edge e2 = djkIterator2.next();
+                    //System.out.println("next: " + e2.myTo);
                     if (!fringe.contains(e2.myTo)) {
                         continue;
                     } else {
-                        if ((double) e2.info() < fringe.getNode(e2.myTo).priority()) {
-                            fringe.changePriority(e2.myTo, (Double) e2.info(), );
+                        if ((double) e2.info() < fringe.find(e2.myTo)) {
+                            fringe.changePriority(e2.myTo, (double) e2.info() + weightStartV, e2.myFrom);
                         }
                     }
                 }
-
-                return toRtn;
+                return arrToRtn.get(countIdx).priority();
             }
         }
 
@@ -364,9 +388,9 @@ public class Graph implements Iterable<Integer>{
 
         private Integer myFrom;
         private Integer myTo;
-        private Object myEdgeInfo;
+        private double myEdgeInfo;
 
-        public Edge(int from, int to, Object info) {
+        public Edge(int from, int to, double info) {
             myFrom = new Integer(from);
             myTo = new Integer(to);
             myEdgeInfo = info;
@@ -376,7 +400,7 @@ public class Graph implements Iterable<Integer>{
             return myTo;
         }
 
-        public Object info() {
+        public double info() {
             return myEdgeInfo;
         }
 

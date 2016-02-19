@@ -54,8 +54,14 @@ fringe returns the one with the lowest distance. So ```priorityQueue``` would be
 * I brought the existing ```ArrayHeap.java``` class and slightly changed. Now it's a binary min heap implementation and keeps track of the predecessor of each node.
 
 
+Q. Generic Graphs? What should we do if we want our graph to have vertices that are something else other than integers - like strings or other objects?
 
 
+### Application of Graphs
+1. The Internet
+    * Given a query, search engine presents pages from the index, with the most "interesting" ones first.
+    * The indes is a massive table: the keys are the contents words, values are associated URLs
+    * The crawler adds pages to the table and the search engine retrives them + a second table to know what pages it has visited already
 
 
 
