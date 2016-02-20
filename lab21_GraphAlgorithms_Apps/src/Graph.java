@@ -6,6 +6,7 @@ public class Graph implements Iterable<Integer>{
     private int myVertexCount;
     private int myStartVertex;
 
+
     // Initialize a graph with the given number of vertices and no edges.
     public Graph(int numVertices) {
         myAdjLists = new LinkedList[numVertices];
@@ -222,16 +223,39 @@ public class Graph implements Iterable<Integer>{
     /**
      * Dijkstra's algorithm
      */
-    public ArrayList<ArrayList<ArrayHeap<Integer>.Node>> shortestPath (int startVertex, int endVertex){
+    public ArrayList<Integer> shortestPath (int startVertex, int endVertex){
         ArrayList<ArrayList<ArrayHeap<Integer>.Node>> result = new ArrayList<>();
         Iterator<ArrayList<ArrayHeap<Integer>.Node>> djkIter = new DijkstraIterator(startVertex, endVertex);
         while (djkIter.hasNext()) {
             result.add(djkIter.next());
         }
-
+        ArrayList<ArrayHeap<Integer>.Node> newResult = result.get(0);
         // Process result to get the shortest path
-        return result;
+        ArrayList<Integer> finalRtn = shortestPathHelper(newResult, startVertex, newResult.size()-1);
+        return finalRtn;
     }
+
+    private ArrayList<Integer> shortestPathHelper(ArrayList<ArrayHeap<Integer>.Node> newResult, int startVertex, int index) {
+        ArrayList<Integer> toRtn = new ArrayList<>();
+        ArrayHeap<Integer>.Node curNode = newResult.get(index);
+        toRtn.add(curNode.item()); // add 3
+        System.out.println(curNode.item());
+        Integer pred = curNode.predecessor();
+        toRtn.add(pred);
+        while (pred != startVertex) {
+            for (int i = 0; i < newResult.size(); i++) {
+                if (newResult.get(i).item().equals(pred)) {
+                    curNode = newResult.get(i);
+                }
+            }
+            pred = curNode.predecessor();
+            toRtn.add(pred);
+        }
+        Collections.reverse(toRtn);
+        return toRtn;
+
+    }
+
 
     public class DijkstraIterator implements Iterator<ArrayList<ArrayHeap<Integer>.Node>> {
 
@@ -280,7 +304,6 @@ public class Graph implements Iterable<Integer>{
             // Stops when fringe is empty
             // Or destination node has been marked visited
             if (fringe.size == 0) {
-                System.out.println("size = 0");
                 return false;
             } //else if (!fringe.contains(myEndVertexDjk)) {
                 //System.out.println("myEnd is already reached");
@@ -321,7 +344,6 @@ public class Graph implements Iterable<Integer>{
                         }
                     }
                 }
-                System.out.println("ARR TO RTN: " + arrToRtn);
                 return arrToRtn;
             }
         }
