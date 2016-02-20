@@ -231,7 +231,13 @@ public class Graph implements Iterable<Integer>{
         }
         ArrayList<ArrayHeap<Integer>.Node> newResult = result.get(0);
         // Process result to get the shortest path
-        ArrayList<Integer> finalRtn = shortestPathHelper(newResult, startVertex, newResult.size()-1);
+        int indexToPass = newResult.size()-1;
+        for (int i = 0 ; i < newResult.size(); i++) {
+            if (newResult.get(i).item() == endVertex) {
+                indexToPass = i;
+            }
+        }
+        ArrayList<Integer> finalRtn = shortestPathHelper(newResult, startVertex, indexToPass);
         return finalRtn;
     }
 
@@ -305,11 +311,7 @@ public class Graph implements Iterable<Integer>{
             // Or destination node has been marked visited
             if (fringe.size == 0) {
                 return false;
-            } //else if (!fringe.contains(myEndVertexDjk)) {
-                //System.out.println("myEnd is already reached");
-                //return false;
-            //}
-            else {
+            } else {
                 return true;
             }
         }
@@ -446,6 +448,7 @@ public class Graph implements Iterable<Integer>{
         g2.addEdge(2, 3, 4);
         g2.addEdge(4, 3, 3);
         System.out.println(g2.shortestPath(0, 3)); //0,1,2,3
+        System.out.println(g2.shortestPath(0, 2)); //0,1,2
         System.out.println();
         System.out.println();
         /*System.out.println("Topological sort");
