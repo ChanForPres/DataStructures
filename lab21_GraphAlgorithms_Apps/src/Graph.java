@@ -222,21 +222,22 @@ public class Graph implements Iterable<Integer>{
     /**
      * Dijkstra's algorithm
      */
-    public ArrayList<Double> shortestPath (int startVertex, int endVertex){
-        ArrayList<Double> result = new ArrayList<Double>();
-        Iterator<Double> iter = new DijkstraIterator(startVertex, endVertex);
-        while (iter.hasNext()) {
-            result.add(iter.next());
+    public ArrayList<ArrayList<ArrayHeap<Integer>.Node>> shortestPath (int startVertex, int endVertex){
+        ArrayList<ArrayList<ArrayHeap<Integer>.Node>> result = new ArrayList<>();
+        Iterator<ArrayList<ArrayHeap<Integer>.Node>> djkIter = new DijkstraIterator(startVertex, endVertex);
+        while (djkIter.hasNext()) {
+            result.add(djkIter.next());
         }
-        System.out.println(result);
+
+        // Process result to get the shortest path
         return result;
     }
 
-    public class DijkstraIterator implements Iterator<Double> {
+    public class DijkstraIterator implements Iterator<ArrayList<ArrayHeap<Integer>.Node>> {
 
         ArrayList<ArrayHeap<Integer>.Node> arrToRtn = new ArrayList<>();
         // fringe contains myItem(myTo), priority, myPred(myFrom)
-        ArrayHeap<Integer> fringe = new ArrayHeap<>();
+        public ArrayHeap<Integer> fringe = new ArrayHeap<>();
         double inf = Double.POSITIVE_INFINITY;
         int myStartVertexDjk;
         int myEndVertexDjk;
@@ -291,7 +292,7 @@ public class Graph implements Iterable<Integer>{
         }
 
         @Override
-        public Double next() {
+        public ArrayList<ArrayHeap<Integer>.Node> next() {
             if (!hasNext()) {
                 throw new IllegalStateException("There's nothing more to return");
             } else {
@@ -305,6 +306,7 @@ public class Graph implements Iterable<Integer>{
                 //System.out.println("SMALEEST: " + smallest);
                 arrToRtn.add(smallest);
                 countIdx++;
+
                 // For each smallest's neighbor, w
                 // Replace if it's shorter than existing fringe
                 Iterator<Edge> djkIterator2 = myAdjLists[smallest.item()].iterator();
@@ -319,7 +321,8 @@ public class Graph implements Iterable<Integer>{
                         }
                     }
                 }
-                return arrToRtn.get(countIdx).priority();
+                System.out.println("ARR TO RTN: " + arrToRtn);
+                return arrToRtn;
             }
         }
 

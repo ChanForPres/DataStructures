@@ -58,13 +58,76 @@ Q. Generic Graphs? What should we do if we want our graph to have vertices that 
 
 
 ### Application of Graphs
-1. The Internet
+#### The Internet
     * Given a query, search engine presents pages from the index, with the most "interesting" ones first.
-    * The indes is a massive table: the keys are the contents words, values are associated URLs
+    * The index is a massive table: the keys are the contents words, values are associated URLs
     * The crawler adds pages to the table and the search engine retrives them + a second table to know what pages it has visited already
 
+    Q. The table of already-visited pages used by crawler has to be a **hash map**, not a **hash set**. Why? <br \>
+    First, let's look at the differences between hash set and hash map. HashMap stores data in form of key-value pair while hashSet only stores objects. Also, hashMap doesn't allow duplicate keys while hashSet doesn't allow duplicate objects. <br \>
+    Then when we think about the table of already-visited pages, we need both key-value pairs to keep track of search information. That's why we need a hash map instead of hash set. Keys are the URLs and values would be True/False.
 
+#### How web crawler's define "interesting"
+There may be an enourmous number of indexed pages that are possibly relevant to the query, and the search engine has to order them so that the most interesting pages get presented to the user first. 
 
+The most recent innovation by Google's inventors is to include properties of the **graph structure** in the test for interestingness. Initially they gave priority to pages with higher **in-degree**, on the assumption that the more people that link **to** your page, the better your page must be. Further, the more **interesting pages** link to you, the more interesting you must be. 
+
+#### Improving crawler/search engine performance
+* natural language understanding
+* parallel computing algorithms
+* user interface design and evaluation
+* graph theory
+* softwware engineering
+
+#### Java's Garbage Collection Mechanism
+
+**Java's garbage collection** is another application of graphs and graph traversals. Suppose you create an object and then essentially throw it away. 
+```
+LinkedList<Integer> l = new LinkedList<>();
+    ...
+l = null;
+```
+What happens to all these **inaccessible** objects? Do they just hang around and continue to clutter the program's memory? If so, doesn't that cause any problems? YES! These orphaned objects hang around in the memory cause **memory leaks** and will crash. 
+
+One remedy is **garbage collection**. When available memory for building objects runs out, the system steps in to classify all the program's memory as "in use" and "not in use"(garbage) and collects garbage in one place.
+
+Java, Python, aand Scheme use garbage collection while C and C++ don't. 
+
+#### The Garbage Collection Algorithm
+The goal is to find objects that have **no references** that point to them. This involves graph traversal (the graph of objects and references)
+
+1. First, **all the marked bits are turned off**. This involves a simple sweep through memory; each object has a header that includes its **length**, so we can just hop from object to object including the orphaned objects.
+
+2. We then mark **all the objects that are currently in use** by starting with the references on the system stack(e.g. local reference variables), going to the objects that those point to, and so on(it is a graph traversal - every object is a vertex and every reference is an edge)
+
+3. Finally, the marked memory is compacted, leaving the unused memory all together and ready to be **reused**.
+
+ex) ```Line myLine = new Line(new Point(1,2) , new Point(2,2));```
+The marking process <br \>
+1. Mark the ```Line``` object
+2. The array object that's inside an instance variable in the ```Line``` class
+3. Two ```Point``` references in that array
+4. The ```Point``` objects themselves
+
+#### A problem with the Marking Phase
+All the graph traversals have involved an auxiliary structure like a **stack** or **queue** to hold the **"fringe"**. But during the garbage collection, we already have run out of memory, so setting up a new stack or queue may not be possible. PROBLEM!
+
+#### Graph Traversal without a Fringe
+Use the pointer fields (in the object being traversed) to store the information that would have gone into the stack. When we're done, we have to restore this information. 
+
+1. Have the pointer to go down to the end of the list, then to come back up, revisitng the nodes in reverse order (using one more auxiliary pointer and reference the pointers as we go)
+
+#### Tree traversal without a Stack
+Let's expand the idea of **reversed linked list traversal** without a stack to **tree traversal without a stack** (using only a constant amount of space + a "tag" bit & a back-pointer bit in each node) 
+
+1. Two pointers are maintained: ```current``` and ```prev```
+2. Going down the tree, ```current``` leads the way; ```prev``` points to the parent
+3. Going back up the tree, ```prev``` leads the way. ```myLeft``` and ```myRight``` pointers keep track of where we've been and the back-pointer bit indicates which field in the node contains the back pointer.
+
+#### Modern Garbage Collection Techniques
+1. *generational garbage collection* : segregate objects that have been around a long time into their own section of memory. These sections get traversed less frequently
+
+2. *Concurrent garbage collection* : Some real-time apps can't afford to be interrupted by a process as complicated as garbage collection. This garbage collection allows the garbage collector to run for a short while (even though the garbage collection hasn't finished), then the app. (Switching back and forth between the two)
 
 
 
