@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class IntList {
 
 	ListNode myHead;
@@ -113,6 +115,24 @@ public class IntList {
 			myPrev = prev;
 			myNext = next;
 		}
+
+        public void setLinkNext(ListNode next) {
+            myNext = next;
+        }
+
+        public void setLinkPrev(ListNode prev) {
+            myPrev = prev;
+        }
+
+        public ListNode getLinkNext() {
+            return myNext;
+        }
+
+        public ListNode getLinkPrev() {
+            return myPrev;
+        }
+
+
 	}
 
 	/**
@@ -131,12 +151,85 @@ public class IntList {
 	/**
 	 * Inserts the node p into the list headed by head so that the node values
 	 * are in increasing order.
+     * The first p items are in order..?
 	 */
 	private ListNode insert(ListNode p, ListNode head) {
-        for (ListNode cur = p; cur == myHead; p = p.myPrev) {
 
+        if (head == null) {
+            ListNode toRtn = new ListNode(p.myItem);
+            System.out.println("toRtn: " + toRtn.myItem);
+            return toRtn;
         }
+        IntList toTraverse = new IntList();
+        for (ListNode cur = head; cur != null; cur = cur.getLinkNext()) {
+           toTraverse.addToEnd(cur.myItem);
+        }
+
+        ListNode toRtn;
+        for (toRtn = toTraverse.myTail; toRtn != null && toRtn.getLinkPrev() != null; toRtn = toRtn.getLinkPrev()) {
+            if (p.myItem < toRtn.myItem) {
+                toTraverse.swap(p, toRtn);
+            }
+        }
+        System.out.println("toTraverse: " + toTraverse.toString());
+        return toRtn;
 	}
+
+    public void swap(ListNode node1, ListNode node2) {
+        if (node1 == null || node2 == null) {
+            throw new IllegalArgumentException("The nodes should be something");
+        }
+        if (node1 == node2) {
+            return;
+        }
+
+        // make sure node1 -> node2
+        if (node1.getLinkPrev() == node2) {
+            ListNode tmp = node2;
+            node2 = node1;
+            node1 = tmp;
+        }
+
+        // node1 -> node2
+        ListNode node1Prev = node1.getLinkPrev();
+        ListNode node1Next = node1.getLinkNext();
+        ListNode node2Prev = node2.getLinkPrev();
+        ListNode node2Next = node2.getLinkNext();
+
+        // node1's next is node2's next
+        node1.setLinkNext(node2Next);
+        if(node2Next != null) {
+            node2Next.setLinkPrev(node1);
+        }
+
+        // node2's prev is node1's prev
+        node2.setLinkPrev(node1Prev);
+        if (node1Prev != null) {
+            node1Prev.setLinkNext(node2);
+        }
+
+        // if node1 and node2 is right next to each other
+        if (node1 == node2Prev) {
+            node1.setLinkPrev(node2);
+            node2.setLinkNext(node1);
+        } else {
+            node1.setLinkPrev(node2Prev);
+            if (node2Prev != null) {
+                node2Prev.setLinkNext(node1);
+            }
+
+            node2.setLinkNext(node1Next);
+            if (node1Next != null) {
+                node1Next.setLinkPrev(node2);
+            }
+        }
+
+        if (node1 == myHead) {
+            myHead = node2;
+        } else if (node2 == myHead) {
+            myHead = node1;
+        }
+    }
 
 	/**
 	 * Sorts this list using the selection sort algorithm.
@@ -239,7 +332,7 @@ public class IntList {
 
 		values = new IntList();
 		System.out.print("Before insertion sort: ");
-		for (int k = 0; k < 8; k++) {
+		for (int k = 0; k < 3; k++) {
 			values.addToFront(randomInt());
 		}
 		System.out.println(values);

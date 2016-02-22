@@ -15,6 +15,6 @@ Sorting an array or linked list of ```integers``` or any kind of collection of `
 * Terrible: when the array is reversely sorted
 
 #### ```insert``` method
-Implement an insertion sort algorithm on a doubly linked list instead of an array
-
+Implement an insertion sort algorithm on a doubly linked list instead of an array <br \>
+```soFar``` is the first n-items that are already sorted
 #### Tree Sort (Insertion sort variation)
