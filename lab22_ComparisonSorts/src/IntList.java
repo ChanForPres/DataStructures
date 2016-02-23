@@ -142,9 +142,12 @@ public class IntList {
 	 */
 	public IntList insertionSort() {
 		ListNode soFar = null;
-		for (ListNode p = myHead; p != null; p = p.myNext) {
-			soFar = insert(p, soFar);
+		for (ListNode current = myHead; current != null; current = current.myNext) {
+			soFar = insert(current, soFar);
 		}
+        //System.out.println("soFar1: " + soFar.myItem);
+        //System.out.println("soFar2: " + soFar.myNext.myItem);
+        //System.out.println("soFar3: " + soFar.myNext.myNext.myItem);
 		return new IntList(soFar);
 	}
 
@@ -153,73 +156,84 @@ public class IntList {
 	 * are in increasing order.
      * The first p items are in order..?
 	 */
-	private ListNode insert(ListNode p, ListNode head) {
-
-        if (head == null) {
-            ListNode toRtn = new ListNode(p.myItem);
-            System.out.println("toRtn: " + toRtn.myItem);
-            return toRtn;
-        }
-        IntList toTraverse = new IntList();
-        for (ListNode cur = head; cur != null; cur = cur.getLinkNext()) {
-           toTraverse.addToEnd(cur.myItem);
-        }
-
-        ListNode toRtn;
-        for (toRtn = toTraverse.myTail; toRtn != null && toRtn.getLinkPrev() != null; toRtn = toRtn.getLinkPrev()) {
-            if (p.myItem < toRtn.myItem) {
-                toTraverse.swap(p, toRtn);
+	private ListNode insert(ListNode current, ListNode insertionPointer) {
+        ListNode prev;
+        for (prev = current; prev != null && prev.getLinkPrev() != null; prev = prev.getLinkPrev()) {
+            if (prev.myItem < prev.getLinkPrev().myItem) {
+                // excluding the current itself
+                insertionPointer = swap(prev, prev.getLinkPrev());
             }
         }
-        System.out.println("toTraverse: " + toTraverse.toString());
-        return toRtn;
+
+        System.out.println();
+        return insertionPointer;
 	}
 
-    public void swap(ListNode node1, ListNode node2) {
+    public ListNode swap(ListNode node1, ListNode node2) {
         if (node1 == null || node2 == null) {
             throw new IllegalArgumentException("The nodes should be something");
         }
+
         if (node1 == node2) {
-            return;
+            return node1;
         }
 
         // make sure node1 -> node2
         if (node1.getLinkPrev() == node2) {
+            System.out.println("node1.getLinkPrev() == node2");
             ListNode tmp = node2;
             node2 = node1;
             node1 = tmp;
         }
 
         // node1 -> node2
+        System.out.println("swapping");
         ListNode node1Prev = node1.getLinkPrev();
         ListNode node1Next = node1.getLinkNext();
         ListNode node2Prev = node2.getLinkPrev();
         ListNode node2Next = node2.getLinkNext();
 
-        // node1's next is node2's next
+        // 1) node1 => node2Next
         node1.setLinkNext(node2Next);
+        System.out.println("node1: "+node1.myItem);
+        System.out.println("node2: "+node2.myItem);
         if(node2Next != null) {
+            System.out.println("node2Next, "+node2Next.myItem+ " is not null");
+            System.out.println("node2Next: " + node2Next.myItem + " is next to node1 " + node1.myItem);
+            // 2) node1 <- node2Next
             node2Next.setLinkPrev(node1);
         }
 
-        // node2's prev is node1's prev
+        // 3) node1Prev <- node2
         node2.setLinkPrev(node1Prev);
         if (node1Prev != null) {
+            // 4) node1Prev => node2
+            System.out.println("node1Prev, "+node1Prev.myItem+ " is not null");
+            System.out.println("node1Prev: " + node1Prev.myItem + " is prev to node2 " + node2.myItem);
             node1Prev.setLinkNext(node2);
         }
 
         // if node1 and node2 is right next to each other
-        if (node1 == node2Prev) {
+        if (node1.myItem == node2Prev.myItem) {
+            System.out.println("node1 and node2 are right next to each other");
+            // 5) node2 <- node1
             node1.setLinkPrev(node2);
+            System.out.println("node2: " + node2.myItem + " is prev to node1 " + node1.myItem);
+            // 6) node2 => node1
             node2.setLinkNext(node1);
         } else {
+            // 7) node2Prev <- node1
             node1.setLinkPrev(node2Prev);
             if (node2Prev != null) {
+                // 8) node2Prev => node1
+                System.out.println("node2Prev: " + node2Prev.myItem + " is prev to node1 " + node1.myItem);
                 node2Prev.setLinkNext(node1);
             }
-
+            // 9) node2 => node1Next
             node2.setLinkNext(node1Next);
             if (node1Next != null) {
+                // 10) node2 <- node1Next
+                System.out.println("node1Next: " + node1Next.myItem + " is next to node1 " + node2.myItem);
                 node1Next.setLinkPrev(node2);
             }
         }
@@ -229,6 +243,7 @@ public class IntList {
         } else if (node2 == myHead) {
             myHead = node1;
         }
+        return node2;
     }
 
 	/**
@@ -332,13 +347,17 @@ public class IntList {
 
 		values = new IntList();
 		System.out.print("Before insertion sort: ");
-		for (int k = 0; k < 3; k++) {
+		for (int k = 0; k < 10; k++) {
 			values.addToFront(randomInt());
 		}
 		System.out.println(values);
 		sortedValues = values.insertionSort();
 		System.out.print("After insertion sort: ");
 		System.out.println(sortedValues);
+        
+        /*values.addToEnd(5);
+        values.addToEnd(4);
+        values.addToEnd(3);*/
 
 		/*values = new IntList();
 		System.out.print("Before quicksort: ");
