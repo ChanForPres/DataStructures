@@ -4,7 +4,6 @@
     <list default="true" id="93cc00ca-baf3-49e0-97e1-be268775d9c0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab22_ComparisonSorts/IntList.class" afterPath="$PROJECT_DIR$/out/production/lab22_ComparisonSorts/IntList.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntList.java" afterPath="$PROJECT_DIR$/src/IntList.java" />
     </list>
     <ignored path="lab22_ComparisonSorts.iws" />
@@ -31,11 +30,11 @@
       <file leaf-file-name="IntList.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/IntList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.0745342">
-              <caret line="218" column="57" selection-start-line="218" selection-start-column="57" selection-end-line="218" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.68944097">
+              <caret line="345" column="25" selection-start-line="345" selection-start-column="25" selection-end-line="345" selection-end-column="25" />
               <folding>
-                <element signature="e#12686#12687#0" expanded="true" />
-                <element signature="e#12727#12728#0" expanded="true" />
+                <element signature="e#13037#13038#0" expanded="true" />
+                <element signature="e#13078#13079#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -617,12 +616,12 @@
       <workItem from="1456232501586" duration="421000" />
       <workItem from="1456239788635" duration="743000" />
       <workItem from="1456272980196" duration="3440000" />
-      <workItem from="1456292902620" duration="5404000" />
+      <workItem from="1456292902620" duration="6908000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41730000" />
+    <option name="totallyTimeSpent" value="43234000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="642" y="23" width="798" height="829" extended-state="0" />
@@ -672,8 +671,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#12686#12687#0" expanded="true" />
-            <element signature="e#12727#12728#0" expanded="true" />
+            <element signature="e#13037#13038#0" expanded="true" />
+            <element signature="e#13078#13079#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -683,8 +682,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#12686#12687#0" expanded="true" />
-            <element signature="e#12727#12728#0" expanded="true" />
+            <element signature="e#13037#13038#0" expanded="true" />
+            <element signature="e#13078#13079#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -694,8 +693,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#12686#12687#0" expanded="true" />
-            <element signature="e#12727#12728#0" expanded="true" />
+            <element signature="e#13037#13038#0" expanded="true" />
+            <element signature="e#13078#13079#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -705,8 +704,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#12686#12687#0" expanded="true" />
-            <element signature="e#12727#12728#0" expanded="true" />
+            <element signature="e#13037#13038#0" expanded="true" />
+            <element signature="e#13078#13079#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -716,8 +715,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#12686#12687#0" expanded="true" />
-            <element signature="e#12727#12728#0" expanded="true" />
+            <element signature="e#13037#13038#0" expanded="true" />
+            <element signature="e#13078#13079#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -727,19 +726,19 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#12686#12687#0" expanded="true" />
-            <element signature="e#12727#12728#0" expanded="true" />
+            <element signature="e#13037#13038#0" expanded="true" />
+            <element signature="e#13078#13079#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/IntList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0745342">
-          <caret line="218" column="57" selection-start-line="218" selection-start-column="57" selection-end-line="218" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.68944097">
+          <caret line="345" column="25" selection-start-line="345" selection-start-column="25" selection-end-line="345" selection-end-column="25" />
           <folding>
-            <element signature="e#12686#12687#0" expanded="true" />
-            <element signature="e#12727#12728#0" expanded="true" />
+            <element signature="e#13037#13038#0" expanded="true" />
+            <element signature="e#13078#13079#0" expanded="true" />
           </folding>
         </state>
       </provider>

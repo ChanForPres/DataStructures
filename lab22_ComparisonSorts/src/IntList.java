@@ -324,22 +324,36 @@ public class IntList {
                 leftMostOpen.isOpen = false;
                 System.out.println("leftMostopen Node: " + leftMostOpen.myItem + " is now marked at isOpen false: "+ leftMostOpen.isOpen);
                 System.out.println("cur: " + cur.myItem + " leftMostOpen: " + leftMostOpen.myItem);
-                toRtn = swap(cur, leftMostOpen);
+                toRtn = swap(leftMostOpen, cur);
+                cur = leftMostOpen;
                 //cur = toRtn.getLinkNext();
             }
             cur = cur.getLinkNext();
-            System.out.println("after round: " + toRtn.myItem + " : " + toRtn.getLinkNext().myItem + " : " + toRtn.getLinkNext().getLinkNext().myItem);
-            if (toRtn.getLinkPrev() != null) {
-                System.out.println("prev? " + toRtn.getLinkPrev().myItem +" : " + toRtn.myItem +" : " + toRtn.getLinkNext().myItem);
-            }
+            System.out.println("after round: " + toRtn.myItem + " : " + toRtn.getLinkNext().myItem + " : " + toRtn.getLinkNext().getLinkNext().myItem + " : " + toRtn.getLinkNext().getLinkNext().getLinkNext().myItem);
             System.out.println();
         }
-        ListNode lastClosedNode = findLastClosed(cur);
-        System.out.println("lastClosedNode222: " + lastClosedNode.myItem);
-        toRtn = swap(lastClosedNode, head);
-        System.out.println(toRtn.myItem);
+        ListNode lastClosedNode = findLastClosed(toRtn);
+        ListNode pivotNode = findPivot(head, toRtn);
+        toRtn = swap(lastClosedNode, pivotNode);
 
+        // Finally getting the partitioned list
+        ListNode recurse;
+        for (recurse = toRtn; recurse != null; recurse = recurse.getLinkPrev()) {
+            continue;
+        }
+        toRtn = recurse;
+
+        // Recursive step
         return toRtn;
+    }
+
+    private ListNode findPivot(ListNode head, ListNode newList) {
+        for (ListNode cur = newList; cur != null; cur = cur.myNext) {
+            if (cur.myItem == head.myItem) {
+                return cur;
+            }
+        }
+        return null;
     }
 
     private ListNode findLastClosed(ListNode head) {
