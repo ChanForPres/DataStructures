@@ -74,15 +74,65 @@ Each operations of splitting and merging takes N operations, and the levels are 
 #### ```mergeSort()```
 * Splitting method: Have two pointers run at the same time. While one pointer ```a``` is moving one at a time, the other pointer ```b``` is moving twice at a time. Once ```b``` reaches the end, the point where ```a``` remains is the splitting point.
 
+* Since it's recursive, I created another method that takes parameter head and recursively splits the linked list given the head. 
 
+* It was important to keep in mind that since it's a linked list, when we split, it's important to **first** set the second half that begins with ```slow``` pointer and then **second** set the first half ends with ```null``` so that it really separates into two. 
 
+```
+ListNode oneHalf = head;
+ListNode otherHalf = slow.getLinkNext();
+slow.setLinkNext(null);
+```
 
+So how it works can be represented in a tree:
 
+```
+                    5-4-10
+              ________|_________
+             |                  |
+            5-4                 10
+         ____|____              
+        |         |
+        5         4 
+```
 
+So here, splitting split the linkedlist 5-4-10 into 5, 4, 10. Then once we hit the bottom, we merge 5, 4. Then it returns the merged list of 5-4 which will then be merged with 10 and eventually return 5-4-10 IntList.
 
+#### QuickSort
+1. Split the collection into two collections by *partitioning* around a "divider" element(pivot). One collection consists of elements smaller than the divider and the other elements 
+2. Quicksort the two collections
+3. Concatenate the sorted small values with the divider and then with the sorted large values (small sorted values + divider + large sorted values) 
 
+ex) 3, 1, 4, 5, 9, 2, 8, 6
+1. Choose 3 as the divider
+2. Put 4, 5, 9, 8, 6 into the "large" collection; 1,2 into "small" collection
+3. Sort the large collection; sort the small collection; combine the two collections with the divider to get the final result
 
+Concatenation: ```O(1)``` <br \>
+Partitioning and Operation: ```O(N)``` <br \>
+Height: ```logN``` levels due to splitting <br \>
+= Total of ```NlogN``` time
 
+Q. Worst case behavior for a quicksort? If we always decided to make our divider element the first element, which cause quicksort to exhibit O(N^2) behaivor? <br \>
+When the array is already **sorted** or **reversely sorted**, then, we will have to make about N recursive calls before it hits its base case, eventually creating O(N^2) operations.
+
+##### Partitioning
+Importantly, it should partition an array into 3 parts **in place** without creating extra arrays like in mergesort. In short, following is the algorithm:
+
+* Assume that the pivot is the leftmost element
+* Flip all the other cards down
+*Open each card from left to right
+    * If you find a card that is less than the pivot
+        * Swap that card with the card that was first opened(the leftmost card) and close that leftmost card
+        * Also take note of the very last card that is closed
+    * Otherwise, continue opening the next card 
+* Swap the last closed card with the pivot
+* Open all cards
+
+##### Picking the divider
+Best divider is the **median**. Then it needs sorting, which is at best in ```O(NlogN)```, so it's not very helpful eventually. Another approach is just picking a **random** divider. Since we assumed the pivot is the leftmost element, we just swap the random divider with the leftmost element, then the leftmost element is the random divider of the array.
+
+##### Quicksort performance in practice
 
 
 

@@ -104,16 +104,23 @@ public class IntList {
 		int myItem;
 		ListNode myPrev;
 		ListNode myNext;
+        // for quicksort partitioning
+        boolean isOpen;
+        boolean lastClosed;
 
 		public ListNode(int k) {
 			myItem = k;
 			myPrev = myNext = null;
+            lastClosed = false;
+            isOpen = false;
 		}
 
 		public ListNode(int k, ListNode prev, ListNode next) {
 			myItem = k;
 			myPrev = prev;
 			myNext = next;
+            lastClosed = false;
+            isOpen = false;
 		}
 
         public void setLinkNext(ListNode next) {
@@ -174,11 +181,13 @@ public class IntList {
         }
 
         // make sure node1 -> node2
-        if (node1.getLinkPrev() == node2) {
-            //System.out.println("node1.getLinkPrev() == node2");
-            ListNode tmp = node2;
-            node2 = node1;
-            node1 = tmp;
+        if (node1.getLinkPrev() != null) {
+            if (node1.getLinkPrev() == node2) {
+                //System.out.println("node1.getLinkPrev() == node2");
+                ListNode tmp = node2;
+                node2 = node1;
+                node1 = tmp;
+            }
         }
 
         // node1 -> node2
@@ -274,13 +283,84 @@ public class IntList {
 		// Assume first element is the divider.
 		IntList smallElements = new IntList();
 		IntList largeElements = new IntList();
-		int divider = myHead.myItem;
-		// TODO your code here!
 
-		return null;
+        ListNode quickSorted = quicksort(myHead);
+        IntList finalRtn = new IntList(quickSorted);
+        return finalRtn;
 	}
 
-	/**
+    /**
+     *
+     * @param head : left item that will start
+     * @return
+     */
+    private ListNode quicksort(ListNode head) {
+
+        // base case
+        if (head == null || head.getLinkNext() == null) {
+            return head;
+        }
+
+        int divider = head.myItem;
+        ListNode cur = head;
+        ListNode toRtn = head;
+        // Partitioning process around a divider element
+        while(cur != null) {
+            System.out.println("cur: "+ cur.myItem);
+            System.out.println("cur.isOpen: " + cur.isOpen);
+            cur.isOpen = true;
+            // if current card is less than the divider
+            if (cur.myItem < divider) {
+                System.out.println("cur.myItem < divider");
+                ListNode leftMostOpen = findLeftMostOpen(toRtn);
+                System.out.println("leftMostOpen111: "+leftMostOpen.myItem);
+                ListNode lastClosedNode = findLastClosed(toRtn);
+                if (lastClosedNode != null) {
+                    System.out.println("lastClosedNode111: "+lastClosedNode.myItem);
+                    lastClosedNode.lastClosed = false;
+                }
+                leftMostOpen.lastClosed = true;
+                System.out.println("leftMostopen Node: " + leftMostOpen.myItem + " is now marked as lastClosed: "+ leftMostOpen.lastClosed);
+                leftMostOpen.isOpen = false;
+                System.out.println("leftMostopen Node: " + leftMostOpen.myItem + " is now marked at isOpen false: "+ leftMostOpen.isOpen);
+                System.out.println("cur: " + cur.myItem + " leftMostOpen: " + leftMostOpen.myItem);
+                toRtn = swap(cur, leftMostOpen);
+                //cur = toRtn.getLinkNext();
+            }
+            cur = cur.getLinkNext();
+            System.out.println("after round: " + toRtn.myItem + " : " + toRtn.getLinkNext().myItem + " : " + toRtn.getLinkNext().getLinkNext().myItem);
+            if (toRtn.getLinkPrev() != null) {
+                System.out.println("prev? " + toRtn.getLinkPrev().myItem +" : " + toRtn.myItem +" : " + toRtn.getLinkNext().myItem);
+            }
+            System.out.println();
+        }
+        ListNode lastClosedNode = findLastClosed(cur);
+        System.out.println("lastClosedNode222: " + lastClosedNode.myItem);
+        toRtn = swap(lastClosedNode, head);
+        System.out.println(toRtn.myItem);
+
+        return toRtn;
+    }
+
+    private ListNode findLastClosed(ListNode head) {
+        for (ListNode cur = head; cur != null; cur = cur.getLinkNext()) {
+            if (cur.lastClosed) {
+                return cur;
+            }
+        }
+        return null;
+    }
+
+    private ListNode findLeftMostOpen(ListNode head) {
+        for (ListNode cur = head; cur != null; cur = cur.getLinkNext()) {
+            if (cur.isOpen == true) {
+                return cur;
+            }
+        }
+        return head;
+    }
+
+    /**
 	 * Returns the result of sorting the values in this list using the merge
 	 * sort algorithm. This list is no longer usable after this operation.
 	 */
@@ -291,12 +371,12 @@ public class IntList {
 		//IntList oneHalf = new IntList();
 		//IntList otherHalf = new IntList();
 
-        ListNode toRtn = mergeSort(myHead);
+        ListNode toRtn = mergeSplit(myHead);
         IntList finalRtn = new IntList(toRtn);
         return finalRtn;
     }
 
-    private ListNode mergeSort(ListNode head) {
+    private ListNode mergeSplit(ListNode head) {
         // no element or only one element (base case)
         if (head == null || head.getLinkNext() == null) {
             return head;
@@ -316,8 +396,8 @@ public class IntList {
             ListNode otherHalf = slow.getLinkNext();
             slow.setLinkNext(null);
             // having two parts, recursively split them
-            ListNode l1 = mergeSort(oneHalf);
-            ListNode l2 = mergeSort(otherHalf);
+            ListNode l1 = mergeSplit(oneHalf);
+            ListNode l2 = mergeSplit(otherHalf);
 
             // merge together
             IntList merged = merge(l1, l2);
@@ -387,20 +467,21 @@ public class IntList {
         values.addToEnd(4);
         values.addToEnd(3);*/
 
-		/*values = new IntList();
+		values = new IntList();
 		System.out.print("Before quicksort: ");
 		//for (int k = 0; k < 10; k++) {
         //    values.addToFront(randomInt());
 		//}
         values.addToEnd(5);
-        values.addToEnd(4);
         values.addToEnd(3);
+        values.addToEnd(2);
+        values.addToEnd(7);
 		System.out.println(values);
 		sortedValues = values.quicksort();
 		System.out.print("After quicksort: ");
-		System.out.println(sortedValues);*/
+		System.out.println(sortedValues);
 
-		values = new IntList();
+		/*values = new IntList();
 		System.out.print("Before merge sort: ");
 		for (int k = 0; k < 10; k++) {
 			values.addToFront(randomInt());
@@ -408,6 +489,6 @@ public class IntList {
 		System.out.println(values);
 		sortedValues = values.mergeSort();
 		System.out.print("After merge sort: ");
-		System.out.println(sortedValues);
+		System.out.println(sortedValues);*/
 	}
 }
