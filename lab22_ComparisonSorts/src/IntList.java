@@ -176,89 +176,6 @@ public class IntList {
         return insertionPointer;
 	}
 
-    public ListNode swapP(ListNode node1, ListNode node2) {
-        if (node1 == null || node2 == null) {
-            throw new IllegalArgumentException("The nodes should be something");
-        }
-
-        if (node1 == node2) {
-            return node1;
-        }
-
-        // make sure node1 -> node2
-        if (node1.getLinkPrev() != null) {
-            if (node1.getLinkPrev() == node2) {
-                //System.out.println("node1.getLinkPrev() == node2");
-                ListNode tmp = node2;
-                node2 = node1;
-                node1 = tmp;
-            }
-        }
-
-        // node1 -> node2
-        ListNode node1Prev = node1.getLinkPrev();
-        ListNode node1Next = node1.getLinkNext();
-        ListNode node2Prev = node2.getLinkPrev();
-        ListNode node2Next = node2.getLinkNext();
-
-        // 1) node1 => node2Next
-        node1.setLinkNext(node2Next);
-        System.out.println("node1: "+node1.myItem);
-        System.out.println("node2: "+node2.myItem);
-        if(node2Next != null) {
-            System.out.println("node2Next, "+node2Next.myItem+ " is not null");
-            System.out.println("node2Next: " + node2Next.myItem + " is next to node1 " + node1.myItem);
-            // 2) node1 <- node2Next
-            node2Next.setLinkPrev(node1);
-        }
-
-        // 3) node1Prev <- node2
-        node2.setLinkPrev(node1Prev);
-        if (node1Prev != null) {
-            // 4) node1Prev => node2
-            System.out.println("node1Prev, "+node1Prev.myItem+ " is not null");
-            System.out.println("node1Prev: " + node1Prev.myItem + " is prev to node2 " + node2.myItem);
-            node1Prev.setLinkNext(node2);
-        }
-
-        // if node1 and node2 is right next to each other
-        if (node1.myItem == node2Prev.myItem) {
-            System.out.println("node1 and node2 are right next to each other");
-            // 5) node2 <- node1
-            node1.setLinkPrev(node2);
-            System.out.println("node2: " + node2.myItem + " is prev to node1 " + node1.myItem);
-            // 6) node2 => node1
-            node2.setLinkNext(node1);
-        } else {
-            // 7) node2Prev <- node1
-            node1.setLinkPrev(node2Prev);
-            System.out.println("node2Prev: " + node2Prev.myItem + " is prev to node1 " + node1.myItem);
-            if (node2Prev != null) {
-                // 8) node2Prev => node1
-                System.out.println("node1: " + node1.myItem + " is next to node1 " + node2Prev.myItem);
-                node2Prev.setLinkNext(node1);
-            }
-            // 9) node2 => node1Next
-            node2.setLinkNext(node1Next);
-            System.out.println("node1Next: " + node1Next.myItem + " is next to node1 " + node2.myItem);
-            if (node1Next != null) {
-                // 10) node2 <- node1Next
-                System.out.println("node2: " + node2.myItem + " is prev to node1Next " + node1Next.myItem);
-                node1Next.setLinkPrev(node2);
-            }
-        }
-        System.out.println("node1.myItem: " + (node1 == node2.myNext.myNext));
-        System.out.println("node hereherehere: " + node2.myItem + node2.myNext.myItem + node2.myNext.myNext.myItem +node2.myNext.myNext.myNext.myItem );
-
-        if (node1 == myHead) {
-            myHead = node2;
-        } else if (node2 == myHead) {
-            myHead = node1;
-        }
-
-        return node2;
-    }
-
 	/**
 	 * Sorts this list using the selection sort algorithm.
 	 */
@@ -339,11 +256,8 @@ public class IntList {
 
         // 1) node1 => node2Next
         node1.setLinkNext(node2Next);
-        System.out.println("node1: "+node1.myItem);
-        System.out.println("node2: "+node2.myItem);
+
         if(node2Next != null) {
-            System.out.println("node2Next, "+node2Next.myItem+ " is not null");
-            System.out.println("node2Next: " + node2Next.myItem + " is next to node1 " + node1.myItem);
             // 2) node1 <- node2Next
             node2Next.setLinkPrev(node1);
         }
@@ -352,34 +266,27 @@ public class IntList {
         node2.setLinkPrev(node1Prev);
         if (node1Prev != null) {
             // 4) node1Prev => node2
-            System.out.println("node1Prev, "+node1Prev.myItem+ " is not null");
-            System.out.println("node1Prev: " + node1Prev.myItem + " is prev to node2 " + node2.myItem);
+
             node1Prev.setLinkNext(node2);
         }
 
         // if node1 and node2 is right next to each other
         if (node1.myItem == node2Prev.myItem) {
-            System.out.println("node1 and node2 are right next to each other");
             // 5) node2 <- node1
             node1.setLinkPrev(node2);
-            System.out.println("node2: " + node2.myItem + " is prev to node1 " + node1.myItem);
             // 6) node2 => node1
             node2.setLinkNext(node1);
         } else {
             // 7) node2Prev <- node1
             node1.setLinkPrev(node2Prev);
-            System.out.println("node2Prev: " + node2Prev.myItem + " is prev to node1 " + node1.myItem);
             if (node2Prev != null) {
                 // 8) node2Prev => node1
-                System.out.println("node1: " + node1.myItem + " is next to node1 " + node2Prev.myItem);
                 node2Prev.setLinkNext(node1);
             }
             // 9) node2 => node1Next
             node2.setLinkNext(node1Next);
-            System.out.println("node1Next: " + node1Next.myItem + " is next to node1 " + node2.myItem);
             if (node1Next != null) {
                 // 10) node2 <- node1Next
-                System.out.println("node2: " + node2.myItem + " is prev to node1Next " + node1Next.myItem);
                 node1Next.setLinkPrev(node2);
             }
         }
@@ -393,139 +300,6 @@ public class IntList {
         return node2;
     }
 
-    /*private ListNode quicksortFail(ListNode head) {
-
-        // base case
-        if (head == null || head.getLinkNext() == null) {
-            return head;
-        }
-
-        int divider = head.myItem;
-        ListNode cur = head;
-        ListNode toRtn = head;
-        // Partitioning process around a divider element
-        while(cur != null) {
-            cur.isOpen = true;
-            // if current card is less than the divider
-            if (cur.myItem < divider) {
-                ListNode leftMostOpen = findLeftMostOpen(toRtn);
-                ListNode lastClosedNode = findLastClosed(toRtn);
-                if (lastClosedNode != null) {
-                    lastClosedNode.lastClosed = false;
-                }
-                leftMostOpen.lastClosed = true;
-                leftMostOpen.isOpen = false;
-                toRtn = swap(leftMostOpen, cur);
-                cur = leftMostOpen;
-            }
-            cur = cur.getLinkNext();
-        }
-        ListNode lastClosedNode = findLastClosed(toRtn);
-        ListNode pivotNode = findPivot(head, toRtn.myItem);
-        if (lastClosedNode != null) {
-            toRtn = swap(lastClosedNode, pivotNode);
-        }
-        // Finally getting the partitioned list
-        ListNode recurse;
-        for (recurse = toRtn; recurse != null; recurse = recurse.getLinkPrev()) {
-            toRtn = recurse;
-        }
-        // Now reset to all false to be used in recursion
-        for (ListNode l = toRtn; l != null; l = l.getLinkNext()) {
-            l.isOpen = false;
-            l.lastClosed = false;
-        }
-        // Split the list into two parts based on the pivot
-        ListNode small = toRtn;
-        if (small.getLinkNext() != null) {
-            while (small.getLinkNext() != pivotNode) {
-                if (small == pivotNode) {
-                    break;
-                }
-                small = small.getLinkNext();
-            }
-        }
-        ListNode smallElements = toRtn;
-        ListNode largeElements = pivotNode.myNext;
-        small.setLinkNext(null);
-
-        // having two parts, recursively split them
-        ListNode l1 = quicksortFail(smallElements);
-        ListNode l2 = quicksortFail(largeElements);
-
-        // merge together
-        IntList merged = merge(l1, l2);
-
-        return merged.myHead;
-    }
-
-    private IntList quicksortFail2(IntList quickSortList, ListNode head, ListNode tail) {
-        System.out.println("quickSortList 111: " + quickSortList);
-        System.out.println("head: " + head.myItem);
-        System.out.println("tail: " + tail.myItem);
-
-        if (head.myItem == tail.myItem) {
-            return new IntList(head);
-        }
-        int divider = head.myItem;
-        ListNode cur = head;
-        ListNode toRtn = head;
-
-        // Setting tail
-        ListNode tailUsed;
-        if (tail.getLinkNext() != null) {
-            tailUsed = tail.getLinkNext();
-        } else {
-            tailUsed = null;
-        }
-
-        // partitioning process around a divider element
-        while (cur != tailUsed) {
-            if (tailUsed != null && cur.myItem == tailUsed.myItem) {
-                break;
-            }
-            if (tailUsed != null) {
-                System.out.println("tailUsed: " + tailUsed.myItem);
-            }
-            System.out.println("divider: " + divider);
-
-            cur.isOpen = true;
-            if (cur.myItem < divider) {
-                ListNode leftMostOpen = findLeftMostOpen(toRtn);
-                ListNode lastClosedNode = findLastClosed(toRtn);
-                if (lastClosedNode != null) {
-                    lastClosedNode.lastClosed = false;
-                }
-                leftMostOpen.lastClosed = true;
-                leftMostOpen.isOpen = false;
-                System.out.println("leftMostOpen: " + leftMostOpen.myItem + " cur: " +cur.myItem + " in list: " + quickSortList);
-                toRtn = swap(leftMostOpen, cur);
-                System.out.println("quickSortList 222: " + quickSortList);
-                System.out.println();
-
-                cur = leftMostOpen;
-            }
-            cur = cur.getLinkNext();
-        }
-        ListNode lastClosedNode = findLastClosed(toRtn);
-        ListNode pivotNode = findPivot(toRtn, divider);
-        if (lastClosedNode != null) {
-            toRtn = swap(lastClosedNode, pivotNode);
-        }
-        for (ListNode past = toRtn; past != null; past = past.getLinkPrev()) {
-            toRtn = past;
-        }
-        quickSortList = convertToIntList(toRtn);
-        System.out.println("quickSortList 444: " + quickSortList);
-        System.out.println("pivotNode: " +pivotNode.myItem);
-        System.out.println();
-        IntList l1 = recQuicksort(quickSortList, quickSortList.myHead, pivotNode);
-        IntList l2 = recQuicksort(quickSortList, pivotNode, tail);
-        l1.addToEnd(pivotNode.myItem);
-        quickSortList = merge(l1.myHead, l2.myHead);
-        return quickSortList;
-    }*/
-
 
     private IntList recQuicksort(IntList quickList)
     {
@@ -537,6 +311,7 @@ public class IntList {
         {
             return quickList;
         }
+
         pivot = quickList.myHead;
         ListNode tailUsed = quickList.myTail;
         if (tailUsed.getLinkNext() != null) {
@@ -544,48 +319,54 @@ public class IntList {
         } else {
             tailUsed = null;
         }
+
+        // if cur is smaller than the pivot, add it to lesser
+        // Otherwise, add it to greater
         while (quickList.myHead != tailUsed)
         {
             cur = quickList.myHead;
-            //System.out.println("cur: " + cur.myItem);
             quickList.myHead = quickList.myHead.myNext;
 
             if (cur.myItem < pivot.myItem)
             {
-                System.out.println("add1: "+cur.myItem);
                 lesser.addToEnd(cur.myItem);
             }
             else if (cur.myItem > pivot.myItem)
             {
-                System.out.println("add2: "+cur.myItem);
                 greater.addToEnd(cur.myItem);
             } else
             {
-                System.out.println("continue");
-                System.out.println();
                 continue;
             }
-            System.out.println();
         }
-        System.out.println("out of while loop");
+
+        // recursively sorting the smaller sublists
         recQuicksort(lesser);
         recQuicksort(greater);
+
+        // if recQuicksort hits the basecase, then we have two quickLists that're returned
+        // And we need to concatenate quicksort(lesser) & pivot & quicksort(greater)
         if (lesser.isEmpty())
         {
+            // if lesser is empty, we want quickList = pivot + quicksort(greater)
             quickList.myHead = pivot;
             quickList.myHead.myNext = greater.myHead;
             quickList.myTail = greater.myTail;
         } else
         {
+            // this is the case where lesser is NON-EMPTY where we need quickList = lesser + pivot at least
             quickList.myHead = lesser.myHead;
             lesser.myTail.myNext = pivot;
             lesser.myTail = pivot;
             if (greater.isEmpty())
             {
+                // but there can be a case where greater is empty
+                // then we want to finish
                 quickList.myTail = pivot;
                 pivot.myNext = null;
             } else
             {
+                // but if greater is NON-EMPTY, then we want quickList = lesser + pivot + greater
                 pivot.myNext = greater.myHead;
                 quickList.myTail = greater.myTail;
             }
@@ -593,43 +374,6 @@ public class IntList {
         return quickList;
     }
 
-    private IntList convertToIntList(ListNode toRtn)
-    {
-        IntList finalRtn = new IntList();
-        for (ListNode l = toRtn; l != null; l = l.myNext)
-        {
-            finalRtn.addToEnd(l.myItem);
-        }
-        return finalRtn;
-    }
-
-
-    private ListNode findPivot(IntList quickSortList, int divider) {
-        for (ListNode cur = quickSortList.myHead; cur != null; cur = cur.myNext) {
-            if (cur.myItem == divider) {
-                return cur;
-            }
-        }
-        return null;
-    }
-
-    private ListNode findLastClosed(IntList quickSortList) {
-        for (ListNode cur = quickSortList.myHead; cur != null; cur = cur.getLinkNext()) {
-            if (cur.lastClosed) {
-                return cur;
-            }
-        }
-        return null;
-    }
-
-    private ListNode findLeftMostOpen(IntList quickSortList) {
-        for (ListNode cur = quickSortList.myHead; cur != null; cur = cur.getLinkNext()) {
-            if (cur.isOpen == true) {
-                return cur;
-            }
-        }
-        return quickSortList.myHead;
-    }
 
     /**
 	 * Returns the result of sorting the values in this list using the merge
@@ -711,10 +455,181 @@ public class IntList {
 		return (int) (100 * Math.random());
 	}
 
+
+    /*private ListNode quicksortFail(ListNode head) {
+
+    // base case
+    if (head == null || head.getLinkNext() == null) {
+        return head;
+    }
+
+    int divider = head.myItem;
+    ListNode cur = head;
+    ListNode toRtn = head;
+    // Partitioning process around a divider element
+    while(cur != null) {
+        cur.isOpen = true;
+        // if current card is less than the divider
+        if (cur.myItem < divider) {
+            ListNode leftMostOpen = findLeftMostOpen(toRtn);
+            ListNode lastClosedNode = findLastClosed(toRtn);
+            if (lastClosedNode != null) {
+                lastClosedNode.lastClosed = false;
+            }
+            leftMostOpen.lastClosed = true;
+            leftMostOpen.isOpen = false;
+            toRtn = swap(leftMostOpen, cur);
+            cur = leftMostOpen;
+        }
+        cur = cur.getLinkNext();
+    }
+    ListNode lastClosedNode = findLastClosed(toRtn);
+    ListNode pivotNode = findPivot(head, toRtn.myItem);
+    if (lastClosedNode != null) {
+        toRtn = swap(lastClosedNode, pivotNode);
+    }
+    // Finally getting the partitioned list
+    ListNode recurse;
+    for (recurse = toRtn; recurse != null; recurse = recurse.getLinkPrev()) {
+        toRtn = recurse;
+    }
+    // Now reset to all false to be used in recursion
+    for (ListNode l = toRtn; l != null; l = l.getLinkNext()) {
+        l.isOpen = false;
+        l.lastClosed = false;
+    }
+    // Split the list into two parts based on the pivot
+    ListNode small = toRtn;
+    if (small.getLinkNext() != null) {
+        while (small.getLinkNext() != pivotNode) {
+            if (small == pivotNode) {
+                break;
+            }
+            small = small.getLinkNext();
+        }
+    }
+    ListNode smallElements = toRtn;
+    ListNode largeElements = pivotNode.myNext;
+    small.setLinkNext(null);
+
+    // having two parts, recursively split them
+    ListNode l1 = quicksortFail(smallElements);
+    ListNode l2 = quicksortFail(largeElements);
+
+    // merge together
+    IntList merged = merge(l1, l2);
+
+    return merged.myHead;
+    }
+
+    private IntList quicksortFail2(IntList quickSortList, ListNode head, ListNode tail) {
+        System.out.println("quickSortList 111: " + quickSortList);
+        System.out.println("head: " + head.myItem);
+        System.out.println("tail: " + tail.myItem);
+
+        if (head.myItem == tail.myItem) {
+            return new IntList(head);
+        }
+        int divider = head.myItem;
+        ListNode cur = head;
+        ListNode toRtn = head;
+
+        // Setting tail
+        ListNode tailUsed;
+        if (tail.getLinkNext() != null) {
+            tailUsed = tail.getLinkNext();
+        } else {
+            tailUsed = null;
+        }
+
+        // partitioning process around a divider element
+        while (cur != tailUsed) {
+            if (tailUsed != null && cur.myItem == tailUsed.myItem) {
+                break;
+            }
+            if (tailUsed != null) {
+                System.out.println("tailUsed: " + tailUsed.myItem);
+            }
+            System.out.println("divider: " + divider);
+
+            cur.isOpen = true;
+            if (cur.myItem < divider) {
+                ListNode leftMostOpen = findLeftMostOpen(toRtn);
+                ListNode lastClosedNode = findLastClosed(toRtn);
+                if (lastClosedNode != null) {
+                    lastClosedNode.lastClosed = false;
+                }
+                leftMostOpen.lastClosed = true;
+                leftMostOpen.isOpen = false;
+                System.out.println("leftMostOpen: " + leftMostOpen.myItem + " cur: " +cur.myItem + " in list: " + quickSortList);
+                toRtn = swap(leftMostOpen, cur);
+                System.out.println("quickSortList 222: " + quickSortList);
+                System.out.println();
+
+                cur = leftMostOpen;
+            }
+            cur = cur.getLinkNext();
+        }
+        ListNode lastClosedNode = findLastClosed(toRtn);
+        ListNode pivotNode = findPivot(toRtn, divider);
+        if (lastClosedNode != null) {
+            toRtn = swap(lastClosedNode, pivotNode);
+        }
+        for (ListNode past = toRtn; past != null; past = past.getLinkPrev()) {
+            toRtn = past;
+        }
+        quickSortList = convertToIntList(toRtn);
+        System.out.println("quickSortList 444: " + quickSortList);
+        System.out.println("pivotNode: " +pivotNode.myItem);
+        System.out.println();
+        IntList l1 = recQuicksort(quickSortList, quickSortList.myHead, pivotNode);
+        IntList l2 = recQuicksort(quickSortList, pivotNode, tail);
+        l1.addToEnd(pivotNode.myItem);
+        quickSortList = merge(l1.myHead, l2.myHead);
+        return quickSortList;
+    }
+    private IntList convertToIntList(ListNode toRtn)
+    {
+        IntList finalRtn = new IntList();
+        for (ListNode l = toRtn; l != null; l = l.myNext)
+        {
+            finalRtn.addToEnd(l.myItem);
+        }
+        return finalRtn;
+    }
+
+
+    private ListNode findPivot(IntList quickSortList, int divider) {
+        for (ListNode cur = quickSortList.myHead; cur != null; cur = cur.myNext) {
+            if (cur.myItem == divider) {
+                return cur;
+            }
+        }
+        return null;
+    }
+
+    private ListNode findLastClosed(IntList quickSortList) {
+        for (ListNode cur = quickSortList.myHead; cur != null; cur = cur.getLinkNext()) {
+            if (cur.lastClosed) {
+                return cur;
+            }
+        }
+        return null;
+    }
+
+    private ListNode findLeftMostOpen(IntList quickSortList) {
+        for (ListNode cur = quickSortList.myHead; cur != null; cur = cur.getLinkNext()) {
+            if (cur.isOpen == true) {
+                return cur;
+            }
+        }
+        return quickSortList.myHead;
+    }*/
+
 	public static void main(String[] args) {
 		IntList values;
 		IntList sortedValues;
-		/*values = new IntList();
+		values = new IntList();
 		System.out.print("Before selection sort: ");
 		for (int k = 0; k < 10; k++) {
 			values.addToFront(randomInt());
@@ -722,9 +637,9 @@ public class IntList {
 		System.out.println(values);
 		values.selectionSort();
 		System.out.print("After selection sort: ");
-		System.out.println(values);*/
+		System.out.println(values);
 
-		/*values = new IntList();
+		values = new IntList();
 		System.out.print("Before insertion sort: ");
 		for (int k = 0; k < 10; k++) {
 			values.addToFront(randomInt());
@@ -732,28 +647,19 @@ public class IntList {
 		System.out.println(values);
 		sortedValues = values.insertionSort();
 		System.out.print("After insertion sort: ");
-		System.out.println(sortedValues);*/
-
-        /*values.addToEnd(5);
-        values.addToEnd(4);
-        values.addToEnd(3);*/
+		System.out.println(sortedValues);
 
 		values = new IntList();
 		System.out.print("Before quicksort: ");
-		//for (int k = 0; k < 10; k++) {
-        //    values.addToFront(randomInt());
-		//}
-        values.addToEnd(1);
-        values.addToEnd(5);
-        values.addToEnd(3);
-        values.addToEnd(2);
-        values.addToEnd(7);
+		for (int k = 0; k < 10; k++) {
+            values.addToFront(randomInt());
+		}
 		System.out.println(values);
 		sortedValues = values.quicksort();
 		System.out.print("After quicksort: ");
 		System.out.println(sortedValues);
 
-		/*values = new IntList();
+		values = new IntList();
 		System.out.print("Before merge sort: ");
 		for (int k = 0; k < 10; k++) {
 			values.addToFront(randomInt());
@@ -761,6 +667,6 @@ public class IntList {
 		System.out.println(values);
 		sortedValues = values.mergeSort();
 		System.out.print("After merge sort: ");
-		System.out.println(sortedValues);*/
+		System.out.println(sortedValues);
 	}
 }

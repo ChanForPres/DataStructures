@@ -133,7 +133,7 @@ Importantly, it should partition an array into 3 parts **in place** without crea
 * Swap the last closed card with the pivot
 * Open all cards
 
-But I decided to create a new list. 
+But I decided to **create a new list** instead of replacing it **in place**. 
 
 ##### Picking the divider
 Best divider is the **median**. Then it needs sorting, which is at best in ```O(NlogN)```, so it's not very helpful eventually. Another approach is just picking a **random** divider. Since we assumed the pivot is the leftmost element, we just swap the random divider with the leftmost element, then the leftmost element is the random divider of the array.
