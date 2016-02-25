@@ -103,10 +103,14 @@ So here, splitting split the linkedlist 5-4-10 into 5, 4, 10. Then once we hit t
 2. Quicksort the two collections
 3. Concatenate the sorted small values with the divider and then with the sorted large values (small sorted values + divider + large sorted values) 
 
-ex) 3, 1, 4, 5, 9, 2, 8, 6
-1. Choose 3 as the divider
-2. Put 4, 5, 9, 8, 6 into the "large" collection; 1,2 into "small" collection
-3. Sort the large collection; sort the small collection; combine the two collections with the divider to get the final result
+Or in other words: <br \>
+* Pick a "pivot" element
+* *Partition* the array into 3 parts
+    * First part: all elements are less than the pivot
+    * Second part: the pivot itself
+    * Third part: all elements are greater than or equal to the pivot
+* Apply the quicksort algorithm to the first and the third part recursively
+
 
 Concatenation: ```O(1)``` <br \>
 Partitioning and Operation: ```O(N)``` <br \>
@@ -131,6 +135,8 @@ Importantly, it should partition an array into 3 parts **in place** without crea
 
 ##### Picking the divider
 Best divider is the **median**. Then it needs sorting, which is at best in ```O(NlogN)```, so it's not very helpful eventually. Another approach is just picking a **random** divider. Since we assumed the pivot is the leftmost element, we just swap the random divider with the leftmost element, then the leftmost element is the random divider of the array.
+
+Java is **pass by reference** when it comes to **Object**.
 
 ##### Quicksort performance in practice
 
