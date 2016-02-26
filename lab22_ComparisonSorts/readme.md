@@ -133,7 +133,7 @@ Importantly, it should partition an array into 3 parts **in place** without crea
 * Swap the last closed card with the pivot
 * Open all cards
 
-But I decided to **create a new list** instead of replacing it **in place**. 
+But I decided to **create a new list** instead of replacing it **in place**. I must definitely retry the in-place version later on.
 
 ##### Picking the divider
 Best divider is the **median**. Then it needs sorting, which is at best in ```O(NlogN)```, so it's not very helpful eventually. Another approach is just picking a **random** divider. Since we assumed the pivot is the leftmost element, we just swap the random divider with the leftmost element, then the leftmost element is the random divider of the array.
@@ -141,15 +141,10 @@ Best divider is the **median**. Then it needs sorting, which is at best in ```O(
 Java is **pass by reference** when it comes to **Object**.
 
 ##### Quicksort performance in practice
+In general, quicksort turns out to be the fastest of the general-purpose sorting algorithms. It's the algorithm used in Java's ```Arrays.sort``` method. 
 
-
-
-
-
-
-
-
-
-
-
+* When the # of items to sort gets small, insertion sort is used instead.
+* For larger arrays, more effort is expanded on finding a good divider element.
+* Various machine-dependent methods are used to optimize the partitioning algorithm and the ```swap``` operation.
+* You can use dual pivots to generally speed up quicksort.
 

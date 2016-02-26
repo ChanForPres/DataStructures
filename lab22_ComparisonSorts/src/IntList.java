@@ -203,8 +203,7 @@ public class IntList {
 	 * Returns the result of sorting the values in this list using the Quicksort
 	 * algorithm. This list is no longer usable after this operation.
 	 */
-	public IntList quicksort()
-    {
+	public IntList quicksort() {
 		if (mySize <= 1) {
 			return this;
 		}
@@ -213,8 +212,7 @@ public class IntList {
 		IntList largeElements = new IntList();
 
         IntList quickSortList = new IntList();
-        for (ListNode l = myHead; l != null; l = l.myNext)
-        {
+        for (ListNode l = myHead; l != null; l = l.myNext) {
             quickSortList.addToEnd(l.myItem);
         }
         IntList toRtn = recQuicksort(quickSortList);
@@ -301,14 +299,12 @@ public class IntList {
     }
 
 
-    private IntList recQuicksort(IntList quickList)
-    {
+    private IntList recQuicksort(IntList quickList) {
         IntList lesser = new IntList();
         IntList greater = new IntList();
         ListNode cur, pivot;
 
-        if (quickList.mySize < 2)
-        {
+        if (quickList.mySize < 2) {
             return quickList;
         }
 
@@ -322,20 +318,16 @@ public class IntList {
 
         // if cur is smaller than the pivot, add it to lesser
         // Otherwise, add it to greater
-        while (quickList.myHead != tailUsed)
-        {
+        while (quickList.myHead != tailUsed) {
             cur = quickList.myHead;
             quickList.myHead = quickList.myHead.myNext;
 
-            if (cur.myItem < pivot.myItem)
-            {
+            if (cur.myItem < pivot.myItem) {
                 lesser.addToEnd(cur.myItem);
             }
-            else if (cur.myItem > pivot.myItem)
-            {
+            else if (cur.myItem > pivot.myItem) {
                 greater.addToEnd(cur.myItem);
-            } else
-            {
+            } else {
                 continue;
             }
         }
@@ -346,26 +338,22 @@ public class IntList {
 
         // if recQuicksort hits the basecase, then we have two quickLists that're returned
         // And we need to concatenate quicksort(lesser) & pivot & quicksort(greater)
-        if (lesser.isEmpty())
-        {
+        if (lesser.isEmpty()) {
             // if lesser is empty, we want quickList = pivot + quicksort(greater)
             quickList.myHead = pivot;
             quickList.myHead.myNext = greater.myHead;
             quickList.myTail = greater.myTail;
-        } else
-        {
+        } else {
             // this is the case where lesser is NON-EMPTY where we need quickList = lesser + pivot at least
             quickList.myHead = lesser.myHead;
             lesser.myTail.myNext = pivot;
             lesser.myTail = pivot;
-            if (greater.isEmpty())
-            {
+            if (greater.isEmpty()) {
                 // but there can be a case where greater is empty
                 // then we want to finish
                 quickList.myTail = pivot;
                 pivot.myNext = null;
-            } else
-            {
+            } else {
                 // but if greater is NON-EMPTY, then we want quickList = lesser + pivot + greater
                 pivot.myNext = greater.myHead;
                 quickList.myTail = greater.myTail;
