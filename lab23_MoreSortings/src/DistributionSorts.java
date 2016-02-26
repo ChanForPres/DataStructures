@@ -5,7 +5,7 @@ public class DistributionSorts {
 	/**
 	 * Modify arr to be sorted. Assume arr only contains 0, 1, ..., 9
 	 */
-	public static int[] countingSort(int[] arr) {
+	public static void countingSort(int[] arr) {
 
         // count the total number of each element
         int[] counts = new int[10];
@@ -29,7 +29,10 @@ public class DistributionSorts {
             sorted[starts[arr[w]]] = arr[w];
             starts[arr[w]]++;
         }
-        return sorted;
+
+        for (int a = 0; a < sorted.length; a++) {
+            arr[a] = sorted[a];
+        }
 	}
 
 
@@ -105,9 +108,9 @@ public class DistributionSorts {
 			arr1[i] = randomDigit();
 		}
 		System.out.println("Original array: " + Arrays.toString(arr1));
-		arr2 = countingSort(arr1);
+		countingSort(arr1);
 		if (arr1 != null) {
-			System.out.println("Should be sorted: " + Arrays.toString(arr2));
+			System.out.println("Should be sorted: " + Arrays.toString(arr1));
 		}
 
 		/*
