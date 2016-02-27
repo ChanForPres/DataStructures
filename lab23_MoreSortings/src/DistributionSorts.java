@@ -102,8 +102,7 @@ public class DistributionSorts {
 	 * Runs some very basic tests of counting sort and radix sort.
 	 */
 	public static void main(String[] args) {
-		int[] arr1 = new int[20];
-        int[] arr2 = new int[20];
+		/*int[] arr1 = new int[20];
 		for (int i = 0; i < arr1.length; i++) {
 			arr1[i] = randomDigit();
 		}
@@ -111,9 +110,8 @@ public class DistributionSorts {
 		countingSort(arr1);
 		if (arr1 != null) {
 			System.out.println("Should be sorted: " + Arrays.toString(arr1));
-		}
+		}*/
 
-		/*
 		int[] arr2 = new int[3];
 		for (int i = 0; i < arr2.length; i++) {
 			arr2[i] = randomDigit();
@@ -122,7 +120,7 @@ public class DistributionSorts {
 		MSDRadixSort(arr2);
 		System.out.println("Should be sorted: " + Arrays.toString(arr2));
 
-		int[] arr3 = new int[30];
+		/*int[] arr3 = new int[30];
 		for (int i = 0; i < arr3.length; i++) {
 			arr3[i] = randomInt();
 		}

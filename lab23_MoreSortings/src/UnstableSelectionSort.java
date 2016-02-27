@@ -4,10 +4,12 @@ public class UnstableSelectionSort {
 		for (int j = arr.length - 1; j > 0; j--) {
 			int latestPos = 0;
 			for (int k = 1; k <= j; k++) {
-				if (arr[latestPos].compareTo(arr[k]) <= -1) {
+				// if arr[latestPos] <= arr[k]
+				if (arr[latestPos].compareTo(arr[k]) <= -1 || arr[latestPos].compareTo(arr[k]) == 0) {
 					latestPos = k;
 				}
 			}
+            // if the element at the latestPos is the biggest
 			if (j != latestPos) {
 				Comparable temp = arr[j];
 				arr[j] = arr[latestPos];
