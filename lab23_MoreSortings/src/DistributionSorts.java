@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class DistributionSorts {
 
@@ -37,10 +39,12 @@ public class DistributionSorts {
 
 
     /**
-	 * Sorts the given array using MSD radix sort. 
+	 * Sorts the given array using MSD radix sort.
+     *
 	 */
 	public static void MSDRadixSort(int[] arr) {
 		int maxDigit = mostDigitsIn(arr) - 1;
+        System.out.println(maxDigit);
 		MSDRadixSortFromDigitInBounds(arr, maxDigit, 0, arr.length);
 	}
 
@@ -48,11 +52,18 @@ public class DistributionSorts {
 	 * Radix sorts the input array only between the indices start and end. Only
 	 * considers digits from the input digit on down. This method is recursive.
 	 */
-	public static void MSDRadixSortFromDigitInBounds(int[] arr, int digit,
-			int start, int end) {
-		// TODO your code here! Make sure to use the countingSortByDigitInBounds
-		// helper method, given below.
-	}
+	public static void MSDRadixSortFromDigitInBounds(int[] arr, int digit, int begin, int end) {
+        // base case: if next to each other
+        if (end <= begin+1) {
+            return;
+        } else {
+            int[] bounds = countingSortByDigitInBounds(arr, digit, begin, end);
+            for (int i = 0; i < bounds.length; i+=2) {
+                int maxDigit = mostDigitsIn(Arrays.copyOfRange(arr, bounds[i], bounds[i+1]+1));
+                MSDRadixSortFromDigitInBounds(arr, maxDigit, bounds[i], bounds[i]+1);
+            }
+        }
+    }
 
 	/**
 	 * A helper method for radix sort. Modifies arr to be sorted according to
@@ -64,9 +75,78 @@ public class DistributionSorts {
 	 * radix sort.
 	 */
 	private static int[] countingSortByDigitInBounds(int[] arr, int digit,
-			int start, int end) {
-		// TODO your code here!
-		return null;
+			int begin, int end) {
+        // count frequencies
+        int[] counts = new int[10];
+        for (int i = begin; i < end; i++) {
+            int numDigit = arr[i]/(int) Math.pow(10, digit);
+            counts[numDigit]++;
+        }
+        // find start index
+        int[] starts = new int[10];
+        for (int j = begin-1; j < end-1; j++) {
+            if (j == begin-1) {
+                starts[j+1] = 0;
+            } else {
+                starts[j+1] = counts[j] + starts[j];
+            }
+        }
+
+        // sort the arr
+        int[] sorted = new int[arr.length];
+        for (int w = 0; w < arr.length; w++) {
+            int numDigit = arr[w]/(int) Math.pow(10, digit);
+            sorted[starts[numDigit]] = arr[w];
+            starts[numDigit]++;
+        }
+
+
+        // because of the void method
+        for (int p = 0; p < arr.length; p++) {
+            arr[p] = sorted[p];
+        }
+
+
+        // count the variety of numbers
+        int variety = 0;
+        HashSet<Integer> varietySet = new HashSet<>();
+        for (int v = begin; v < end; v++) {
+            int numDigit = arr[v]/(int) Math.pow(10, digit);
+            if (!varietySet.contains(numDigit)) {
+                variety++;
+                varietySet.add(numDigit);
+            }
+        }
+
+        // create boundaries
+        HashSet<Integer> boundCheck = new HashSet<>();
+        int[] bound = new int[variety*2];
+        int bi = 0;
+        int boundIdx = 0;
+        for (int k = begin; k < end; k++) {
+            int numDigit = arr[k]/(int) Math.pow(10, digit);
+            if (bi == 0) {
+                bound[0] = 0;
+                boundIdx++;
+                bi++;
+                boundCheck.add(numDigit);
+            } else if (!boundCheck.contains(numDigit) && bi != 0) {
+                bound[boundIdx] = k-1;
+                boundIdx++;
+                bi++;
+                bound[boundIdx] = k;
+                boundCheck.add(numDigit);
+                boundIdx++;
+                bi++;
+            } else if (bi == bound.length-1) {
+                bound[boundIdx] = k;
+            }
+        }
+        if (bound[bound.length-1] == 0) {
+            bound[bound.length-1] = sorted.length-1;
+        }
+        System.out.println("bound: " + Arrays.toString(bound));
+        return bound;
 	}
 
 	/**
@@ -76,7 +156,7 @@ public class DistributionSorts {
 	private static int mostDigitsIn(int[] arr) {
 		int maxDigitsSoFar = 0;
 		for (int num : arr) {
-			int numDigits = (int) (Math.log10(num) + 1);
+            int numDigits = (int) (Math.log10(num) + 1);
 			if (numDigits > maxDigitsSoFar) {
 				maxDigitsSoFar = numDigits;
 			}
@@ -112,11 +192,17 @@ public class DistributionSorts {
 			System.out.println("Should be sorted: " + Arrays.toString(arr1));
 		}*/
 
-		int[] arr2 = new int[3];
-		for (int i = 0; i < arr2.length; i++) {
+		int[] arr2 = new int[4];
+		/*for (int i = 0; i < arr2.length; i++) {
 			arr2[i] = randomDigit();
-		}
-		System.out.println("Original array: " + Arrays.toString(arr2));
+		}*/
+        arr2[0] = 20;
+        arr2[1] = 5;
+        arr2[2] = 3;
+        arr2[3] = 10;
+        
+
+        System.out.println("Original array: " + Arrays.toString(arr2));
 		MSDRadixSort(arr2);
 		System.out.println("Should be sorted: " + Arrays.toString(arr2));
 

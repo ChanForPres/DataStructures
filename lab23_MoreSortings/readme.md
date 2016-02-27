@@ -140,6 +140,26 @@ This is unstable when the array contains the same element. Say we have [(3), 3, 
 
 ### Radix sort
 #### Linear time sorting with distribution sorts
+All the sorting methods we've seen so far are **comparison-based**, that is, they use **comparisons** to determine whether two elements are out of order. There's a proof that any comparison-based sorts needs at least **O(NlogN)** comparisosn to sort N elements. However, there are sorting methods that allow sorting of N elements in time proportional to N (counting sort, and radix sort!)
+
+#### Radix sort
+* *radix*: the number of values a single digit can take on
+    * e.g. binary numbers: radix-2 system/ decimal numbers: radix-10 system
+    * Any radix sort examines elements **in passes**, one pass for the rightmost digit, one for the next-to-rightmost digit, and so on
+    * In radix sort, we pretend **each digit is a separate key**, and then we just sort on all the keys **at once**, with higher digits taking precedence over the lower ones.
+
+* Two strategies of sorting all the multiple keys at once
+    1. *LSD radix sort* : First sort everything on the least important key. Then sort everything on the next key. Continue, until you reach the highest key. This strategy requires the sorts to be **stable**.
+    2. *MSD radix sort* : First sort everything on the high key. Group all the items with the same high key into buckets. Recursively radix sort each bucket on the next highest key. Concatenate your buckets back together.
+
+* Helper method
+    * Counting sort: For both LSD And MSD radix sorts, they call a helper method that sorts items based on a single digit. Because any digit can only take 10 possible values (for base-10 system), **counting sort** is a good sorting algorithm.
+
+#### ```MSDRadixSortFromDigitInBounds```
+* In MSD radix sort, there's a step where you **recursively** radix sort each bucket of items that have the same digit. 
+* You can accomplish this recursion without needing to split up the array into new smaller arrays. Instead, each bucket of the array will just be a **portion of the array** known to be **between two given indices**. And make recursive calls that only sort between the indices that are the boundaries of the bucket. 
+* Remember! that every digit is regarded as key and we consider the 100th digit, 10th digit, and 1st digit respectively if we have a number greater than 100.
+
 
 
 
