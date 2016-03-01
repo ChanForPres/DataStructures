@@ -160,7 +160,9 @@ All the sorting methods we've seen so far are **comparison-based**, that is, the
 * You can accomplish this recursion without needing to split up the array into new smaller arrays. Instead, each bucket of the array will just be a **portion of the array** known to be **between two given indices**. And make recursive calls that only sort between the indices that are the boundaries of the bucket. 
 * Remember! that every digit is regarded as key and we consider the 100th digit, 10th digit, and 1st digit respectively if we have a number greater than 100.
 
-
+1. Counting sort based on the highest ```digit``` 
+2. Boundaries based on the highest ```digit``` as well 
+3. Decrement the ```digit```
 
 
 
