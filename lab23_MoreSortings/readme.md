@@ -164,6 +164,8 @@ All the sorting methods we've seen so far are **comparison-based**, that is, the
 2. Boundaries based on the highest ```digit``` as well 
 3. Decrement the ```digit```
 
+https://www.cs.princeton.edu/~rs/AlgsDS07/18RadixSort.pdf was helpful
+
 
 
 

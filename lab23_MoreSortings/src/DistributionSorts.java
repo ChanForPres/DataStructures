@@ -53,8 +53,6 @@ public class DistributionSorts {
 	 * considers digits from the input digit on down. This method is recursive.
 	 */
 	public static void MSDRadixSortFromDigitInBounds(int[] arr, int digit, int begin, int end) {
-        System.out.println("begin: " + begin + " end: " + end);
-
         // base case: if end and begin are next to each other or the same
         if (end <= begin+1) {
             return;
@@ -69,10 +67,8 @@ public class DistributionSorts {
         }
         else{
             int[] bounds = countingSortByDigitInBounds(arr, digit, begin, end);
-            System.out.println("FINAL arr: " + Arrays.toString(arr));
 
             for (int i = 0; i < bounds.length; i+=2) {
-                //System.out.println(Arrays.toString(Arrays.copyOfRange(arr, bounds[i], bounds[i+1]+1)));
                 MSDRadixSortFromDigitInBounds(arr, digit-1, bounds[i], bounds[i+1]+1);
             }
         }
@@ -93,18 +89,13 @@ public class DistributionSorts {
 	 */
 	private static int[] countingSortByDigitInBounds(int[] arr, int digit,
 			int begin, int end) {
-        System.out.println("HEREHEREHERE begin: " + begin + " end: " + end);
 
         // count frequencies
         int[] counts = new int[10];
         for (int i = begin; i < end; i++) {
-            //System.out.println("arr[i]: " + arr[i] + " digit: " + digit + " arr[i] / (int) Math.pow(10, digit): "+arr[i] / (int) Math.pow(10, digit));
             int numDigit = getNthDigit(arr[i], 10, digit);
-            System.out.println("arr[i]: " + arr[i] + " numDigit: " + numDigit);
             counts[numDigit]++;
         }
-        System.out.println("count: " + Arrays.toString(counts));
-
 
         // find start index
         int[] starts = new int[10];
@@ -115,8 +106,6 @@ public class DistributionSorts {
                 starts[j + 1] = counts[j] + starts[j];
             }
         }
-        System.out.println("starts: " + Arrays.toString(starts));
-
 
         int[] temp = new int[arr.length];
         for (int t = 0; t < arr.length; t++) {
@@ -143,56 +132,31 @@ public class DistributionSorts {
             }
         }
 
-        // Create boundaries
-        /*int k = begin;
-        int assign = 0;
-        int[] bounds = new int[variety * 2];
+        // create boundary of each same-digit bucket in the array
         HashSet<Integer> boundCheck = new HashSet<>();
-        while (assign != end) {
-            int numDigit = arr[k] / (int) Math.pow(10, digit);
-            if (k == begin) {
-
-            }
-            if (!boundCheck.contains(numDigit)) {
-                bounds[k] = assign;
-                k++;
-            } else {
-                while (boundCheck.contains(numDigit)) {
-                    assign++;
-                }
-            }
-        }
-        return bounds;*/
-
-        // create boundaries
-        HashSet<Integer> boundCheck = new HashSet<>();
-        System.out.println("variety: " + variety);
-        System.out.println("maxDigit: " + digit);
         int[] bound = new int[variety*2];
         int bi = 0;
         int boundIdx = 0;
         for (int k = begin; k < end; k++) {
-            System.out.println("k: " + k);
             int numDigit = getNthDigit(arr[k], 10, digit);
             if (bi == 0) {
                 bound[0] = begin;
-                System.out.println("bound[0]: " + begin + " arr[k]: " + arr[k] + " numDigit: " + numDigit);
                 boundIdx++;
                 bi++;
                 boundCheck.add(numDigit);
-            } else if (!boundCheck.contains(numDigit) && bi != begin) {
-                System.out.println("boundIdx: " + boundIdx + " k-1: " + (k-1) + " numDigit: " + numDigit + " arr[k]: " + arr[k]);
+            }
+            // if there's different digit then add that new info to the bound array
+            else if (!boundCheck.contains(numDigit) && bi != begin) {
                 bound[boundIdx] = k-1;
                 boundIdx++;
                 bi++;
                 bound[boundIdx] = k;
-                System.out.println("boundIdx: " + boundIdx + " k: " + (k) + " numDigit: " + numDigit+ " arr[k]: " + arr[k]);
                 boundCheck.add(numDigit);
                 boundIdx++;
                 bi++;
-                System.out.println("bi: " + bi);
-            } if (bi == bound.length-1) {
-                System.out.println("boundIdx: " + boundIdx + " k: " + k);
+            }
+            // if we reach the the end of the array we would like to add that end index to the last
+            if (bi == bound.length-1) {
                 bound[boundIdx] = k;
             }
         }
@@ -200,7 +164,6 @@ public class DistributionSorts {
             bound[bound.length-1] = end-begin-1;
         }
 
-        System.out.println("bounds: " + Arrays.toString(bound));
         return bound;
 
 	}
