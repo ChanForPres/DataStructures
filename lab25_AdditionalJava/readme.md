@@ -22,6 +22,8 @@ This method takes ```O(N*L)``` because append only takes time proprotional to th
 
 The difference between using Strings and ```StringBuilder``` is so extreme that Java programmers say you should **never, ever** append to Strings in a loop. **Always** convert to ```StringBuilder``` and convert back to String once appends are done.
 
+**Check out my** ```string_experiments.txt``` **file**.
+
 
 ### Wildcard Types
 
@@ -65,12 +67,80 @@ public static void printPoints(ArrayList<? extends Point> points) {
 #### A Strange Assymetry
 Wildcard types have a strange assymetry associated with them. Consider our ```points``` variable in the ```printPoints``` method above. We are allowed to do ```Point p = points.get(0);```, but not allowed to do ```Point p = new Point(0,2); points.add(p);```. 
 
-In other words, we can **get** things from ```points```, but we cannot **put** things into ```points```. 
+In other words, we can **get** things from ```points```, but we cannot **put** things into ```points```.
+
+**Check out my** ```wildcards.txt``` **file**.
 
 
+### Packages
+A package is a **grouping of related classes** (and interfaces) that provides **namespace management** and **access protection**. Sometimes packages are simply used for their organizational benefits. 
+
+Packages correspond to the folders a class is in: If your code is in a package named ```proj1```, then it must also be in a folder named ```proj1/```. If your code is in a package named ```cs61bl.proj1```, then it must be in a nested folder ```cs61bl/proj1```
+
+#### Namespace Management and Importing
+Namespace management refers to the concept of **preventing naming collisions**. There are a lot of Java files, some of which are bound to have the same name.
+
+Say you're writing a program and you want to use 2 different classes named ```ArrayList```, which were written by 2 different people. The packages they're in can be used to **distinguish** them. All we have to do is **use the complete pacakge name**.
+
+For example <br \>
+```
+java.util.ArrayList arr1 = new java.util.ArrayList();
+cs61bl.ArrayList arr2 = new cs61bl.ArrayList();
+```
+
+**Whenever you refer to a class, you must specify the complete package.**
+
+But we haven't called ```java.util.ArrayList``` all the time. And it's because we **imported it** with a statement like ```import java.util.ArrayList;```
 
 
+### Java through Terminal
+#### The classpath
+We can run a Java program from any location on our computer. The class file doesn't even have to be in the same folder. The way you could do this is by **adding these places to something called classpath**, which you can set with the ```-cp``` option. 
 
+1. For example if you want to run a class "HelloWorld" in a folder "deep": ```java -cp deep HelloWorld```
+
+2. If you want to search the current directory for a class "HelloWorld": ```java -cp . HelloWorld```
+
+3. If you want to search multiple directories, you can add multiple locations to the classpath and separate them within colons: ```java -cp .:deep:other HelloWorld``` (This would search for the ```HelloWorld``` class in the current directory, ```deep``` directory, and the ```other``` directory.
+
+4. We **DO NOT** use ```java deep/HelloWorld```
+
+5. Java class in a folder is not necessarily in a package/ Java class in a **package** is necessarily in a folder. 
+    * Java class just in a folder: ```java -cp deep HelloWorld```
+    * Java class in a package called greetings: ```java greetings.HelloWorld``` (Java is smart to look in the ```greetings``` folder, so you don't have to include it in the classpath. This works as long as the ```greetings``` packages is in the current folder) 
+
+Q. Consider the following directory structure:
+
+```
+home/
+    emotions/
+            deep/
+                greetings/
+                    friendly/
+                        HelloWorld.class
+```
+You're in the ```home/``` folder and you want to run ```HelloWorld```. It's in a package ```greetings.friendly```, but just in ```emotions/deep/```. Correct Command is ```java -cp emotions/deep greetings.friendly.HelloWorld```
+
+#### Compiling in Folders and Packages
+We mentioned that we could **add multiple different locations to the classpath**. But why?
+
+1. Because it can be useful for compiling one class that depends on other classes in different locations. 
+    * e.g. Suppose we're trying to compile the file ```A.java``` which references the classes ```B``` and ```C```. To compile ```A.java```, the classes ```B``` and ```C``` have to be on the classpath as well.
+
+2. Because it can be useful for using packages.
+    * e.g. To compile a class ```coolpackage.A``` which references the classes ```oddpackage.B``` and ```weirdpackage.C```, the locations of the packages ```oddpackage``` and ```weirdpackage``` must be on the classpath.
+
+#####Confusing part 
+When we **run Java programs**, we always use the class name (with packages). If the class is in another folder, we have to include that folder on the classpath. <br \>
+When we **compile**, however, we use the file name, not the class name. e.g. ```javac deep/HelloWorld.java```
+
+This is different from how we would **run the class**. When running a Java program, ```-cp``` is used to indicate the **location of the class that could be found**. When **compiling a Java file**, ```-cp``` is used to **indicate the location of classes and packages that the file might depend on**.
+
+#### Compiling Experiment
+**Check out my** ```compiling.txt``` **file**.
+
+
+### Using Other people's code
 
 
 
