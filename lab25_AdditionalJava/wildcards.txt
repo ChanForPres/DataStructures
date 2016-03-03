@@ -1,1 +1,46 @@
-1. The smallest number of N such that "multiply" takes longer than 10 seconds was 62900. It takes 10.001 seconds. However, when we use "fastMultiply", the whole process takes 0.005408732 seconds. N of size 100000000 still takes about 3 seconds. Bigger Integer than 100000000 gives us OutOfMemoryError.
+
+Q. Describe the results of my experiment.
+
+The “printPoints” method passes in the argument of “ArrayList” of wildcard type that extends “Point” class called “points”. Here, we can “get” things from “points” but we cannot “put” things to “points”.
+
+In other words, “Point p = points.get(0);” was possible, but “Point p = new Point(0, 2); points.add(p);” was not possible.
+
+================================================================================
+
+Q. Explain why this makes sense. (This asymmetry follows logically from our understanding of what the compiler knows and allows)
+
+First, an unbounded one looks like “<?>” which basically means “<? extends Object>”. It loosely means the generic can be any type. “<? extends Point>” and “<? super Point>” are examples of bounded wildcards. A bounded wildcard places a restriction on the type by saying that it(the class type) either has to extend a specific type(“<? extend T>” = upper bound) or has to be an ancestor of a specific type (“<? super T>” = lower bound).
+
+Then for example, if there’re
+1. class Animal 
+2. class Mammal extends Animal
+3. class Cat extends Mammal
+4. class Dog extends Mammal
+
+then if we have a method that’s like 
+“public void someMethod(ArrayList<? extends Mammal> lc)”
+> Mammal c = lc.get(0); 
+//it’s fine because anything that will be returned by “get” method will either be Cat class or Dog class, in which both of them are of Mammal type, so there’s no problem of getting
+> lc.add(new Dog()); 
+//will not compile, because we don’t know the real type of the list lc and if we add anything that’s not the type of the list, it’ll cause a problem.
+//we only know that its upper bound is Mammal. ArrayList might be of type Dog and if we add new Cat, it will definitely cause problem (since they’re two very different type of Mammal) 
+
+For the Point example, we have a method 
+“public static void printPoints(ArrayList<? extends Point> points)”
+> Point p = points.get(0);
+//it’s fine
+> points.add(new Point(0,2));
+//not compile, because of the same reason
+
+———————————————————————————————————————————————————————————————————————————————-
+then if we have a method that’s
+“public void anotherMethod(ArrayList<? super Mammal> lc)”
+> Mammal c = lc.get(0);
+// will not compile, because we don’t know whether the list lc is of type Mammal. It can be of an Animal class, which is Mammal’s superclass. Animal class contains not only mammals but every living thing, including birds, fish and reptiles. So we cannot assume that it’s of Mammal type. 
+> lc.add(new Mammal());
+// it’s fine, if lc is of type Mammal it’s definitely fine. If lc is of type Animal, it can still be okay because of the static/dynamic rules. Dynamic type can be of its existing class or any subclasses.
+
+================================================================================
+
+Q. Is there any way to add an object to “points”?
+when I write “super” instead of “extends”, more specifically “public static void printPoints(ArrayList<? super Point> points)”, I can add an object to points.

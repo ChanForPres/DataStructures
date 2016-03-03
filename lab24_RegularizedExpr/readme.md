@@ -204,8 +204,33 @@ Hence, since we only want to match the word ```men```, we should demarcate it wi
     * This is useful for catching announcement posts, where the subject line starts with [ANN] or Ann or [Ann. The first "^" forces a match at the beginning of the line. Then it looks for zero or one (the meaning of the "?") "[" characters, but since this is a reserved character, it has to be escaped to "\[". Then we look for a "A", followed by either "N" or "n" and then one or more "N" or "n" characters.
 
 
+### Another Example
+* Optional Characters: ```1 file found?```(Match), ```2 files found?```(Match), ```24 files found?```(Match), ```No files found```(Skip)
+    * ```\d+ files? found\?```
 
+* Matching whitespaces: ```1.  abc```(Match), ```2.    abc```(Match), ```3.      abc```(Match), ```4.abc```(Skip) 
+    * ```\d\.\s+abc```
 
+* Match Groups: ```file_record_transcript.pdf``` (```file_record_transcript```), ```file_07241999.pdf``` (```file_07241999```), ```testfile_fake.pdf.tmp```(Skip)
+    * ```(file.+)\.pdf$.```
+
+* Nested Groups: ```Jan 1987```(```Jan 1987```, ```1987```), ```May 1969```(```May 1969```, ```1969```), ```Aug 2011```(```Aug 2011```, ```2011```)
+    * ```(\w+ (\d+))```
+
+* More Grouping: ```1280x720``` (```1280```, ```720```), ```1920x1600``` (```1920```, ```1600```), ```1024x768``` (```1024```, ```768```)
+    * ```(\d+)x(\d+)```
+
+* Conditionals: ```I love cats```(Match), ```I love dogs```(Match), ```I love logs```(Skip), ```I love cogs```(Skip)
+    * I love (cats|dogs)
+
+* Matching a decimal numbers: ```3.14159```(Match), ```-255.34```(Match), ```128```(Match), ```1.9e10```(Match), ```123,340.00```(Match), ```720p```(Skip)
+    * ```^-?\d+(,\d+)*(\.\d+(\e\d+)?)?$```
+
+* Phone Matching: ```415-555-1234``` (415), ```650-555-2345``` (650), ```(416)555-3456```(416), ```202 555 4567``` (202), ```4035555678``` (403), ```1 416 555 9292``` (416)
+    * ```1?[\s]?\(?(\d{3})\)?[\s-]?\d{3}[\s-]?\d{4}```
+
+* Email: ```tom.riddle@hogwarts.com```(tom.riddle), ```tom.riddle+regexone@hogwarts.com```(tom.riddle), ```tom@hogwarts.com```(tom)
+    * ```^([\w\.]*)```
 
 
 

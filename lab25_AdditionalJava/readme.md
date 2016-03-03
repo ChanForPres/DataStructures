@@ -1,4 +1,4 @@
-Lab 24: Additional Java
+Lab 25: Additional Java
 ===
 1. Go over a class known as ```StringExpr```
 2. Investigate *wildcard types*
@@ -63,8 +63,9 @@ public static void printPoints(ArrayList<? extends Point> points) {
 ```
 
 #### A Strange Assymetry
+Wildcard types have a strange assymetry associated with them. Consider our ```points``` variable in the ```printPoints``` method above. We are allowed to do ```Point p = points.get(0);```, but not allowed to do ```Point p = new Point(0,2); points.add(p);```. 
 
-
+In other words, we can **get** things from ```points```, but we cannot **put** things into ```points```. 
 
 
 
