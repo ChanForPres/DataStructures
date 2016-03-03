@@ -7,17 +7,18 @@ emotions/
 	      |__gratitude
 		      |__ThankYou.java
 
-Basically folders and packages have no difference. Creating subsequent folders of src-com-utils will be the same as having a package com.utils. 
+Basically folders and packages have no difference. 
+Creating subsequent folders of src-com-utils will be the same as having a package com.utils. 
 ——————————————————————————————————————————————————————————————————————————————
 Example:
 |__Exec Jar
       |__classes
-      |__src
-	   |__com
-	       |__g2
-                  |__ExecJar
-                       |__Person.java
-                       |__Start.java
+            |__src
+	         |__com
+	             |__g2
+                        |__ExecJar
+                             |__Person.java
+                             |__Start.java
 
 * To compile: 
 > javac -d “classes” “src/com/g2/ExecJar/Person.java”
@@ -25,18 +26,23 @@ Example:
 // Last argument is class path where the java file exists
 
 > javac -d “classes” -classpath “classes” “src/com/g2/ExecJar/Person.java”
+// Because class Start depends on class Person and its class file is not in the same directory
+// -classpath explicitly tells compiler that where it can find required class files
+// To include more than one classpath) > -classpath path1;path2;path3
 
+* To run:
+> java -classpath “classes” com.g2.ExecJar.Start
 ——————————————————————————————————————————————————————————————————————————————
 
 1. What is the sequence of commands you need to do in order to compile and run HelloWorld.java from the folder above emotions/?
 * First in the source code, 
-	- HelloWorld.java imports gratitude.ThankYou (which signifies that ThankYou.java is in a package called gratitude).
+	- HelloWorld.java depends on gratitude.ThankYou (which signifies that ThankYou.java is in a package called gratitude).
 	- Hello	World.java is in a package called greetings
 
 * In order to compile: 
-	> javac -cp src emotions/deep/greetings/HelloWorld.java
+	> javac -d “src” -classpath “src” “src/emotions/deep/greetings/HelloWorld.java”
 * In order to run:
-	> java -cp emotions.deep .:feelings:greetings HelloWorld
+	> java -classpath “src” emotions.deep.greetings.HelloWorld
 
 
 

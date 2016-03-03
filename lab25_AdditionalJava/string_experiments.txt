@@ -1,1 +1,4 @@
-1. The smallest number of N such that "multiply" takes longer than 10 seconds was 62900. It takes 10.001 seconds. However, when we use "fastMultiply", the whole process takes 0.005408732 seconds. N of size 100000000 still takes about 3 seconds. Bigger Integer than 100000000 gives us OutOfMemoryError.
+1. The smallest number of N such that "multiply" takes longer than 10 seconds was 62900. It takes 10.001 seconds.
+However, when we use "fastMultiply", the whole process takes 0.005408732 seconds. 
+N of size 100000000 still takes about 3 seconds. 
+Bigger Integer than 100000000 gives us OutOfMemoryError.

@@ -112,12 +112,12 @@ We can run a Java program from any location on our computer. The class file does
 Q. Consider the following directory structure:
 
 ```
-home/
-    emotions/
-            deep/
-                greetings/
-                    friendly/
-                        HelloWorld.class
+home
+  |__emotions
+        |__deep
+             |__greetings
+                    |__friendly
+                           |__HelloWorld.class
 ```
 You're in the ```home/``` folder and you want to run ```HelloWorld```. It's in a package ```greetings.friendly```, but just in ```emotions/deep/```. Correct Command is ```java -cp emotions/deep greetings.friendly.HelloWorld```
 
@@ -130,7 +130,7 @@ We mentioned that we could **add multiple different locations to the classpath**
 2. Because it can be useful for using packages.
     * e.g. To compile a class ```coolpackage.A``` which references the classes ```oddpackage.B``` and ```weirdpackage.C```, the locations of the packages ```oddpackage``` and ```weirdpackage``` must be on the classpath.
 
-#####Confusing part 
+##### !Confusing part 
 When we **run Java programs**, we always use the class name (with packages). If the class is in another folder, we have to include that folder on the classpath. <br \>
 When we **compile**, however, we use the file name, not the class name. e.g. ```javac deep/HelloWorld.java```
 
