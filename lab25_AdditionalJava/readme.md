@@ -141,9 +141,13 @@ This is different from how we would **run the class**. When running a Java progr
 
 
 ### Using Other people's code
+Often it's useful to use classes written by other people that aren't included by default in Java. You can download these off the internet, often in the form of **JAR** files.
 
+JAR stands for Java Archive. It is a **package file format** used to aggregate many Java .class files and associated metadata(e.g. text, images). A JAR file is nothing more than a .zip file for Java projects.
 
+JAR files are generally used to distribute **application software or libraries**. JAR files are used because it is often unreasonable to give many separate, unorganized .class files to developers. Packaging all these .class files together into a runnable archive makes it easy to share complicated Java programs with other people.
 
+ex) JUnit JAR files: JUnit is a complicated package with many different class files. These are all packaged into two JUnit JAR
 
 
 

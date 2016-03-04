@@ -201,6 +201,9 @@ public class AVLTree {
                 TreeNode rtnNode = new NonEmptyTreeNode(item, this);
                 return rtnNode;
             } else {
+                // Recursively goes down the subtree to find the right place to add
+                // System.out.println("t before: " + t.item());
+
                 // if item is smaller than the root, left
                 if (item < t.item()) {
                     t.setLeft(add(t.left(), item));
@@ -210,9 +213,15 @@ public class AVLTree {
                     t.setRight(add(t.right(), item));
                 }
 
+                // We now break the stack of recursion
+                // if the balanced tree is not broken, return
+                // until we find a spot where the balance is broken
+                // System.out.println("t after: " + t.item());
+
                 // Now rotate if balance is broken
                 // if balanceFactor < -1: longer right, rotate left essentially
                 if (t.balanceFactor() < -1) {
+					// longer left than right in the right child
                     // insertion into left subtree of the right child of a
                     if (t.right().balanceFactor() > 0) {
                         TreeNode newRight = rotateRight(t.right());
@@ -224,6 +233,7 @@ public class AVLTree {
                 }
                 // if balanceFactor > 1: longer left, rotate right
                 else if (t.balanceFactor() > 1) {
+                    System.out.println("t: " + t.item());
                     // insertion into right subtree of the left child of a
                     if (t.left().balanceFactor() < 0) {
                         TreeNode newLeft = rotateLeft(t.left());
@@ -419,7 +429,7 @@ public class AVLTree {
 	 * all of the cases.
 	 */
 	public static void main(String[] args) {
-		AVLTree t1 = new AVLTree(1);
+		/*AVLTree t1 = new AVLTree(1);
 		t1.insert(2);
 
 		// Should cause a rotation to occur.
@@ -433,14 +443,14 @@ public class AVLTree {
 		// Should cause another rotation.
 		t1.insert(5);
 		System.out.println(t1);
-		System.out.println(t1.isAlmostBalanced());
+		System.out.println(t1.isAlmostBalanced());*/
 
-		AVLTree t2 = new AVLTree(2);
+		AVLTree t2 = new AVLTree(9);
+		t2.insert(2);
+		t2.insert(10);
 		t2.insert(1);
-		t2.insert(4);
-		t2.insert(3);
-		t2.insert(5);
-
+		t2.insert(7);
+        System.out.println(t2);
 		// Should cause a rotation to occur.
 		t2.insert(6);
 		System.out.println(t2);
