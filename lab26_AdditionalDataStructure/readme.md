@@ -38,7 +38,7 @@ Let's say that the node that we're splaying up (X) is the **right child of a lef
      B     C           A     B        
 ```
 
-### Case 2: Zig-Zag
+### Case 2: Zig-Zig
 Let's say X is the **left child of a left child** (or right child of a right child). 
 
 1. Rotate right P through G
@@ -72,9 +72,8 @@ If X's parent is the root of the entire splay tree, then we just rotate X so tha
   (A)   (B)                       (B)    (C)                
 ```
 
-
-
-
+#### Implementing ```SplayTree.java``` 
+* KEEP IN MIND: that ```put``` method here compares **key** not **value** of any elements inserted.
 
 
 

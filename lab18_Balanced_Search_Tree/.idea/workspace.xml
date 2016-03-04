@@ -2,17 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51468429-cae7-4610-9a96-12c9f052a4e5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab18_Balanced_Search_Tree/AVLTree$EmptyTreeNode.class" afterPath="$PROJECT_DIR$/out/production/lab18_Balanced_Search_Tree/AVLTree$EmptyTreeNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab18_Balanced_Search_Tree/AVLTree$NonEmptyTreeNode.class" afterPath="$PROJECT_DIR$/out/production/lab18_Balanced_Search_Tree/AVLTree$NonEmptyTreeNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/lab18_Balanced_Search_Tree/AVLTree.class" afterPath="$PROJECT_DIR$/out/production/lab18_Balanced_Search_Tree/AVLTree.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lab17_TreeMap/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../lab17_TreeMap/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../lab26_AdditionalDataStructure/src/Bag.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../lab26_AdditionalDataStructure/src/Edge.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../lab26_AdditionalDataStructure/src/EdgeWeightedGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../lab26_AdditionalDataStructure/src/Kruskals.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../lab26_AdditionalDataStructure/src/UF.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lab14_Trees1/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../lab14_Trees1/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AVLTree.java" afterPath="$PROJECT_DIR$/src/AVLTree.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lab25_AdditionalJava/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../lab25_AdditionalJava/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lab25_AdditionalJava/readme.md" afterPath="$PROJECT_DIR$/../lab25_AdditionalJava/readme.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lab26_AdditionalDataStructure/.idea/misc.xml" afterPath="$PROJECT_DIR$/../lab26_AdditionalDataStructure/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lab26_AdditionalDataStructure/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../lab26_AdditionalDataStructure/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lab26_AdditionalDataStructure/readme.md" afterPath="$PROJECT_DIR$/../lab26_AdditionalDataStructure/readme.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lab26_AdditionalDataStructure/src/SplayTree.java" afterPath="$PROJECT_DIR$/../lab26_AdditionalDataStructure/src/SplayTree.java" />
     </list>
     <ignored path="BalancedSearchTree.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -86,8 +85,8 @@
       <file leaf-file-name="AVLTree.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AVLTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.95896035">
-              <caret line="287" column="0" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.67168266">
+              <caret line="157" column="9" selection-start-line="136" selection-start-column="8" selection-end-line="157" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -158,9 +157,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -195,6 +193,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -786,7 +785,13 @@
       <workItem from="1455248806700" duration="5519000" />
       <workItem from="1455579867823" duration="88000" />
       <workItem from="1457052593741" duration="1736000" />
-      <workItem from="1457075517663" duration="889000" />
+      <workItem from="1457075517663" duration="1028000" />
+      <workItem from="1457078793942" duration="6000" />
+      <workItem from="1457078810576" duration="5000" />
+      <workItem from="1457079436003" duration="33000" />
+      <workItem from="1457080237117" duration="2000" />
+      <workItem from="1457080241377" duration="4000" />
+      <workItem from="1457080249707" duration="15000" />
     </task>
     <servers />
   </component>
@@ -823,7 +828,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30588000" />
+    <option name="totallyTimeSpent" value="30792000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="635" y="23" width="804" height="828" extended-state="0" />
@@ -837,7 +842,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -874,6 +879,198 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/BST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BSTTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dictionary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#270#271#0" expanded="true" />
+            <element signature="e#312#313#0" expanded="true" />
+            <element signature="e#3898#3899#0" expanded="true" />
+            <element signature="e#3938#3939#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DictionaryTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AVLTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BSTTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dictionary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#270#271#0" expanded="true" />
+            <element signature="e#312#313#0" expanded="true" />
+            <element signature="e#3898#3899#0" expanded="true" />
+            <element signature="e#3938#3939#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DictionaryTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AVLTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BSTTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dictionary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#270#271#0" expanded="true" />
+            <element signature="e#312#313#0" expanded="true" />
+            <element signature="e#3898#3899#0" expanded="true" />
+            <element signature="e#3938#3939#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DictionaryTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AVLTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BSTTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dictionary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#270#271#0" expanded="true" />
+            <element signature="e#312#313#0" expanded="true" />
+            <element signature="e#3898#3899#0" expanded="true" />
+            <element signature="e#3938#3939#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DictionaryTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AVLTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/BST.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1171,8 +1368,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AVLTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.95896035">
-          <caret line="287" column="0" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.67168266">
+          <caret line="157" column="9" selection-start-line="136" selection-start-column="8" selection-end-line="157" selection-end-column="9" />
           <folding />
         </state>
       </provider>

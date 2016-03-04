@@ -20,6 +20,8 @@
  *
  ******************************************************************************/
 
+import java.util.Stack;
+
 /**
  *  The <tt>EdgeWeightedGraph</tt> class represents an edge-weighted
  *  graph of vertices named 0 through <em>V</em> - 1, where each

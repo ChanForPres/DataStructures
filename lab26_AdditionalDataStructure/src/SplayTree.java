@@ -129,20 +129,31 @@ public class SplayTree<K extends Comparable<K>, V> {
    *  zig() rotates "node" up through its parent.  (Note that this may entail
    *  either a rotation right or a rotation left.)
    *
-   *  @param node the node to splay one step up the tree.
+   *  @param X the node to splay one step up the tree.
    **/
-  private void zig(TreeNode node) {
-    // YOUR CODE HERE
+  private void zig(TreeNode X) {
+    if (X.parent.myLeft == X) {
+      rotateRight(X);
+    } else {
+      rotateLeft(X);
+    }
   }
 
   /** 
    *  zigZag() performs a zig-zag operation, thereby splaying "node" two steps
    *  closer to the root of the tree.
    *
-   *  @param node the node to splay two steps up the tree.
+   *  @param X the node to splay two steps up the tree.
    **/
-  private void zigZag(TreeNode node) {
-    //YOUR CODE HERE
+  private void zigZag(TreeNode X) {
+    // left child of a right child
+    if (X.parent.myLeft == X && X.parent.parent.myRight == X.parent) {
+      rotateRight(X);
+      rotateLeft(X);
+    } else {
+      rotateLeft(X);
+      rotateRight(X);
+    }
   }
 
   /** 
@@ -151,20 +162,47 @@ public class SplayTree<K extends Comparable<K>, V> {
    *  a zig-zig operation rotates "node"'s parent up through its grandparent
    *  first, then rotates "node" up through its parent.
    *
-   *  @param node the node to splay two steps up the tree.
+   *  @param X the node to splay two steps up the tree.
    **/
-  private void zigZig(TreeNode node) {
-    //YOUR CODE HERE
+  private void zigZig(TreeNode X) {
+    if (X.parent.myLeft == X && X.parent.parent.myLeft == X.parent) {
+      TreeNode P = X.parent;
+      rotateRight(P);
+      rotateRight(X);
+    } else {
+      TreeNode P = X.parent;
+      rotateLeft(P);
+      rotateLeft(X);
+    }
   }
 
   /**
    *  splayNode() splays "node" to the root of the tree with a sequence of
    *  zig-zag, zig-zig, and zig operations.
    *
-   *  @param node the node to splay to the root.
+   *  @param X the node to splay to the root.
    **/
-  private void splayNode(TreeNode node) {
-    //YOUR CODE HERE
+  private void splayNode(TreeNode X) {
+    TreeNode P = X.parent;
+    while (P != null) {
+      // when P is the root node of the entire tree
+      if (P.parent == null) {
+        zig(X);
+      } else {
+        double_rotate(X);
+      }
+     P = X.parent;
+    }
+  }
+
+
+  private void double_rotate(TreeNode X) {
+    if (X.parent.myLeft == X && X.parent.parent.myLeft == X.parent ||
+            X.parent.myRight == X && X.parent.parent.myRight == X.parent) {
+      zigZig(X);
+    } else {
+      zigZag(X);
+    }
   }
 
   /** 
@@ -276,6 +314,42 @@ public class SplayTree<K extends Comparable<K>, V> {
     }
   }
 
+  public static void main(String[] args) {
+    SplayTree t1 = new SplayTree();
+    t1.put(9, "G");
+    System.out.println(t1.toString());
+    System.out.println("================");
+    t1.put(10, "D");
+    System.out.println(t1.toString());
+    System.out.println("================");
+    t1.put(4, "P");
+    System.out.println(t1.toString());
+    System.out.println("================");
+    t1.put(3, "A");
+    System.out.println(t1.toString());
+    System.out.println("================");
+    t1.put(6, "X");
+    System.out.println(t1.toString());
+    System.out.println("================");
+    t1.put(5, "B");
+    System.out.println(t1.toString());
+    System.out.println("================");
+    t1.put(7, "C");
+    System.out.println(t1.toString());
+    System.out.println("================");
+
+    /*SplayTree t2 = new SplayTree(9);
+    t2.insert(2);
+    t2.insert(10);
+    t2.insert(1);
+    t2.insert(7);
+    System.out.println(t2);
+    // Should cause a rotation to occur.
+    t2.insert(6);
+    System.out.println(t2);
+    System.out.println(t2.isAlmostBalanced());*/
+  }
+
   /**
    *  TreeNode represents a node in a binary tree.
    *
@@ -325,7 +399,7 @@ public class SplayTree<K extends Comparable<K>, V> {
      *
      *  @return a String representing the BinaryTreeNode.
      **/
-    public String toString() {
+    /*public String toString() {
       String s = "";
 
       if (myLeft != null) {
@@ -336,7 +410,26 @@ public class SplayTree<K extends Comparable<K>, V> {
         s = s + "(" + myRight.toString() + ")";
       }
       return s;
+    }*/
+    @Override
+    public String toString() {
+      return toStringHelper("");
+    }
+
+    private String toStringHelper(String soFar) {
+      if (isEmpty()) {
+        return "";
+      } else {
+        String toRtn = "";
+        if (myRight != null) {
+          toRtn += myRight.toStringHelper("    "+soFar);
+        }
+        toRtn += "\n" + soFar + key.toString() + value.toString();
+        if (myLeft != null) {
+          toRtn += myLeft.toStringHelper("    " + soFar);
+        }
+        return toRtn;
+      }
     }
   }
-
 }
