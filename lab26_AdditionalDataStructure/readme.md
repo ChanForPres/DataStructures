@@ -163,13 +163,12 @@ We can have a Disjoint Set of vertices (which as you may recalled we label with 
 If it's on adjacency list, then it takes ```O(|V|)``` time to make the initial graph. Sorting will take ```O(|E|lg|E|)``` time. Iterating all of the edges will take ```O(|E|)``` time. So the total Kruskal's runtime is ```O(|V|+|E|lg|E|)```.
 
 #### ```Kruskals.java```
-In this implementation, there's a Quick-Union Disjoint Set with path compression, as well as a weighted, undirected graph implementation
+In this implementation, there's a Quick-Union Disjoint Set with path compression, as well as a weighted, undirected graph implementation.  Implement the ```mst()``` method, which takes in an EdgeWeightedGraph and returns a new EdgeWeightedGraph, which is an MST of the input graph.
+
+* HashMap's ```entrySet``` is by definition, to get a set view of the entries contained in this Hashtable. Remember, each element in this collection is a Map.Entry. And it seems like it's okay with redundancies on "Values" while not okay with "Keys".
 
 
-
-
-
-
+### Cuckoo Hashing
 
 
 
