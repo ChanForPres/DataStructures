@@ -27,6 +27,8 @@ public class Kruskals {
 
     // sort the edges by weight
     Map<Edge, Double> sortedMap = sortByValue(mapE);
+    System.out.println(sortedMap.entrySet());
+
 
     // Create disjointset array and assign -1 for every item
     UF uf = new UF(g.V());
@@ -35,17 +37,18 @@ public class Kruskals {
     // if there's not already path in T
     // we add the edge (u,v) to T
     for (Map.Entry<Edge, Double> entry : sortedMap.entrySet()) {
-      System.out.println("entry: " + entry);
       int u = entry.getKey().either();
       int v = entry.getKey().other(u);
+
       // if vertices in the same tree, skip
       if (uf.connected(u, v)) {
         continue;
       } else {
-        
+        T.addEdge(entry.getKey());
+        uf.union(u, v);
       }
     }
-
+    return T;
   }
 
   /*
@@ -56,7 +59,7 @@ public class Kruskals {
     Collections.sort(list, new Comparator() {
       @Override
       public int compare(Object o1, Object o2) {
-        return ((Comparable) ((Map.Entry) (o2)).getValue()).compareTo(((Map.Entry) (o1)).getValue());
+        return ((Comparable) ((Map.Entry) (o1)).getValue()).compareTo(((Map.Entry) (o2)).getValue());
       }
     });
 

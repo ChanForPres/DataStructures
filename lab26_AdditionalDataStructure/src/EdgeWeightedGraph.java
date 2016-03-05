@@ -234,9 +234,27 @@ public class EdgeWeightedGraph {
      * Unit tests the <tt>EdgeWeightedGraph</tt> data type.
      */
     public static void main(String[] args) {
-        In in = new In(args[0]);
-        EdgeWeightedGraph G = new EdgeWeightedGraph(in);
+        EdgeWeightedGraph G = new EdgeWeightedGraph(8);
+        Edge e1 = new Edge(1, 3, 4);
+        Edge e2 = new Edge(0, 3, 5);
+        Edge e3 = new Edge(0, 2, 4);
+        Edge e4 = new Edge(2, 5, 7);
+        Edge e5 = new Edge(2, 6, 6);
+        Edge e6 = new Edge(3, 7, 1);
+        Edge e7 = new Edge(3, 5, 5);
+        G.addEdge(e1);
+        G.addEdge(e2);
+        G.addEdge(e3);
+        G.addEdge(e4);
+        G.addEdge(e5);
+        G.addEdge(e6);
+        G.addEdge(e7);
+        StdOut.println("=========== INPUT ===========");
         StdOut.println(G);
+        Kruskals krusk = new Kruskals();
+        EdgeWeightedGraph T = krusk.mst(G);
+        StdOut.println("=========== KRUSKALS ===========");
+        StdOut.println(T);
     }
 
 }
