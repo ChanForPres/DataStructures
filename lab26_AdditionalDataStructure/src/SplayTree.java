@@ -317,24 +317,31 @@ public class SplayTree<K extends Comparable<K>, V> {
   public static void main(String[] args) {
     SplayTree t1 = new SplayTree();
     t1.put(9, "G");
+    System.out.println("---9G---");
     System.out.println(t1.toString());
     System.out.println("================");
     t1.put(10, "D");
+    System.out.println("---10D---");
     System.out.println(t1.toString());
     System.out.println("================");
     t1.put(4, "P");
+    System.out.println("---4P---");
     System.out.println(t1.toString());
     System.out.println("================");
     t1.put(3, "A");
+    System.out.println("---3A---");
     System.out.println(t1.toString());
     System.out.println("================");
     t1.put(6, "X");
+    System.out.println("---6X---");
     System.out.println(t1.toString());
     System.out.println("================");
     t1.put(5, "B");
+    System.out.println("---5B---");
     System.out.println(t1.toString());
     System.out.println("================");
     t1.put(7, "C");
+    System.out.println("---7C---");
     System.out.println(t1.toString());
     System.out.println("================");
 
