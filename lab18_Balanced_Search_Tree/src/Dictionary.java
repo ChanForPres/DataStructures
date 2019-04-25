@@ -1,4 +1,5 @@
-import sun.text.normalizer.Trie;
+//import sun.misc.Unsafe;
+import java.text.Normalizer.Trie;
 
 import java.util.HashMap;
 
